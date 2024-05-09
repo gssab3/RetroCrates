@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'CrashWumpa';
+    src: url('../font/CrashBandicootWumpa.ttf');
+}
+
+@font-face{
+	font-family:'RetroMario';
+	src: url('../font/SuperMarioBrosNES.ttf')
+}
+
+body{
+	font-size: 100%;
+	font-family: Verdana, sans-serif;
+	
+}
+
+header{
+	border: 2px solid black;
+	
+}
+
+.ContentHeader{
+	display: flex;
+	flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+}
+
+div.barraNavigazione{
+	font-size: 40px;
+	font-family: 'CrashWumpa', sans-serif;
+	text-shadow: 2px 2px 5px black;
+	
+}
+	
+div.barraNavigazione ul, .barraNavigazione li ul {
+    list-style-type: none;
+}
+
+div.barraNavigazione a{
+	text-decoration: none;
+	color: #F84B01;
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+header h1
+{
+	font-family:'RetroMario', sans-serif;
+	color: #0000FF;
+	text-shadow: 2px 2px 5px black;
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+
