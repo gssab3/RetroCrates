@@ -33,11 +33,24 @@ div.barraNavigazione{
 	font-size: 40px;
 	font-family: 'CrashWumpa', sans-serif;
 	text-shadow: 2px 2px 5px black;
-	
+	border: 2px solid black;
+	width: 25%;
 }
 	
-div.barraNavigazione ul, .barraNavigazione li ul {
-    list-style-type: none;
+div.barraNavigazione ul{
+    list-style-image: url("../images/wumpabullet.png");
+}
+	
+.barraNavigazione li ul{
+	list-style-image: url("../images/cratebullet.png");
+}		
+	
+div.barraNavigazione ul:hover{
+    list-style-image: url("../images/wumpabullet.gif");
+}
+
+.barraNavigazione li ul:hover{
+	list-style-image: url("../images/cratebullet.gif");
 }
 
 div.barraNavigazione a{
