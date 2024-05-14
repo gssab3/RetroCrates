@@ -1,4 +1,4 @@
-function apriMenu() {
+/*function apriMenu() {
 		const ismenu = document.querySelector("[isOpenMenu]");
 		const sidebar = document.querySelector(".sidebar");
 		const overlay = document.querySelector(".overlay");
@@ -31,4 +31,4 @@ function apriMenu() {
 		});
 	}
 	
-	apriMenu();
+	apriMenu();*/

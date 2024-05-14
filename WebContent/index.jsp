@@ -11,14 +11,10 @@
 </head>
 <body>
 
-	<div class="barraNavigazione"> 
 	
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		
-		<span></span>
-    	<span></span>
-    	<span></span>
-    	
+	<div class="barraNavigazione" id="barraNavigazione"> 
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<p>Menu<p>
 		<ul id="menu">
 			<li id="console"> <a href="console.jsp">Console</a>
 			  	<ul>
@@ -44,39 +40,51 @@
 		</ul>
 	</div>
 	
+	
+	
 	<header>
+		<div class="TastoMenu" >
+			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+				<img src="images/iconamenu.png" alt="open">
+			</span>
+		</div>
 		<div class="ContentHeader">
-			<div class="TastoMenu" >
-				<img id="tastoicon" alt="" src="images/wumpabullet.png">
-			</div>
-			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="200px"></a>
+			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
 			<h1>Benvenuto</h1>
 		</div>
 	</header>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
 	
-	<div class="sidebar hidden" >
+<%--	
+	<div class="sidebar" >
 		<div class="overlay">
 			<div class="contenutosidebar">
 				<div class="headersidebar">
 					<h4>Menu</h4>
-					<img class="closeicon" alt="" src="images/cratebullet.png">
+					<div class="TastoMenu" >
+						<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+							<img src="images/iconamenu.png" alt="open">
+						</span>
+					</div>
 				</div>
 				<div class="bodysidebar">
-					
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	<script type="text/javascript">
-		function openNav() {
-		  document.getElementById("mySidenav").style.width = "250px";
-		}
 
-		function closeNav() {
-		  document.getElementById("mySidenav").style.width = "0";
-		}
+--%>
+
+	<script type="text/javascript">
+	// JavaScript
+	function openNav() {
+	    document.getElementById("barraNavigazione").classList.add("open");
+	}
+
+	function closeNav() {
+	    document.getElementById("barraNavigazione").classList.remove("open");
+	}
 	</script>
 	
 	<script src="test.js"></script>
