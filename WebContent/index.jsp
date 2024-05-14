@@ -41,6 +41,16 @@
 	</div>
 	
 	
+	<div class="cart" id="cart">
+		<a href="javascript:void(0)" class="closecart" onclick="closeCart()">×</a>
+		<p>Il Tuo Carrello</p>
+		<br>
+		<br>
+		<br>
+		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
+	</div>
+	
+	
 	
 	<header>
 		<div class="TastoMenu" >
@@ -50,11 +60,35 @@
 		</div>
 		<div class="ContentHeader">
 			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
-			<h1>Benvenuto</h1>
 		</div>
+		<div class="TastoLogin">
+			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+				<img src="images/cocoicon1.ico" alt="open">
+			</span>
+		</div>
+		
+		<div class="TastoCarrello">
+			<span style="font-size:30px;cursor:pointer" onclick="openCart()">
+				<img src="images/gioggia.jpg" width="50px" alt="opencart">
+			</span>
+		</div> 
 	</header>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
+	<div class="prova">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="400px">
+		<img alt="" src="images/gioggia.jpg" width="300px">
+		<img alt="" src="images/gioggia.jpg" width="300px">
+		<img alt="" src="images/gioggia.jpg" width="300px">
+		<img alt="" src="images/gioggia.jpg" width="300px">
+		<img alt="" src="images/gioggia.jpg" width="300px">
+	</div>
 	
 <%--	
 	<div class="sidebar" >
@@ -75,23 +109,9 @@
 	</div>
 
 --%>
-
-	<script type="text/javascript">
-	// JavaScript
-	function openNav() {
-	    document.getElementById("barraNavigazione").classList.add("open");
-	}
-
-	function closeNav() {
-	    document.getElementById("barraNavigazione").classList.remove("open");
-	}
-	</script>
 	
-	<script src="test.js"></script>
-	
-	
-	
-	
+	<script src="js/sidebar.js" type="text/javascript"></script>
+	<script type="js/cart.js" type="text/javascript"></script>
 	
 	
 </body>
