@@ -48,6 +48,7 @@
 		<br>
 		<br>
 		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
+		
 	</div>
 	
 	
