@@ -1,17 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
-<link type="text/css" rel="stylesheet" href="css/style.css"/>
-<link rel="shortcut icon" href="images/cocoicon2.ico" /> 
+ <link type="text/css" rel="stylesheet" href="css/style.css"/>
+ <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
+ 	<script src="js/sidebar.js" type="text/javascript"></script>
+	<script src="js/cart.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="barraNavigazione" id="barraNavigazione"> 
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Ã—</a>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
 			<li id="console"> <a href="console.jsp">Console</a>
@@ -53,15 +55,8 @@
 	</header>
 	
 	
-	<script type="text/javascript">
-	// JavaScript
-	function openNav() {
-	    document.getElementById("barraNavigazione").classList.add("open");
-	}
-
-	function closeNav() {
-	    document.getElementById("barraNavigazione").classList.remove("open");
-	}
-	</script>
+	<footer>
+		<h1>Buongiorno</h1>
+	</footer>
 </body>
 </html>

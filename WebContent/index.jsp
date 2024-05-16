@@ -8,6 +8,8 @@
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="css/style.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
+ 	<script src="js/sidebar.js" type="text/javascript"></script>
+	<script src="js/cart.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -48,9 +50,7 @@
 		<br>
 		<br>
 		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
-		
 	</div>
-	
 	
 	
 	<header>
@@ -62,33 +62,42 @@
 		<div class="ContentHeader">
 			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
 		</div>
+		<%-- Qui dobbiamo fare un if, che se siamo loggati il tato login reinderizza al profilo e non alla pagina di login --%>
 		<div class="TastoLogin">
-			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
-				<img src="images/cocoicon1.ico" alt="open">
+			<span style="font-size:30px;cursor:pointer">
+				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="open"></a>
 			</span>
 		</div>
 		
+		<%-- 
+		<div class="TastoLogin">
+			<span style="font-size:30px;cursor:pointer">
+				<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
+			</span>
+		</div> --%>	
+		
 		<div class="TastoCarrello">
 			<span style="font-size:30px;cursor:pointer" onclick="openCart()">
-				<img src="images/gioggia.jpg" width="50px" alt="opencart">
+				<img src="images/cart.png" alt="opencart">
 			</span>
 		</div> 
 	</header>
 	
 	<div class="prova">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="400px">
-		<img alt="" src="images/gioggia.jpg" width="300px">
-		<img alt="" src="images/gioggia.jpg" width="300px">
-		<img alt="" src="images/gioggia.jpg" width="300px">
-		<img alt="" src="images/gioggia.jpg" width="300px">
-		<img alt="" src="images/gioggia.jpg" width="300px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
+		<img alt="" src="images/tarzanps1.jpg" width="500px">
 	</div>
 	
 <%--	
@@ -110,9 +119,11 @@
 	</div>
 
 --%>
+	<footer>
+		<h1>Buongiorno</h1>
+	</footer>
 	
-	<script src="js/sidebar.js" type="text/javascript"></script>
-	<script type="js/cart.js" type="text/javascript"></script>
+
 	
 	
 </body>

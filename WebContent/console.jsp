@@ -1,18 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
-<link type="text/css" rel="stylesheet" href="css/style.css"/>
-<link rel="shortcut icon" href="images/cocoicon2.ico"/> 
+ <link type="text/css" rel="stylesheet" href="css/style.css"/>
+ <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
+ 	<script src="js/sidebar.js" type="text/javascript"></script>
+	<script src="js/cart.js" type="text/javascript"></script>
 </head>
 <body>
 	
 	<div class="barraNavigazione" id="barraNavigazione"> 
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Ã—</a>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
 			<li id="console"> <a href="console.jsp">Console</a>
@@ -40,6 +42,15 @@
 	</div>
 	
 	
+	<div class="cart" id="cart">
+		<a href="javascript:void(0)" class="closecart" onclick="closeCart()">×</a>
+		<p>Il Tuo Carrello</p>
+		<br>
+		<br>
+		<br>
+		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
+	</div>
+	
 	
 	<header>
 		<div class="TastoMenu" >
@@ -49,20 +60,36 @@
 		</div>
 		<div class="ContentHeader">
 			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
-			<h1>Console</h1>
+			<h5>Console</h5> --%>
 		</div>
+		<%-- Qui dobbiamo fare un if, che se siamo loggati il tato login reinderizza al profilo e non alla pagina di login --%>
+		<div class="TastoLogin">
+			<span style="font-size:30px;cursor:pointer">
+				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="open"></a>
+			</span>
+		</div>
+		
+		<%-- 
+		<div class="TastoLogin">
+			<span style="font-size:30px;cursor:pointer">
+				<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
+			</span>
+		</div> --%>	
+		
+		<div class="TastoCarrello">
+			<span style="font-size:30px;cursor:pointer" onclick="openCart()">
+				<img src="images/cart.png" alt="opencart">
+			</span>
+		</div> 
 	</header>
 	
-	<script type="text/javascript">
-	// JavaScript
-	function openNav() {
-	    document.getElementById("barraNavigazione").classList.add("open");
-	}
-
-	function closeNav() {
-	    document.getElementById("barraNavigazione").classList.remove("open");
-	}
-	</script>
+	
+	
+	<footer>
+		<h1>Buongiorno</h1>
+	</footer>
+	
+	
 
 </body>
 </html>

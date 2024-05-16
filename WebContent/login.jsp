@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport"  content="initial-scale=1, width=device-width">
+<title>RetroCrates</title>
+ <link type="text/css" rel="stylesheet" href="css/style.css"/>
+ <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
+ 	<script src="js/sidebar.js" type="text/javascript"></script>
+	<script src="js/cart.js" type="text/javascript"></script>
+</head>
+<body>
+
+	<%-- 
+		Questo al 90% si leva, bisogna vedere come fare
+	<header>
+		<div class="TastoMenu" >
+			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+				<img src="images/iconamenu.png" alt="open">
+			</span>
+		</div>
+		<div class="ContentHeader">
+			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
+		</div>
+		<div class="TastoLogin">
+			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+				<img src="images/cocoicon1.ico" alt="open">
+			</span>
+		</div>
+	</header>
+	--%>
+	 
+	 <div class="squarelogin">
+            <div class="contenutologin">
+                <img src="images/loginbgtemp.jpg" alt="immaginelogin" class="immaginelogin">
+
+                <form action="" class="loginform">
+                    <div>
+                        <h1 class="titolologin">
+                            <span>Benvenuto</span>
+                        </h1>
+                        <p class="descrizionelogin">
+                            Effettua il Login per accedere alla tua area riservata.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <div class="campilogin">
+                            <div>
+                                <label for="input-email" class="titoloemailpass">Email</label>
+                                <input type="email" placeholder="Enter your email address" required class="emailpass" id="email">
+                            </div>
+    
+                            <div>
+                                <label for="input-pass" class="titoloemailpass">Password</label>
+    
+                                <div class="bloccopass">
+                                    <input type="password" placeholder="Enter your password" required class="emailpass" id="password">
+                                   <%-- <i class="ri-eye-off-line login__eye" id="input-icon"></i>  da vedere bene come fare
+                                   è il pulsante per oscurare la password --%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="pulsantilogin">
+                            <button class="logreg">Log In</button>
+                            <button class="logreg">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+	 
+
+</body>
+</html>
