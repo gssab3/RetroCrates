@@ -7,10 +7,10 @@ USE RetroCrates;
 CREATE TABLE Utente(
     Username VARCHAR(20) NOT NULL,
     Email VARCHAR(50),
-    Tipo ENUM('Admin','Utente') NOT NULL,
     Passwordhash VARCHAR(128) NOT null,
     Datanas DATE NOT NULL,
     Foto BLOB,
+    Tipo ENUM('Admin', 'Utente') NOT NULL,
     PRIMARY KEY (Username)
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE Collezionabile(
     */ 
     Categoria ENUM('Poster','Gadget','Figure','Plush','Audio') NOT NULL,
     Costo DECIMAL(10,2) NOT NULL, 
-    Produttore ENUM('Funko','Nintendo','PokÃ©mon','Bandai Namco','Youtooz','Sega','Hasbro','Konami'),
+    Produttore ENUM('Funko','Nintendo','Pokèmon','Bandai Namco','Youtooz','Sega','Hasbro','Konami'),
     Edizione ENUM('Normale','Esclusiva RetroCrates'),
     Foto Blob,
     PRIMARY KEY (IdProdotto),
