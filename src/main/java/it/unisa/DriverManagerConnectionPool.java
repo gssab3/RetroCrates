@@ -26,8 +26,8 @@ public class DriverManagerConnectionPool  {
 		Connection newConnection = null;
 		String ip = "localhost";
 		String port = "3306";
-		String db = "RetroCratesDB";
-		String username = "retro";
+		String db = "retrocrates";
+		String username = "gsab3";
 		String password = "911MBLSC!a";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
