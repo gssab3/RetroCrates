@@ -31,7 +31,7 @@ CREATE TABLE Console(
     Produttore ENUM('Sony','Microsoft','Nintendo','Atari','Sega','Altri') NOT NULL,
     Qta INT NOT NULL,
     Disponibile BOOLEAN, -- al posto di cancellarlo
-    /* MediaVoto questo dobbiamo farlo solo atraverso query perchÃ¨ il voto non si aggiorna
+    /* MediaVoto questo dobbiamo farlo solo atraverso query perchè il voto non si aggiorna
         SELECT Console.Nome, AVG(recensioni.voto) as Valutazione
         FROM Console
         LEFT JOIN Recensione ON Console.IdProdotto = Recensione.IdProdotto
@@ -51,7 +51,7 @@ CREATE TABLE Videogioco(
     Costo DECIMAL(10,2) NOT NULL,
     Qta INT NOT NULL,
     Disponibile BOOLEAN, -- al posto di cancellarlo
-    /* MediaVoto questo dobbiamo farlo solo atraverso query perchÃ¨ il voto non si aggiorna
+    /* MediaVoto questo dobbiamo farlo solo atraverso query perchè il voto non si aggiorna
         SELECT Console.Nome, AVG(recensioni.voto) as Valutazione
         FROM Console
         LEFT JOIN Recensione ON Console.IdProdotto = Recensione.IdProdotto
@@ -73,7 +73,7 @@ CREATE TABLE Collezionabile(
     Qta INT NOT NULL, 
     Disponibile BOOLEAN, -- al posto di cancellarlo
     Descrizione TEXT NOT NULL,   
-    /* MediaVoto questo dobbiamo farlo solo atraverso query perchÃ¨ il voto non si aggiorna
+    /* MediaVoto questo dobbiamo farlo solo atraverso query perchè il voto non si aggiorna
         SELECT Console.Nome, AVG(recensioni.voto) as Valutazione
         FROM Console
         LEFT JOIN Recensione ON Console.IdProdotto = Recensione.IdProdotto
