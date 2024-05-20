@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS retrocrates;
 
 CREATE DATABASE retrocrates;
 
-USE RetroCrates;
+USE retrocrates;
 
 CREATE TABLE Utente(
     Username VARCHAR(20) NOT NULL,

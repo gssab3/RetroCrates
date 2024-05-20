@@ -37,12 +37,22 @@ header{
   	top: 0;
   	background-color: white;
   	box-shadow: 0 2px 6px 0  rgba(0,0,0,0.3);
-  	width: 100%;
   	margin: 0;
-  	box-sizing: border-box;
-  	display: block;
-  	z-index: 2;
+  	position: relative;
+  	z-index: 1;	
 }
+
+/*
+header{
+	position: sticky;
+	background-color: red;
+	top: 0;
+	width:100%;
+	display:block;
+	margin:0;
+}
+*/
+
 
 .ContentHeader{
 	display: flex;
@@ -130,7 +140,7 @@ header{
 	height: 100%;
   	position: fixed;
   	width:0;
-  	z-index: 1;
+  	z-index: 2;
   	top: 0;
   	left: 0;
   	background-color: #024821;
@@ -543,7 +553,7 @@ footer {
 	}  
 	
 	#barraRicerca{
-		width: 1200px;
+		width: 100%;
 	}
 }
 
@@ -558,8 +568,7 @@ footer {
   	background-color: hsla(244, 16%, 92%, 0.6);
   	color: var(--title-color);
   	font-size: var(--smaller-font-size);
-  	font-weight: var(--font-medium);
-  	transition: border 0.4s;
+  	font-weight: var(--font-medium);	
 }
 
 #barraRicerca.open {
