@@ -10,6 +10,7 @@
  <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
  	<script src="js/sidebar.js" type="text/javascript"></script>
 	<script src="js/cart.js" type="text/javascript"></script>
+	<script src="js/searchbar.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -59,13 +60,22 @@
 				<img src="images/iconamenu.png" alt="open">
 			</span>
 		</div>
+		
+		<div class="TastoRicerca" >
+			<span style="font-size:30px;cursor:pointer" onclick="openSearch()">
+				<img src="images/cart.png" alt="openSearch">
+			</span>
+		</div>
+		
 		<div class="ContentHeader">
 			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
 		</div>
+		
+		
 		<%-- Qui dobbiamo fare un if, che se siamo loggati il tato login reinderizza al profilo e non alla pagina di login --%>
 		<div class="TastoLogin">
 			<span style="font-size:30px;cursor:pointer">
-				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="open"></a>
+				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="openLog"></a>
 			</span>
 		</div>
 		
@@ -83,21 +93,9 @@
 		</div> 
 	</header>
 	
+	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
+	
 	<div class="prova">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
-		<img alt="" src="images/tarzanps1.jpg" width="500px">
 	</div>
 	
 <%--	

@@ -1,10 +1,16 @@
-package Collezionabile;
+package bean;
 
 import java.io.Serializable;
 
 import com.mysql.cj.jdbc.Blob;
 
 public class CollezionabileBean implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	
 	private enum Categoria
 	{

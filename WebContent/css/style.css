@@ -41,6 +41,7 @@ header{
   	margin: 0;
   	box-sizing: border-box;
   	display: block;
+  	z-index: 2;
 }
 
 .ContentHeader{
@@ -398,6 +399,10 @@ footer {
 		right: 120px;
 		transform: translateY(-50%);
 	}
+	
+	#barraRicerca{
+		width: 93%;
+	}
 }
 
 @media only screen and (min-width:768px) and (max-width:991px){
@@ -458,9 +463,18 @@ footer {
   		border-radius: 1.25rem;
   		z-index: 1;
 	}
+	
+	#barraRicerca{
+		width:97%;
+		border: 3px solid red;
+	}
 }
 
 @media only screen and (min-width:1200px) {
+	header{
+		width:100%;
+	}
+	
     .barraNavigazione.open {
         width: 300px;
     }
@@ -527,7 +541,32 @@ footer {
 	    padding-block: 1rem;
 	    margin-bottom: 1.25rem;
 	}  
+	
+	#barraRicerca{
+		width: 1200px;
+	}
 }
+
+#barraRicerca {
+    display: none;
+    margin-top: 10px;
+    z-index: 1;
+    margin-top: 10px;
+  	padding: 14px 12px;
+  	border-radius: 6px;
+  	border: 3px solid blue;
+  	background-color: hsla(244, 16%, 92%, 0.6);
+  	color: var(--title-color);
+  	font-size: var(--smaller-font-size);
+  	font-weight: var(--font-medium);
+  	transition: border 0.4s;
+}
+
+#barraRicerca.open {
+    display: block;
+    top: 50px;
+}
+
 
 header h1 {
 	font-family:'RetroMario', sans-serif;

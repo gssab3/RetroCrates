@@ -31,7 +31,7 @@ CREATE TABLE Console(
     Produttore ENUM('Sony','Microsoft','Nintendo','Atari','Sega','Altri') NOT NULL,
     Qta INT NOT NULL,
     Disponibile BOOLEAN, -- al posto di cancellarlo
-    /* MediaVoto questo dobbiamo farlo solo atraverso query perchè il voto non si aggiorna
+    /* MediaVoto questo dobbiamo farlo solo atraverso query perchï¿½ il voto non si aggiorna
         SELECT Console.Nome, AVG(recensioni.voto) as Valutazione
         FROM Console
         LEFT JOIN Recensione ON Console.IdProdotto = Recensione.IdProdotto
@@ -51,14 +51,14 @@ CREATE TABLE Videogioco(
     Costo DECIMAL(10,2) NOT NULL,
     Qta INT NOT NULL,
     Disponibile BOOLEAN, -- al posto di cancellarlo
-    /* MediaVoto questo dobbiamo farlo solo atraverso query perchè il voto non si aggiorna
+    /* MediaVoto questo dobbiamo farlo solo atraverso query perchï¿½ il voto non si aggiorna
         SELECT Console.Nome, AVG(recensioni.voto) as Valutazione
         FROM Console
         LEFT JOIN Recensione ON Console.IdProdotto = Recensione.IdProdotto
         GROUP BY IdProdotto;
     */
     Genere ENUM('Action/Adventure','Picchiaduro','RPG','Sparattutto','Simulazione','Sport','Strategia') NOT NULL,
-    Piattaforma ENUM('PS1','PS2','PS3','PS4','PS5','Xbox','Xbox 360','Xbox One','Xbox Series X/S','Nintendo 64','GameCube','Wii','Wii U','Switch','Game Boy','Nintendo DS','Nintendo 3DS','Sega Mega Drive','Sega Master System','DreamCast','Sega Saturn','Atari 2600','Atari 5200','Atari 7800        ','Altro') NOT NULL,
+    Piattaforma ENUM('PS1','PS2','PS3','PS4','PS5','Xbox','Xbox 360','Xbox One','Xbox Series X/S','Nintendo 64','GameCube','Wii','Wii U','Switch','Game Boy','Nintendo DS','Nintendo 3DS','Sega Mega Drive','Sega Master System','DreamCast','Sega Saturn','Atari 2600','Atari 5200','Atari 7800','Altro') NOT NULL,
     Produttore ENUM('Ubisoft','Rockstar Games','Nintendo','Activision','Eletronic Arts','Sega','Naughty Dog','Microsoft Studios','Bethesda','Gearbox Software','Epic Games','Capcom','Bandai Namco Entertainment','Konami') NOT NULL, 
     Tipo ENUM('Digitale','Fisico') NOT NULL,
     Foto Blob,
@@ -73,7 +73,7 @@ CREATE TABLE Collezionabile(
     Qta INT NOT NULL, 
     Disponibile BOOLEAN, -- al posto di cancellarlo
     Descrizione TEXT NOT NULL,   
-    /* MediaVoto questo dobbiamo farlo solo atraverso query perchè il voto non si aggiorna
+    /* MediaVoto questo dobbiamo farlo solo atraverso query perchï¿½ il voto non si aggiorna
         SELECT Console.Nome, AVG(recensioni.voto) as Valutazione
         FROM Console
         LEFT JOIN Recensione ON Console.IdProdotto = Recensione.IdProdotto
@@ -81,7 +81,7 @@ CREATE TABLE Collezionabile(
     */ 
     Categoria ENUM('Poster','Gadget','Figure','Plush','Audio') NOT NULL,
     Costo DECIMAL(10,2) NOT NULL, 
-    Produttore ENUM('Funko','Nintendo','Pokèmon','Bandai Namco','Youtooz','Sega','Hasbro','Konami'),
+    Produttore ENUM('Funko','Nintendo','Pokï¿½mon','Bandai Namco','Youtooz','Sega','Hasbro','Konami'),
     Edizione ENUM('Normale','Esclusiva RetroCrates'),
     Foto Blob,
     PRIMARY KEY (IdProdotto),
