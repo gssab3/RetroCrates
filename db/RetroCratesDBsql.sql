@@ -31,6 +31,7 @@ CREATE TABLE Console(
     Produttore ENUM('Sony','Microsoft','Nintendo','Atari','Sega','Altri') NOT NULL,
     Qta INT NOT NULL,
     Disponibile BOOLEAN, -- al posto di cancellarlo
+    Foto Blob,
     /* MediaVoto questo dobbiamo farlo solo atraverso query perchï¿½ il voto non si aggiorna
         SELECT Console.Nome, AVG(recensioni.voto) as Valutazione
         FROM Console
@@ -38,7 +39,6 @@ CREATE TABLE Console(
         GROUP BY IdProdotto;
     */
     PRIMARY KEY (IdProdotto),
-    Foto Blob,
     CHECK (Qta>=0),
     CHECK (Costo>=0)
 );
@@ -81,7 +81,7 @@ CREATE TABLE Collezionabile(
     */ 
     Categoria ENUM('Poster','Gadget','Figure','Plush','Audio') NOT NULL,
     Costo DECIMAL(10,2) NOT NULL, 
-    Produttore ENUM('Funko','Nintendo','Pokï¿½mon','Bandai Namco','Youtooz','Sega','Hasbro','Konami'),
+    Produttore ENUM('Funko','Nintendo','Pokèmon','Bandai Namco','Youtooz','Sega','Hasbro','Konami'),
     Edizione ENUM('Normale','Esclusiva RetroCrates'),
     Foto Blob,
     PRIMARY KEY (IdProdotto),

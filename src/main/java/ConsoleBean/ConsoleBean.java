@@ -1,17 +1,12 @@
-package Collezionabile;
-
-import java.io.Serializable;
+package ConsoleBean;
 
 import com.mysql.cj.jdbc.Blob;
 
-public class CollezionabileBean implements Serializable{
+public class ConsoleBean {
+
+	//ENUM
+	private String Produttore; //Sony, Microsoft, Nintendo, Atari, Sega, Altri
 	
-	private static final long serialVersionUID = 1L;
-	
-	//ENUM IN DB
-	private String Categoria; //Poster, Gadget, Figure, Plush, Audio
-	private String Produttore; //Funko, Nintendo, Pokèmon, BandaiNamco, YouTooz, Sega, Hasbro, Konami
-	private String Edizione; //Normale, Esclusiva, RetroCrates
 	
 	//ALTRI DATI
 	private String IdProdotto; //Esattamente 7 caratteri
@@ -19,29 +14,19 @@ public class CollezionabileBean implements Serializable{
 	private int qta; //>=0
 	private boolean disp; //disponibilità, in genere è false e quelli false non si mostrano
 	private String descr;
-	private float costo; // decimal (10,2) >= 0
+	private float costo;
 	private Blob picture;
 	
-	public CollezionabileBean()
+	public ConsoleBean() 
 	{
-		Categoria = null;
 		Produttore = null;
-		Edizione = null;
 		IdProdotto = null;
 		nome = null;
-		qta = 0;
+		qta = -1;
 		disp = false;
 		descr = null;
 		costo = -1;
 		picture = null;
-	}
-
-	public String getCategoria() {
-		return Categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		Categoria = categoria;
 	}
 
 	public String getProduttore() {
@@ -50,14 +35,6 @@ public class CollezionabileBean implements Serializable{
 
 	public void setProduttore(String produttore) {
 		Produttore = produttore;
-	}
-
-	public String getEdizione() {
-		return Edizione;
-	}
-
-	public void setEdizione(String edizione) {
-		Edizione = edizione;
 	}
 
 	public String getIdProdotto() {
