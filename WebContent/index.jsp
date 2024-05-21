@@ -63,12 +63,12 @@
 		
 		<div class="TastoRicerca" >
 			<span style="font-size:30px;cursor:pointer" onclick="openSearch()">
-				<img src="images/cart.png" alt="openSearch">
+				<img src="images/lenteicona.png" alt="openSearch">
 			</span>
 		</div>
 		
 		<div class="ContentHeader">
-			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
+			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png"></a>
 		</div>
 		
 		
