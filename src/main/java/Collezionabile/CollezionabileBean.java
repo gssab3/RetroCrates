@@ -1,4 +1,4 @@
-package bean;
+package Collezionabile;
 
 import java.io.Serializable;
 
