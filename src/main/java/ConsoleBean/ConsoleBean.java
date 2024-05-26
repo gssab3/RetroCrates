@@ -1,8 +1,9 @@
 package ConsoleBean;
 
+import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
 
-public class ConsoleBean {
+public class ConsoleBean implements Serializable{
 
 	//ENUM
 	private String Produttore; //Sony, Microsoft, Nintendo, Atari, Sega, Altri

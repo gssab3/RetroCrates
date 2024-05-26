@@ -109,7 +109,7 @@ CREATE TABLE Recensione(
 );
 
 CREATE TABLE ContieneCon(
-    IdOrdine VARCHAR(10) NOT NULL,
+    IdOrdine CHAR(10) NOT NULL,
     IdProdotto CHAR(7) NOT NULL,
     Qta INT NOT NULL,
     Costo DECIMAL(10,2) NOT NULL, 
@@ -120,7 +120,7 @@ CREATE TABLE ContieneCon(
 );
 
 CREATE TABLE ContieneVid(
-    IdOrdine VARCHAR(10) NOT NULL,
+    IdOrdine CHAR(10) NOT NULL,
     IdProdotto CHAR(7) NOT NULL,
     Qta INT NOT NULL,
     Costo DECIMAL(10,2) NOT NULL, 
@@ -131,7 +131,7 @@ CREATE TABLE ContieneVid(
 );
 
 CREATE TABLE ContieneCol(
-    IdOrdine VARCHAR(10) NOT NULL,
+    IdOrdine CHAR(10) NOT NULL,
     IdProdotto CHAR(7) NOT NULL,
     Qta INT NOT NULL,
     Costo DECIMAL(10,2) NOT NULL, 

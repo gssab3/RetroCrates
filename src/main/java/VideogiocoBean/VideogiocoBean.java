@@ -1,7 +1,6 @@
 package VideogiocoBean;
 
 import java.io.Serializable;
-
 import com.mysql.cj.jdbc.Blob;
 
 public class VideogiocoBean implements Serializable{

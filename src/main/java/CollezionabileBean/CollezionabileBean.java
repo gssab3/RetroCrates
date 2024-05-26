@@ -1,8 +1,9 @@
 package CollezionabileBean;
 
-import java.io.Serializable;
 
+import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
+
 
 public class CollezionabileBean implements Serializable{
 	
