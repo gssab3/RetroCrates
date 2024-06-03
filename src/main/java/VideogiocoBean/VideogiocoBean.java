@@ -3,6 +3,7 @@ package VideogiocoBean;
 import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
 
+@SuppressWarnings("serial")
 public class VideogiocoBean implements Serializable{
 	
 	
@@ -25,7 +26,7 @@ public class VideogiocoBean implements Serializable{
 	//Bethesda, Gearbox_Software, Epic_Games, Capcom, Bandai_Namco_Entertainment, Konami
 	private String Produttore; 
 	
-	private boolean Tipo; //Digitale = 0, Fisico = 1
+	private String Tipo; //Digitale, Fisico
 
 	
 	//ALTRI DATI;
@@ -43,7 +44,7 @@ public class VideogiocoBean implements Serializable{
 		Genere = null;
 		Piattaforma = null;
 		Produttore = null;
-		Tipo = false;
+		Tipo = null;
 		IdProdotto = null;
 		nome = null;
 		qta = -1;
@@ -85,11 +86,11 @@ public class VideogiocoBean implements Serializable{
 		Produttore = produttore;
 	}
 
-	public boolean isTipo() {
+	public String getTipo() {
 		return Tipo;
 	}
 
-	public void setTipo(boolean tipo) {
+	public void setTipo(String tipo) {
 		Tipo = tipo;
 	}
 
