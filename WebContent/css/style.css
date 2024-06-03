@@ -24,7 +24,6 @@ body{
 	font-size: 100%;
 	font-family: Verdana, sans-serif;	
 	width: 100%;
-	cursor: url('../images/cococursormini.png'),auto;
 }
 
 body, html{
@@ -32,6 +31,10 @@ body, html{
     padding: 0;
     width:100%;
     overflow-x: hidden;
+}
+
+body .conbarra {
+    margin-top: 100px;
 }
 
 div.prova img{
@@ -51,16 +54,6 @@ header{
   	width: 100vw;
 }
 
-/*
-header{
-	position: sticky;
-	background-color: red;
-	top: 0;
-	width:100%;
-	display:block;
-	margin:0;
-}
-*/
 
 
 .ContentHeader{
@@ -357,7 +350,7 @@ header{
   width: 100%;
   padding: 14px 2rem;
   border-radius: 6px;
-  background: linear-gradient(180deg, blue, orange);
+  background: linear-gradient(to bottom right,#FA4404 30%,#F5F800 50%,#5C970F 70%);
   color: #fff;
   font-size: 20px;
   font-weight: var(--font-semi-bold);
@@ -372,6 +365,53 @@ footer {
   padding: 3px;
   background-color: DarkSalmon;
   color: white;
+}
+
+.logofooter{
+	width:80px;
+	margin-bottom:30px;
+}
+
+.rigafooter{
+	width:85%;
+	margin:auto;
+	display:flex;
+	flex-wrap:wrap;
+	align-items:flex-start;
+	justify-content: center;
+}
+
+.colonnafooter{
+	flex-basis:25%;
+	padding:10px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.colonnafooter ul {
+    padding-left: 0;
+}
+
+
+.colonnafooter:nth-child(2) {
+    flex: 2;
+}
+
+.email-id a{
+	width:fit-content;
+	border-bottom: 1px solid #ccc;
+	margin: 5px 0;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+}
+
+.copyright{
+	text-align:center;
+	color: #fff;
+	color: #fff;
 }
 
 @media only screen and (max-width: 767px) {
@@ -480,10 +520,6 @@ footer {
  	  justify-content: center;
 	  align-items: center;
 	}
-
-	/*.immaginelogin{
-	
-	}*/
 }
 
 @media only screen and (min-width:768px) and (max-width:991px){
@@ -650,8 +686,30 @@ footer {
 
 }
 
+@keyframes apriricerca {
+    0% {
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes chiudiricerca {
+    0% {
+    	transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, -100%, 0);
+        visibility: hidden;     
+    }
+}
+
 #barraRicerca {
-    display: none;
+	display: none;
+	visibility: hidden;
+	height:0%;
     margin-top: 10px;
     width: 98vw;
     z-index: 1;
@@ -670,8 +728,29 @@ footer {
 }
 
 #barraRicerca.open {
+    height: auto;
+    visibility: visible;
     display: block;
-    top: 50px;
+}
+
+#barraRicerca.close {
+    height: auto;
+    visibility: hidden;
+    display: none;
+}
+
+#barraRicerca.close {
+	animation-name: chiudiricerca;
+    animation-duration: 1s; 
+    animation-timing-function: ease-in-out; 
+    animation-fill-mode: forwards; 
+}
+
+#barraRicerca.open {
+    animation-name: apriricerca;
+    animation-duration: 1s; 
+    animation-timing-function: ease-in-out; 
+    animation-fill-mode: forwards; 
 }
 
 

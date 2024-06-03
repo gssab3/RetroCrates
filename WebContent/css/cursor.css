@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+* {
+	cursor: none;
+}
+.cursor {
+	position: absolute;
+	display:none;
+	width:32px;
+	height:32px;
+	pointer-events: none;
+	background-size: contain;
+	z-index: 9999;
+}
+
+.cursor {
+	background: url("../images/tabletcursormini.png") no-repeat center center;
+}
+
+.cursor.pointer {
+	background: url("../images/cococursormini.png") no-repeat center center;
+}
