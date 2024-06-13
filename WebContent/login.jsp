@@ -48,7 +48,7 @@
 
                     <div>
                         <div class="pulsantilogin">
-                            <button class="logreg">Log In</button>
+                            <input type="submit" value="Log In" class="logreg">
                             <button class="logreg">Sign Up</button>
                         </div>
                     </div>

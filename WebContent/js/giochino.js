@@ -45,6 +45,7 @@ function giochino(){
         outputbuono.innerHTML = buoni[buonoindex];
         document.getElementById('inviaRisposta').style.display = 'none';
         document.getElementById('ricomincia').style.display = 'block';
+        document.getElementById('ricomincia').style.visibility = 'visible'; 
     }
     magicNumber= Math.floor(Math.random()*(100-1+1))+1;
 }

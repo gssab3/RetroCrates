@@ -15,6 +15,16 @@
 	src: url('../font/pricedownbl.ttf');
 }
 
+@font-face {
+    font-family: "CCGeekSpeak";
+    src: url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.eot");
+    src: url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.svg#CCGeekSpeak W00 Regular")format("svg");
+}
+
 *::before,
 *::after {
   box-sizing: border-box;
@@ -66,7 +76,7 @@ header{
 }
 
 .ContentHeader img{
-	width:100px;
+	width:250px;
 }
 
 .ContentHeader h5{
@@ -346,19 +356,57 @@ header{
   column-gap: 0.75rem;
 }
 
-.logreg {
+.logreg{
+	text-transform: uppercase;
+    text-decoration: none;
+    font-family: "CCGeekSpeak", sans-serif;
+    color: #FFF;
+    text-shadow: #000000 -2px 2px 0px, #000000 -1px -1px 0px, #000000 1px -1px 0px, #000000 -1px 1px 0px, #000000 1px 1px 0px;
+    font-weight: normal;
+    background-color:transparent;
+    background-image: url("../images/pulsantelogin.png");
+    background-repeat: no-repeat;
+    background-size:contain;
+    width: 100%;
+    padding: 14px 2rem;
+    font-size: 30px;
+    text-wrap: nowrap;
+    margin-bottom: 1rem;
+	cursor: pointer;
+    margin-left:5px;
+	border:0px;
+}
+
+.logreg:focus {
+  box-shadow: none;
+}
+
+.logreg:hover {
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+.logreg:active {
+  box-shadow: none;
+  transform: translateY(2px);
+}
+
+
+/*.logreg {
   width: 100%;
   padding: 14px 2rem;
   border-radius: 6px;
-  background: linear-gradient(to bottom right,#FA4404 30%,#F5F800 50%,#5C970F 70%);
+  background-image: url("../images/pulsantelogin.png");
   color: #fff;
   font-size: 20px;
   font-weight: var(--font-semi-bold);
-  box-shadow: 0 6px 24px hsla(244, 75%, 48%, 0.5);
+  
   margin-bottom: 1rem;
   cursor: pointer;
   margin-left:5px;
-}
+  border:0px;
+  box-sizing: content-box;
+} */
 
 footer {
   text-align: center;
@@ -367,9 +415,13 @@ footer {
   color: white;
 }
 
+footer p.azienda{
+	margin: 7px 0px;
+}
+
 .logofooter{
-	width:80px;
-	margin-bottom:30px;
+	width:150px;
+	margin-bottom:15px;
 }
 
 .rigafooter{
@@ -659,7 +711,7 @@ footer {
 	    z-index: 1;
 	}
 	
-	.descrizionelogin, .titoloemailpass, .logreg {
+	.descrizionelogin, .titoloemailpass{
 	    font-family:'GTAfont', sans-serif;
 	    font-size: 30px;
 	}
@@ -698,16 +750,17 @@ footer {
 
 @keyframes chiudiricerca {
     0% {
-    	transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
-    100% {
+    99%{
         transform: translate3d(0, -100%, 0);
-        visibility: hidden;     
+        visibility: visible;
     }
+    100%{visibility: hidden;}
 }
 
+
 #barraRicerca {
-	display: none;
 	visibility: hidden;
 	height:0%;
     margin-top: 10px;
@@ -736,7 +789,7 @@ footer {
 #barraRicerca.close {
     height: auto;
     visibility: hidden;
-    display: none;
+    display: block;
 }
 
 #barraRicerca.close {
