@@ -6,13 +6,15 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="css/style.css"/>
- <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
+ <link rel="shortcut icon" href="images/cocoicon2.ico" />
  <link type="text/css" rel="stylesheet" href="css/cursor.css">
+ <link type="text/css" rel="stylesheet" href="css/giochino.css">
  	<script src="js/sidebar.js" type="text/javascript"></script>
 	<script src="js/cart.js" type="text/javascript"></script>
 	<script src="js/searchbar.js" type="text/javascript"></script>
+	<script src="js/giochino.js" type="text/javascript"></script>
 </head>
-<body >
+<body>
 
 	<div class="cursor">	</div>
 	<div class="barraNavigazione" id="barraNavigazione"> 
@@ -95,32 +97,26 @@
 	
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito" class="close">
 	
-	<div class="prova">
-	</div>
 	
-<%--	
-	<div class="sidebar" >
-		<div class="overlay">
-			<div class="contenutosidebar">
-				<div class="headersidebar">
-					<h4>Menu</h4>
-					<div class="TastoMenu" >
-						<span style="font-size:30px;cursor:pointer" onclick="openNav()">
-							<img src="images/iconamenu.png" alt="open">
-						</span>
-					</div>
-				</div>
-				<div class="bodysidebar">
-				</div>
-			</div>
-		</div>
+	<div class="contienigioco">
+		<p class="Nomegioco">Inserisci un numero</p>	
+		<br>
+		<input id="inputGiocatore" type="number" min="1" max="100" >
+		<br>
+	    <button id="inviaRisposta" onclick="giochino()"><img class="tasto" alt="tasto" src="images/tastogiochino.png"></button>
+	    <button id="ricomincia" onclick="ricomincia()" style="display: block;"><img class="tastoretry" alt="tastoretry" src="images/retry.png"></button>
+	    <br>
+	    <div id="output"></div>
+	    <div id="buono"></div>
+	    <br>
 	</div>
 
---%>
+
+
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/cursor.js"></script>
-	<footer>
+<footer>
 		<div class="rigafooter">
 			
 				<div class="colonnafooter">
@@ -129,13 +125,13 @@
 				</div>
 				
 				<div class="colonnafooter">
-					<h3>About Us</h3>
+					<h3>About Us</h3> 
 					<p>RetroCrates è un sito che punta a riportare in vita la magia dei videogiochi retrò. 
 					Offriamo una vasta selezione di titoli classici, divenuti ormai capolavori 
 					dimenticati, ma non solo.
 					RetroCrates, il tuo portale per l’era d’oro dei videogiochi. </p>
-					<p class="email-id" style="cursor:pointer;"><a href="mailto:s.davanzo5@studenti.unisa.it">s.davanzo5@studenti.unisa.it</a></p>
-					<p class="email-id" style="cursor:pointer;"><a href="mailto:g.sabetta3@studenti.unisa.it">g.sabetta3@studenti.unisa.it</a></p>
+					<p class="email-id">s.davanzo5@studenti.unisa.it</p>
+					<p class="email-id">g.sabetta3@studenti.unisa.it</p>
 					<h4>+39 123 456 7890</h4>
 				</div>
 				
@@ -154,5 +150,6 @@
 			<hr>
 			<p class="copyright"> RetroCrates Inc. &copy; - All Rights Reserved</p>
 	</footer>
+
 </body>
 </html>

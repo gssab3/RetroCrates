@@ -12,26 +12,7 @@
 	<script src="js/cart.js" type="text/javascript"></script>
 </head>
 <body>
-
-	<%-- 
-		Questo al 90% si leva, bisogna vedere come fare
-	<header>
-		<div class="TastoMenu" >
-			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
-				<img src="images/iconamenu.png" alt="open">
-			</span>
-		</div>
-		<div class="ContentHeader">
-			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
-		</div>
-		<div class="TastoLogin">
-			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
-				<img src="images/cocoicon1.ico" alt="open">
-			</span>
-		</div>
-	</header>
-	--%>
-	 
+ 
 	 <div class="squarelogin">
             <div class="contenutologin">
                 <img src="images/loginbgtemp.jpg" alt="immaginelogin" class="immaginelogin">
@@ -71,6 +52,7 @@
                             <button class="logreg">Sign Up</button>
                         </div>
                     </div>
+                            <a href="index.jsp">Torna alla Home</a>
                 </form>
             </div>
         </div>

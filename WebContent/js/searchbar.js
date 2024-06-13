@@ -2,9 +2,9 @@ function openSearch() {
 	     var barra = document.getElementById("barraRicerca");
     if (barra.classList.contains("open")) {
         barra.classList.remove("open");
-        barra.style.display = "none";
+        barra.classList.add("close");
     } else {
         barra.classList.add("open");
-        barra.style.display = "block";
+        barra.classList.remove("close");
     }   
 }
