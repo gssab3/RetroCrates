@@ -1,4 +1,4 @@
-package VideogiocoBean;
+package rc.model;
 
 import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;

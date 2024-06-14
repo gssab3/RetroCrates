@@ -1,4 +1,4 @@
-package VideogiocoBean;
+package rc.model;
 
 import java.awt.image.BufferedImage;
 import java.sql.Connection;
@@ -12,9 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import it.unisa.IBeanDAO;
 
-public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
+public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 	
 	private static DataSource ds;
 
@@ -30,32 +29,25 @@ public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
 		}
 	}
 
-	private static final String TABLE_NAME = "videogioco";
+	private static final String TABLE_NAME = "Utente";
 
 	@Override
-	public synchronized void doSave(VideogiocoBean videogioco) throws SQLException {
+	public synchronized void doSave(UtenteBean utente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int err = 0;
 		BufferedImage image = null;
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (IdProdotto, Nome, Descrizione, Edizione, Costo, Qta, Disponibile, Genere, Piattaforma, Produttore, Tipo, Foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		 //Sony, Microsoft, Nintendo, Atari, Sega, Altri
+				+ " (Username, Email, PasswordHash, Datanas, Foto, Tipo) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, videogioco.getIdProdotto());
-			preparedStatement.setString(2, videogioco.getNome());
-			preparedStatement.setString(3, videogioco.getDescr());
-			preparedStatement.setString(4, videogioco.getEdizione());
-			preparedStatement.setFloat(5, videogioco.getCosto());
-			preparedStatement.setInt(6, videogioco.getQta());
-			preparedStatement.setBoolean(7, videogioco.isDisp());
-			preparedStatement.setString(8, videogioco.getGenere());
-			preparedStatement.setString(9, videogioco.getPiattaforma());
-			preparedStatement.setString(10,  videogioco.getProduttore());
-			preparedStatement.setString(11, videogioco.getTipo());
-			preparedStatement.setBlob(12, videogioco.getPicture());
+			preparedStatement.setString(1, utente.getUsername());
+			preparedStatement.setString(2, utente.getEmail());
+			preparedStatement.setString(3, utente.getPasswordHash());
+			preparedStatement.setString(4, utente.getDatanas());
+			preparedStatement.setBlob(5,  utente.getPicture());
+			preparedStatement.setString(6, utente.getTipo());
 			preparedStatement.executeUpdate();
 			connection.commit();
 
@@ -100,10 +92,10 @@ public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
 	}
 
 	@Override
-	public VideogiocoBean doRetrieveByKey(String code) throws SQLException {
+	public UtenteBean doRetrieveByKey(String code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		VideogiocoBean bean = new VideogiocoBean();
+		UtenteBean bean = new UtenteBean();
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE CODE = ?";
 		try {
 			connection = ds.getConnection();	
@@ -111,18 +103,12 @@ public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
 			preparedStatement.setString(1, code);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				bean.setIdProdotto(rs.getString("IdProdotto"));
-				bean.setNome(rs.getString("Nome"));
-				bean.setDescr(rs.getString("Descrizione"));
-				bean.setCosto(rs.getFloat("Costo"));
-				bean.setQta(rs.getInt("Qta"));
-				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
-				bean.setEdizione(rs.getString("Edizione"));
-				bean.setGenere(rs.getString("Genere"));
-				bean.setPiattaforma(rs.getString("Piattaforma"));
-				bean.setProduttore(rs.getString("Produttore"));
+				bean.setUsername(rs.getString("Username"));
+				bean.setEmail(rs.getString("Email"));
+				bean.setPasswordHash(rs.getString("PasswordHash"));
+				bean.setDatanas(rs.getString("Datanas"));
 				bean.setTipo(rs.getString("Tipo"));
+				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 			}
 		} finally {
 			try {
@@ -137,11 +123,11 @@ public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
 	}
 
 	@Override
-	public Collection<VideogiocoBean> doRetrieveAll(String order) throws SQLException {
+	public Collection<UtenteBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<VideogiocoBean> products = new LinkedList<VideogiocoBean>();
+		Collection<UtenteBean> products = new LinkedList<UtenteBean>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME;
 
@@ -156,19 +142,15 @@ public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				VideogiocoBean bean = new VideogiocoBean();
-				bean.setIdProdotto(rs.getString("IdProdotto"));
-				bean.setNome(rs.getString("Nome"));
-				bean.setDescr(rs.getString("Descrizione"));
-				bean.setCosto(rs.getFloat("Costo"));
-				bean.setQta(rs.getInt("Qta"));
-				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
-				bean.setEdizione(rs.getString("Edizione"));
-				bean.setGenere(rs.getString("Genere"));
-				bean.setPiattaforma(rs.getString("Piattaforma"));
-				bean.setProduttore(rs.getString("Produttore"));
+				int err=0;
+				UtenteBean bean = new UtenteBean();
+				
+				bean.setUsername(rs.getString("Username"));
+				bean.setEmail(rs.getString("Email"));
+				bean.setPasswordHash(rs.getString("PasswordHash"));
+				bean.setDatanas(rs.getString("Datanas"));
 				bean.setTipo(rs.getString("Tipo"));
+				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				products.add(bean);
 			}
 
@@ -183,4 +165,5 @@ public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
 		}
 		return products;
 	}
+
 }
