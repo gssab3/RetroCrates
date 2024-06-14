@@ -69,7 +69,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE CODE = ?";
+		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE IdOrdine = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -95,7 +95,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		OrdineBean bean = new OrdineBean();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE CODE = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE IdOrdine = ?";
 		try {
 			connection = ds.getConnection();	
 			preparedStatement = connection.prepareStatement(selectSQL);
