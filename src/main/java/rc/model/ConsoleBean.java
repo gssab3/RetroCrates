@@ -3,20 +3,11 @@ package rc.model;
 import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
 
-public class ConsoleBean implements Serializable{
+@SuppressWarnings("serial")
+public class ConsoleBean extends ProdottoBean implements Serializable{
 
 	//ENUM
-	private String Produttore; //Sony, Microsoft, Nintendo, Atari, Sega, Altri
-	
-	
-	//ALTRI DATI
-	private String IdProdotto; //Esattamente 7 caratteri
-	private String nome; //Massimo 30 caratteri
-	private int qta; //>=0
-	private boolean disp; //disponibilità, in genere è false e quelli false non si mostrano
-	private String descr;
-	private float costo;
-	private Blob picture;
+	//Produttore: Sony, Microsoft, Nintendo, Atari, Sega, Altri
 	
 	public ConsoleBean() 
 	{

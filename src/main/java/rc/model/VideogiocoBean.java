@@ -4,7 +4,7 @@ import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
 
 @SuppressWarnings("serial")
-public class VideogiocoBean implements Serializable{
+public class VideogiocoBean extends ProdottoBean implements Serializable{
 	
 	
 	//ENUM
@@ -22,21 +22,13 @@ public class VideogiocoBean implements Serializable{
 	private String Piattaforma;
 	
 	
-	//Ubisoft, Rockstar_Games, Nintendo, Activision, Electronic_Arts, Sega, Naughty_Dog, Microsoft_Studios
-	//Bethesda, Gearbox_Software, Epic_Games, Capcom, Bandai_Namco_Entertainment, Konami
-	private String Produttore; 
-	
+	/*Produttore:
+	 * 
+	 * Ubisoft, Rockstar_Games, Nintendo, Activision, Electronic_Arts, Sega, Naughty_Dog, Microsoft_Studios
+	 * Bethesda, Gearbox_Software, Epic_Games, Capcom, Bandai_Namco_Entertainment, Konami
+	 */
 	private String Tipo; //Digitale, Fisico
 
-	
-	//ALTRI DATI;
-	private String IdProdotto; //Esattamente 7 caratteri
-	private String nome; //Massimo 30 caratteri
-	private int qta; //>=0
-	private boolean disp; //disponibilità, in genere è false e quelli false non si mostrano
-	private String descr;
-	private float costo;
-	private Blob picture;
 	
 	public VideogiocoBean()
 	{

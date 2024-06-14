@@ -1,38 +1,29 @@
 package rc.model;
 
-
 import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
 
-
 @SuppressWarnings("serial")
-public class CollezionabileBean extends ProdottoBean implements Serializable{
+public class ProdottoBean implements Serializable{
 	
-	//ENUM IN DB
-	private String Categoria; //Poster, Gadget, Figure, Plush, Audio
-	//Produttore: Funko, Nintendo, Pokèmon, BandaiNamco, YouTooz, Sega, Hasbro, Konami
-	private String Edizione; //Normale, Esclusiva, RetroCrates
+	protected String Produttore; //Enum, vedi la descrizione dei prodotti figli per capire cosa è lecito
+	protected String IdProdotto; //Esattamente 7 caratteri
+	protected String nome; //Massimo 30 caratteri
+	protected int qta; //>=0
+	protected boolean disp; //disponibilità, in genere è false e quelli false non si mostrano
+	protected String descr;
+	protected float costo; // decimal (10,2) >= 0
+	protected Blob picture;
 	
-	public CollezionabileBean()
+	public ProdottoBean()
 	{
-		Categoria = null;
-		Produttore = null;
-		Edizione = null;
 		IdProdotto = null;
 		nome = null;
-		qta = 0;
+		qta = -1;
 		disp = false;
 		descr = null;
 		costo = -1;
 		picture = null;
-	}
-
-	public String getCategoria() {
-		return Categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		Categoria = categoria;
 	}
 
 	public String getProduttore() {
@@ -41,14 +32,6 @@ public class CollezionabileBean extends ProdottoBean implements Serializable{
 
 	public void setProduttore(String produttore) {
 		Produttore = produttore;
-	}
-
-	public String getEdizione() {
-		return Edizione;
-	}
-
-	public void setEdizione(String edizione) {
-		Edizione = edizione;
 	}
 
 	public String getIdProdotto() {
