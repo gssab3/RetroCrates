@@ -1,20 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="css/style.css"/>
- <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
+ <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<script src="js/sidebar.js" type="text/javascript"></script>
 	<script src="js/cart.js" type="text/javascript"></script>
+	<script src="js/searchbar.js" type="text/javascript"></script>
 </head>
-<body>
-	
+<body >
+
 	<div class="barraNavigazione" id="barraNavigazione"> 
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">�</a>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
 			<li id="console"> <a href="console.jsp">Console</a>
@@ -43,7 +43,7 @@
 	
 	
 	<div class="cart" id="cart">
-		<a href="javascript:void(0)" class="closecart" onclick="closeCart()">�</a>
+		<a href="javascript:void(0)" class="closecart" onclick="closeCart()">×</a>
 		<p>Il Tuo Carrello</p>
 		<br>
 		<br>
@@ -58,19 +58,27 @@
 				<img src="images/iconamenu.png" alt="open">
 			</span>
 		</div>
-		<div class="ContentHeader">
-			<a href="index.jsp"><img alt="logo RetroCrates" src="images/logotemporaneo.png" width="100px"></a>
-			<h5>Console</h5> --%>
+		
+		<div class="TastoRicerca" >
+			<span style="font-size:30px;cursor:pointer" onclick="openSearch()">
+				<img src="images/lenteicona.png" alt="openSearch">
+			</span>
 		</div>
+		
+		<div class="ContentHeader">
+			<a href="index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="images/logofinale.png"></a>
+		</div>
+		
+		
 		<%-- Qui dobbiamo fare un if, che se siamo loggati il tato login reinderizza al profilo e non alla pagina di login --%>
 		<div class="TastoLogin">
 			<span style="font-size:30px;cursor:pointer">
-				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="open"></a>
+				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="openLog"></a>
 			</span>
 		</div>
 		
 		<%-- 
-		<div class="TastoLogin">
+		<div class="TastoAccount">
 			<span style="font-size:30px;cursor:pointer">
 				<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
 			</span>
@@ -83,13 +91,44 @@
 		</div> 
 	</header>
 	
+	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
+	
 	
 	
 	<footer>
-		<h1>Buongiorno</h1>
+		<div class="rigafooter">
+			
+				<div class="colonnafooter">
+					<img src="images/logofinale.png" class="logofooter">
+					<p class="azienda">RetroCrates Inc.</p>
+				</div>
+				
+				<div class="colonnafooter">
+					<h3>About Us</h3>
+					<p>RetroCrates è un sito che punta a riportare in vita la magia dei videogiochi retrò. 
+					Offriamo una vasta selezione di titoli classici, divenuti ormai capolavori 
+					dimenticati, ma non solo.
+					RetroCrates, il tuo portale per l’era d’oro dei videogiochi. </p>
+					<p class="email-id" style="cursor:pointer;"><a href="mailto:s.davanzo5@studenti.unisa.it">s.davanzo5@studenti.unisa.it</a></p>
+					<p class="email-id" style="cursor:pointer;"><a href="mailto:g.sabetta3@studenti.unisa.it">g.sabetta3@studenti.unisa.it</a></p>
+					<h4>+39 123 456 7890</h4>
+				</div>
+				
+				<div class="colonnafooter">
+					<h3>Naviga</h3>
+					<ul>
+						<li><a href="index.jsp">Home</a>
+						<li><a href="#">Account</a>
+						<li><a href="giocomagico.jsp">Ti senti Fortunato?</a>
+					</ul>
+					
+				</div>
+				
+			
+			</div>
+			
+			<hr>
+			<p class="copyright"> RetroCrates Inc. &copy; - All Rights Reserved</p>
 	</footer>
-	
-	
-
 </body>
 </html>
