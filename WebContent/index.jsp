@@ -6,15 +6,13 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="css/style.css"/>
- <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
- <link type="text/css" rel="stylesheet" href="css/cursor.css">
+ <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<script src="js/sidebar.js" type="text/javascript"></script>
 	<script src="js/cart.js" type="text/javascript"></script>
 	<script src="js/searchbar.js" type="text/javascript"></script>
 </head>
 <body >
 
-	<div class="cursor">	</div>
 	<div class="barraNavigazione" id="barraNavigazione"> 
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
@@ -67,8 +65,8 @@
 			</span>
 		</div>
 		
-		<div class="ContentHeader" style="cursor: none;">
-			<a href="index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="images/logotemporaneo.png"></a>
+		<div class="ContentHeader">
+			<a href="index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="images/logofinale.png"></a>
 		</div>
 		
 		
@@ -80,7 +78,7 @@
 		</div>
 		
 		<%-- 
-		<div class="TastoLogin">
+		<div class="TastoAccount">
 			<span style="font-size:30px;cursor:pointer">
 				<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
 			</span>
@@ -93,7 +91,7 @@
 		</div> 
 	</header>
 	
-	<input id="barraRicerca" type="text" placeholder="Cerca nel sito" class="close">
+	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 	
 	<div class="prova">
 	</div>
@@ -118,14 +116,12 @@
 
 --%>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="js/cursor.js"></script>
 	<footer>
 		<div class="rigafooter">
 			
 				<div class="colonnafooter">
-					<img src="images/logotemporaneo.png" class="logofooter">
-					<p>RetroCrates Inc.</p>
+					<img src="images/logofinale.png" class="logofooter">
+					<p class="azienda">RetroCrates Inc.</p>
 				</div>
 				
 				<div class="colonnafooter">
@@ -143,7 +139,8 @@
 					<h3>Naviga</h3>
 					<ul>
 						<li><a href="index.jsp">Home</a>
-						<li><a href="">Account</a>
+						<li><a href="#">Account</a>
+						<li><a href="giocomagico.jsp">Ti senti Fortunato?</a>
 					</ul>
 					
 				</div>

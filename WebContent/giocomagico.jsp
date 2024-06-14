@@ -70,7 +70,7 @@
 		</div>
 		
 		<div class="ContentHeader" style="cursor: none;">
-			<a href="index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="images/logotemporaneo.png"></a>
+			<a href="index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="images/logofinale.png"></a>
 		</div>
 		
 		
@@ -95,7 +95,7 @@
 		</div> 
 	</header>
 	
-	<input id="barraRicerca" type="text" placeholder="Cerca nel sito" class="close">
+	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 	
 	
 	<div class="contienigioco">
@@ -104,9 +104,10 @@
 		<input id="inputGiocatore" type="number" min="1" max="100" >
 		<br>
 	    <button id="inviaRisposta" onclick="giochino()"><img class="tasto" alt="tasto" src="images/tastogiochino.png"></button>
-	    <button id="ricomincia" onclick="ricomincia()" style="display: block;"><img class="tastoretry" alt="tastoretry" src="images/retry.png"></button>
+	    <button id="ricomincia" onclick="ricomincia()" style="display: block; visibility: hidden;"><img class="tastoretry" alt="tastoretry" src="images/retry.png"></button>
 	    <br>
 	    <div id="output"></div>
+	    <br>
 	    <div id="buono"></div>
 	    <br>
 	</div>
@@ -120,7 +121,7 @@
 		<div class="rigafooter">
 			
 				<div class="colonnafooter">
-					<img src="images/logotemporaneo.png" class="logofooter">
+					<img src="images/logofinale.png" class="logofooter">
 					<p>RetroCrates Inc.</p>
 				</div>
 				

@@ -79,6 +79,10 @@ div #buono{
   transform: translateY(2px);
 }
 
+#output{
+	text-align: center;
+}
+
 #ricomincia{
 	border:none;
 	cursor: pointer;
