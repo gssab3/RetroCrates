@@ -1,4 +1,4 @@
-package CollezionabileBean;
+package rc.model;
 
 import java.awt.image.BufferedImage;
 import java.sql.Connection;
@@ -12,9 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import it.unisa.IBeanDAO;
 
-public class CollezionabileDAODataSource implements IBeanDAO<CollezionabileBean>{
+public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 	
 	private static DataSource ds;
 
@@ -30,30 +29,24 @@ public class CollezionabileDAODataSource implements IBeanDAO<CollezionabileBean>
 		}
 	}
 
-	private static final String TABLE_NAME = "collezionabile";
+	private static final String TABLE_NAME = "Ordine";
 
 	@Override
-	public synchronized void doSave(CollezionabileBean collezionabile) throws SQLException {
+	public synchronized void doSave(OrdineBean ordine) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int err = 0;
 		BufferedImage image = null;
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (IdProdotto, Nome, Qta, Disponibile, Descrizione, Categoria, Costo, Produttore, Edizione, Foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (IdOrdine, Utente, Destinazione, Email) VALUES (?, ?, ?, ?, ?)";
 		 //Sony, Microsoft, Nintendo, Atari, Sega, Altri
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, collezionabile.getIdProdotto());
-			preparedStatement.setString(2, collezionabile.getNome());
-			preparedStatement.setInt(3, collezionabile.getQta());
-			preparedStatement.setBoolean(4, collezionabile.isDisp());
-			preparedStatement.setString(5, collezionabile.getDescr());
-			preparedStatement.setString(6, collezionabile.getCategoria());
-			preparedStatement.setFloat(7, collezionabile.getCosto());
-			preparedStatement.setString(8, collezionabile.getProduttore());
-			preparedStatement.setString(9, collezionabile.getEdizione());
-			preparedStatement.setBlob(10,  collezionabile.getPicture());
+			preparedStatement.setString(1, ordine.getIdOrdine());
+			preparedStatement.setString(2, ordine.getUtente());
+			preparedStatement.setString(3, ordine.getDestinazione());
+			preparedStatement.setString(4, ordine.getEmail());
 			preparedStatement.executeUpdate();
 			connection.commit();
 
@@ -98,10 +91,10 @@ public class CollezionabileDAODataSource implements IBeanDAO<CollezionabileBean>
 	}
 
 	@Override
-	public CollezionabileBean doRetrieveByKey(String code) throws SQLException {
+	public OrdineBean doRetrieveByKey(String code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		CollezionabileBean bean = new CollezionabileBean();
+		OrdineBean bean = new OrdineBean();
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE CODE = ?";
 		try {
 			connection = ds.getConnection();	
@@ -109,13 +102,10 @@ public class CollezionabileDAODataSource implements IBeanDAO<CollezionabileBean>
 			preparedStatement.setString(1, code);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				bean.setIdProdotto(rs.getString("IdProdotto"));
-				bean.setNome(rs.getString("Nome"));
-				bean.setDescr(rs.getString("Descrizione"));
-				bean.setCosto(rs.getFloat("Costo"));
-				bean.setQta(rs.getInt("Qta"));
-				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setIdOrdine(rs.getString("IdOrdine"));
+				bean.setUtente(rs.getString("Utente"));
+				bean.setDestinazione(rs.getString("Destinazione"));
+				bean.setEmail(rs.getString("Email"));
 			}
 		} finally {
 			try {
@@ -130,11 +120,11 @@ public class CollezionabileDAODataSource implements IBeanDAO<CollezionabileBean>
 	}
 
 	@Override
-	public Collection<CollezionabileBean> doRetrieveAll(String order) throws SQLException {
+	public Collection<OrdineBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<CollezionabileBean> products = new LinkedList<CollezionabileBean>();
+		Collection<OrdineBean> products = new LinkedList<OrdineBean>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME;
 
@@ -150,15 +140,12 @@ public class CollezionabileDAODataSource implements IBeanDAO<CollezionabileBean>
 
 			while (rs.next()) {
 				int err=0;
-				CollezionabileBean bean = new CollezionabileBean();
+				OrdineBean bean = new OrdineBean();
 				
-				bean.setIdProdotto(rs.getString("IdProdotto"));
-				bean.setNome(rs.getString("Nome"));
-				bean.setDescr(rs.getString("Descrizione"));
-				bean.setCosto(rs.getFloat("Costo"));
-				bean.setQta(rs.getInt("Qta"));
-				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setIdOrdine(rs.getString("IdOrdine"));
+				bean.setUtente(rs.getString("Utente"));
+				bean.setDestinazione(rs.getString("Destinazione"));
+				bean.setEmail(rs.getString("Email"));
 				products.add(bean);
 			}
 

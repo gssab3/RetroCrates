@@ -1,4 +1,4 @@
-package CollezionabileBean;
+package rc.model;
 
 
 import java.io.Serializable;

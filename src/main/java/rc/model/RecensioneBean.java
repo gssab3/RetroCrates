@@ -1,11 +1,13 @@
-package RecensioneBean;
+package rc.model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class RecensioneBean implements Serializable 
 {
 	private String IdRecensione; //10 caratteri esatti
 	private String Utente; //20 caratteri massimo
+	private String Console; //7 caratteri esatti
 	private String Videogioco; //7 caratteri esatti
 	private String Collezionabile; //7 caratteri esatti
 	private float stelle; //decimal(2,1) minimo 1 massimo 5
@@ -68,6 +70,14 @@ public class RecensioneBean implements Serializable
 
 	public void setDescrizione(String descrizione) {
 		Descrizione = descrizione;
+	}
+
+	public String getConsole() {
+		return Console;
+	}
+
+	public void setConsole(String console) {
+		Console = console;
 	}
 	
 	

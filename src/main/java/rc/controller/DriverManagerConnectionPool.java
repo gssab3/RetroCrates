@@ -1,4 +1,4 @@
-package it.unisa;
+package rc.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

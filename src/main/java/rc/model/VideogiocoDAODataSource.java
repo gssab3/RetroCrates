@@ -1,5 +1,6 @@
-package ConsoleBean;
+package rc.model;
 
+import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,15 +12,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.imageio.ImageIO;
 
-import it.unisa.IBeanDAO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-
-public class ConsoleDAODataSource implements IBeanDAO<ConsoleBean> {
-
+public class VideogiocoDAODataSource implements IBeanDAO<VideogiocoBean>{
+	
 	private static DataSource ds;
 
 	static {
@@ -34,29 +29,32 @@ public class ConsoleDAODataSource implements IBeanDAO<ConsoleBean> {
 		}
 	}
 
-	private static final String TABLE_NAME = "console";
+	private static final String TABLE_NAME = "videogioco";
 
 	@Override
-	public synchronized void doSave(ConsoleBean console) throws SQLException {
-		
+	public synchronized void doSave(VideogiocoBean videogioco) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int err = 0;
 		BufferedImage image = null;
-		String insertSQL = "INSERT INTO " + ConsoleDAODataSource.TABLE_NAME
-				+ " (IdProdotto, Nome, Descrizione, Costo, Produttore, Qta, Disponibile, Foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO " + TABLE_NAME
+				+ " (IdProdotto, Nome, Descrizione, Edizione, Costo, Qta, Disponibile, Genere, Piattaforma, Produttore, Tipo, Foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 //Sony, Microsoft, Nintendo, Atari, Sega, Altri
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, console.getIdProdotto());
-			preparedStatement.setString(2, console.getNome());
-			preparedStatement.setString(3, console.getDescr());
-			preparedStatement.setFloat(4, console.getCosto());
-			preparedStatement.setString(5, console.getProduttore());
-			preparedStatement.setInt(6, console.getQta());
-			preparedStatement.setBoolean(7, console.isDisp());
-			preparedStatement.setBlob(8, console.getPicture());
+			preparedStatement.setString(1, videogioco.getIdProdotto());
+			preparedStatement.setString(2, videogioco.getNome());
+			preparedStatement.setString(3, videogioco.getDescr());
+			preparedStatement.setString(4, videogioco.getEdizione());
+			preparedStatement.setFloat(5, videogioco.getCosto());
+			preparedStatement.setInt(6, videogioco.getQta());
+			preparedStatement.setBoolean(7, videogioco.isDisp());
+			preparedStatement.setString(8, videogioco.getGenere());
+			preparedStatement.setString(9, videogioco.getPiattaforma());
+			preparedStatement.setString(10,  videogioco.getProduttore());
+			preparedStatement.setString(11, videogioco.getTipo());
+			preparedStatement.setBlob(12, videogioco.getPicture());
 			preparedStatement.executeUpdate();
 			connection.commit();
 
@@ -69,16 +67,17 @@ public class ConsoleDAODataSource implements IBeanDAO<ConsoleBean> {
 					connection.close();
 			}
 		}
+		
 	}
 
 	@Override
-	public synchronized boolean doDelete(String code) throws SQLException {
+	public boolean doDelete(String code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ConsoleDAODataSource.TABLE_NAME + " WHERE CODE = ?";
+		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE CODE = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -100,13 +99,50 @@ public class ConsoleDAODataSource implements IBeanDAO<ConsoleBean> {
 	}
 
 	@Override
-	public synchronized Collection<ConsoleBean> doRetrieveAll(String order) throws SQLException {
+	public VideogiocoBean doRetrieveByKey(String code) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		VideogiocoBean bean = new VideogiocoBean();
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE CODE = ?";
+		try {
+			connection = ds.getConnection();	
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, code);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				bean.setIdProdotto(rs.getString("IdProdotto"));
+				bean.setNome(rs.getString("Nome"));
+				bean.setDescr(rs.getString("Descrizione"));
+				bean.setCosto(rs.getFloat("Costo"));
+				bean.setQta(rs.getInt("Qta"));
+				bean.setDisp(rs.getBoolean("Disponibile"));
+				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setEdizione(rs.getString("Edizione"));
+				bean.setGenere(rs.getString("Genere"));
+				bean.setPiattaforma(rs.getString("Piattaforma"));
+				bean.setProduttore(rs.getString("Produttore"));
+				bean.setTipo(rs.getString("Tipo"));
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
+	}
+
+	@Override
+	public Collection<VideogiocoBean> doRetrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<ConsoleBean> products = new LinkedList<ConsoleBean>();
+		Collection<VideogiocoBean> products = new LinkedList<VideogiocoBean>();
 
-		String selectSQL = "SELECT * FROM " + ConsoleDAODataSource.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;
@@ -119,26 +155,20 @@ public class ConsoleDAODataSource implements IBeanDAO<ConsoleBean> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int err=0;
-				ConsoleBean bean = new ConsoleBean();
-				
+				VideogiocoBean bean = new VideogiocoBean();
 				bean.setIdProdotto(rs.getString("IdProdotto"));
 				bean.setNome(rs.getString("Nome"));
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				if(bean.isDisp() == false)
-					err = 1;
-				
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
-				if(bean.getPicture() == null)
-					err = 1;
-				
-				if(err == 1)
-					bean = null;
-				else
-					products.add(bean);
+				bean.setEdizione(rs.getString("Edizione"));
+				bean.setGenere(rs.getString("Genere"));
+				bean.setPiattaforma(rs.getString("Piattaforma"));
+				bean.setProduttore(rs.getString("Produttore"));
+				bean.setTipo(rs.getString("Tipo"));
+				products.add(bean);
 			}
 
 		} finally {
@@ -152,46 +182,4 @@ public class ConsoleDAODataSource implements IBeanDAO<ConsoleBean> {
 		}
 		return products;
 	}
-	
-	@Override
-	public synchronized ConsoleBean doRetrieveByKey(String code) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ConsoleBean bean = new ConsoleBean();
-		String selectSQL = "SELECT * FROM " + ConsoleDAODataSource.TABLE_NAME + " WHERE CODE = ?";
-		try {
-			connection = ds.getConnection();	
-			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, code);
-			ResultSet rs = preparedStatement.executeQuery();
-			while (rs.next()) {
-				int err=0;
-				bean.setIdProdotto(rs.getString("IdProdotto"));
-				bean.setNome(rs.getString("Nome"));
-				bean.setDescr(rs.getString("Descrizione"));
-				bean.setCosto(rs.getFloat("Costo"));
-				bean.setQta(rs.getInt("Qta"));
-				bean.setDisp(rs.getBoolean("Disponibile"));
-				if(bean.isDisp() == false)
-					err = 1;
-				
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
-				if(bean.getPicture() == null)
-					err = 1;
-				
-				if(err == 1)
-					bean = null;
-			}
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return bean;
-	}
 }
-

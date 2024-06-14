@@ -1,7 +1,8 @@
-package OrdineBean;
+package rc.model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class OrdineBean implements Serializable
 {
 	private String IdOrdine; //char 10 precisi

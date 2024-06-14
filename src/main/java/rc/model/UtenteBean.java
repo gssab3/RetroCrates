@@ -1,4 +1,4 @@
-package UtenteBean;
+package rc.model;
 
 import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
@@ -11,7 +11,7 @@ public class UtenteBean implements Serializable
 	private String Username; //massimo 20 caratteri
 	private String email; //massimo 50 caratteri
 	private String PasswordHash; //Da Hashare
-	private String Date; 
+	private String Datanas; 
 	private Blob picture;	
 	
 	public UtenteBean() 
@@ -20,7 +20,7 @@ public class UtenteBean implements Serializable
 		Username = null;
 		email = null;
 		PasswordHash = null;
-		Date = null;
+		Datanas = null;
 		picture = null;
 	}
 
@@ -56,12 +56,12 @@ public class UtenteBean implements Serializable
 		PasswordHash = passwordHash;
 	}
 
-	public String getDate() {
-		return Date;
+	public String getDatanas() {
+		return Datanas;
 	}
 
-	public void setDate(String date) {
-		Date = date;
+	public void setDatanas(String date) {
+		Datanas = date;
 	}
 
 	public Blob getPicture() {
