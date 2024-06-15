@@ -201,7 +201,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		}
 		return bean;
 	}
-	
 	public synchronized Collection<ProdottoBean> doRetrieveByCategory(String category) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
