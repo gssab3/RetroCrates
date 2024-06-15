@@ -23,6 +23,7 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="css/style.css"/>
+ <link type="text/css" rel="stylesheet" href="css/paginaprodotti.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<script src="js/sidebar.js" type="text/javascript"></script>
 	<script src="js/cart.js" type="text/javascript"></script>
@@ -111,7 +112,7 @@
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 		
 		
-		<h1> <%=tipologia %></h1>
+		<h1 style="text-align: center;"> <%=tipologia %></h1>
 		
 		
 		<div class = "riga" style="margin-top: 20px">
@@ -121,15 +122,25 @@
 					while (it.hasNext()) {
 						ProdottoBean bean = (ProdottoBean) it.next();
 						Float costo = bean.getCosto();
-						String image = "images/immaginiprodotto/" + bean.getPicture();
+						String image="NULL"; //= "images/productIMG/" + bean.getPicture();
 				%>
 				<div class="colonna">
 					<div class = "immagineprodotto">
-						<img src = "<%=image%>" alt = "img/productIMG/noimg.jpg">
+						<% if(image!="NULL"){ %>
+							<a href="Servletprodottsingola"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
+						<%
+							}
+							else
+							{
+						%>
+							<a href="Servletprodottosingola"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
+						<%
+							}
+						%>
 					</div>
 					<div>
-						<p class = "prezzo"><%=costo%></p>
 						<p class = "nome"><%=bean.getNome()%></p>
+						<p class = "prezzo"><%=costo%>€</p>
 					</div>	
 				</div>
 				<%

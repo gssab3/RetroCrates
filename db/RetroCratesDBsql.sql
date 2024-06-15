@@ -26,7 +26,7 @@ CREATE TABLE Ordine(
 
 CREATE TABLE Prodotto(
 	IdProdotto CHAR(7) NOT NULL,
-	Nome VARCHAR(30) NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
 	Descrizione TEXT NOT NULL, 
 	Qta INT NOT NULL, -- >=0
 	Disponibile BOOLEAN, -- al posto di cancellarlo
@@ -59,8 +59,7 @@ CREATE TABLE Prodotto(
 	
 	PRIMARY KEY (IdProdotto),
     CHECK (Qta>=0),
-    CHECK (Costo>=0),
-    CHECK (StelleTot >= 1 AND StelleTot <= 5)
+    CHECK (Costo>=0)
 );
 
 
@@ -91,3 +90,19 @@ INSERT INTO Prodotto
 (IdProdotto, Nome, Descrizione, Qta, Disponibile, Foto, Costo, stelleTot, recTot, Produttore, Genere, Piattaforma, TipoGioco, TipoProdotto, Categoria, Edizione)
 VALUES
 ('P123456', 'Ics Bocs', 'Fratm sta console ten halo e fortnite', 10, true, NULL, 549.99, 5, 100, 'Microsoft', NULL , NULL, NULL , 'Console', NULL, NULL);
+
+-- Console
+INSERT INTO Prodotto VALUES ('con001', 'PS5', 'Sony PlayStation 5', 100, TRUE, NULL, 499.99, 0, 0, 'Sony', NULL, 'PS5', NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con002', 'Xbox Series X', 'Microsoft Xbox Series X', 100, TRUE, NULL, 499.99, 0, 0, 'Microsoft', NULL, 'Xbox_Series_X_S', NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con003', 'Nintendo Switch', 'Nintendo Switch', 100, TRUE, NULL, 299.99, 0, 0, 'Nintendo', NULL, 'Switch', NULL, 'Console', NULL, NULL);
+
+-- Videogiochi
+INSERT INTO Prodotto VALUES ('game001', 'The Last of Us Part II', 'Azione Avventura', 100, TRUE, NULL, 59.99, 0, 0, 'Naughty_Dog', 'Action_Adventure', 'PS4', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
+INSERT INTO Prodotto VALUES ('game002', 'Halo Infinite', 'Sparatutto', 100, TRUE, NULL, 59.99, 0, 0, 'Microsoft_Studios', 'Sparatutto', 'Xbox_Series_X_S', 'Digitale', 'Videogioco', NULL, 'Standard_Edition');
+INSERT INTO Prodotto VALUES ('game003', 'The Legend of Zelda: Breath of the Wild', 'Azione Avventura', 100, TRUE, NULL, 59.99, 0, 0, 'Nintendo', 'Action_Adventure', 'Switch', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
+
+-- Collezionabili
+INSERT INTO Prodotto VALUES ('coll001', 'Funko Pop Mario', 'Funko Pop di Super Mario', 100, TRUE, NULL, 9.99, 0, 0, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
+INSERT INTO Prodotto VALUES ('coll002', 'Poster di The Last of Us Part II', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Naughty_Dog', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
+INSERT INTO Prodotto VALUES ('coll003', 'Tazza di Halo Infinite', 'Tazza con logo di Halo Infinite', 100, TRUE, NULL, 7.99, 0, 0, 'Microsoft_Studios', NULL, NULL, NULL, 'Collezionabile', 'Gadget', 'Normale');
+

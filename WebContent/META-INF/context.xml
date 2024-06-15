@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-	<Resource name="jdbc/retrocrates" auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" type="javax.sql.DataSource" username="gsab3" password="911MBLSC!a" 
+	<Resource name="jdbc/retrocrates" auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" type="javax.sql.DataSource" username="root" password="admin" 
 	url="jdbc:mysql://localhost:3306/retrocrates?useUnicode=true&amp;
 	useJDBCCompliantTimezoneShift=true&amp;
 	useLegacyDatetimeCode=false&amp;autoReconnect=true&amp;

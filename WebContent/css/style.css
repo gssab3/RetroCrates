@@ -756,11 +756,12 @@ footer p.azienda{
         transform: translate3d(0, -100%, 0);
         visibility: visible;
     }
-    100%{visibility: hidden;}
+    100%{display: none;}
 }
 
 
 #barraRicerca {
+	display:none;
 	visibility: hidden;
 	height:0%;
     margin-top: 10px;
