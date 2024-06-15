@@ -38,7 +38,8 @@ public class ProdottoServlet extends HttpServlet{
 			ProdottoDAODataSource model = new ProdottoDAODataSource();
 			try {
 				Collection<ProdottoBean> prodotti = model.doRetrieveByCategory(tipologia);
-				request.setAttribute("TipoProdotto", prodotti);
+				request.setAttribute("TipoProdotto", tipologia);
+				request.setAttribute("prodotti", prodotti);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

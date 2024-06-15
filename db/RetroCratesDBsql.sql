@@ -24,7 +24,7 @@ CREATE TABLE Ordine(
 );
 
 
-CREATE TABLE Prodotto{
+CREATE TABLE Prodotto(
 	IdProdotto CHAR(7) NOT NULL,
 	Nome VARCHAR(30) NOT NULL,
 	Descrizione TEXT NOT NULL, 
@@ -60,8 +60,8 @@ CREATE TABLE Prodotto{
 	PRIMARY KEY (IdProdotto),
     CHECK (Qta>=0),
     CHECK (Costo>=0),
-    CHECK (Stelle >= 1 AND Stelle <= 5)
-}
+    CHECK (StelleTot >= 1 AND StelleTot <= 5)
+);
 
 
 CREATE TABLE Recensione(
@@ -86,3 +86,8 @@ CREATE TABLE ContieneProd(
     FOREIGN KEY (IdOrdine) REFERENCES Ordine(IdOrdine),
     CHECK (Costo>=0)
 );
+
+INSERT INTO Prodotto
+(IdProdotto, Nome, Descrizione, Qta, Disponibile, Foto, Costo, stelleTot, recTot, Produttore, Genere, Piattaforma, TipoGioco, TipoProdotto, Categoria, Edizione)
+VALUES
+('P123456', 'Ics Bocs', 'Fratm sta console ten halo e fortnite', 10, true, NULL, 549.99, 5, 100, 'Microsoft', NULL , NULL, NULL , 'Console', NULL, NULL);
