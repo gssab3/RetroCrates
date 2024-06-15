@@ -1,4 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
+
+<%
+
+	String cacca= "buongiorno";
+	
+	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
+	if(prodotti == null) {
+		cacca="Tantissima Cacca";
+		response.sendRedirect("./ProdottoServlet?TipoProdotto=" + request.getParameter("TipoProdotto"));	
+		return;
+	} 
+	
+	String tipologia = request.getParameter("TipoProdotto");
+	if (tipologia == null) {
+		tipologia = "Nessuna tipologia specificata";
+	}
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +37,7 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
-			<li id="console"> <a href="TipologiaControl?TipoProdotto=Console">Console</a>
+			<li id="console"> <a href="ProdottoControl?TipoProdotto=Console">Console</a>
 			  	<ul>
 			  		<%-- Qua ci mettiamo le pagine con la ricerca --%>
 					<li id="sony"><a href="console.jsp">Sony</a> </li>
@@ -28,13 +48,13 @@
 					<li id="altre"><a href="console.jsp">Altre</a></li>
 				</ul>
 			  </li>
-			<li id="videogiochi"><a href="TipologiaControl?TipoProdotto=Videogiochi">Videogiochi</a>
+			<li id="videogiochi"><a href="videogiochi.jsp">Videogiochi</a>
 				<ul>
 			  		<%-- Qua ci mettiamo le pagine con la ricerca --%>
 					<li id="genere"><a href="videogiochi.jsp">Genere</a>
 				</ul>
 			</li>
-			<li id="collezionabili"><a href="TipologiaControl?TipoProdotto=Collezionabili">Collezionabili</a>
+			<li id="collezionabili"><a href="collezionabili.jsp">Collezionabili</a>
 			</li>
 			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
 			</li>	
@@ -92,14 +112,43 @@
 	</header>
 	
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
+		
+		
+		<h1> <%=tipologia %></h1>
+		
+		<h1> <%=cacca %> </h1>
+		
+		<div class = "riga" style="margin-top: 20px">
+				<%
+				if (prodotti != null && prodotti.size() != 0) {
+					Iterator<?> it = prodotti.iterator();
+					while (it.hasNext()) {
+						ProdottoBean bean = (ProdottoBean) it.next();
+						Float costo = bean.getCosto();
+						String image = "images/immaginiprodotto/" + bean.getPicture();
+				%>
+				<div class="colonna">
+					<div class = "immagineprodotto">
+						<img src = "<%=image%>" alt = "img/productIMG/noimg.jpg">
+					</div>
+					<div>
+						<p class = "prezzo"><%=costo%></p>
+						<p class = "nome"><%=bean.getNome()%></p>
+					</div>	
+				</div>
+				<%
+					}
+				} else {
+					%>
+					<p>Nessun prodotto disponibile.</p>
+				<%
+					}
+				%> 
+</div>
+		
 	
-	<div class="prova">
-	ciao
-	</div>
-	
-
-
-	<footer>
+		
+<footer>
 		<div class="rigafooter">
 			
 				<div class="colonnafooter">
