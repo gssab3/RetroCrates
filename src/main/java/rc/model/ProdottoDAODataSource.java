@@ -205,7 +205,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		Collection<ProdottoBean> prodotti = new LinkedList<ProdottoBean>();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Categoria = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE TipoProdotto = ?";
 		try {
 			connection = ds.getConnection();	
 			preparedStatement = connection.prepareStatement(selectSQL);

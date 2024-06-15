@@ -3,12 +3,9 @@
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
 
 <%
-
-	String cacca= "buongiorno";
 	
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 	if(prodotti == null) {
-		cacca="Tantissima Cacca";
 		response.sendRedirect("./ProdottoServlet?TipoProdotto=" + request.getParameter("TipoProdotto"));	
 		return;
 	} 
@@ -116,7 +113,6 @@
 		
 		<h1> <%=tipologia %></h1>
 		
-		<h1> <%=cacca %> </h1>
 		
 		<div class = "riga" style="margin-top: 20px">
 				<%

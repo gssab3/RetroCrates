@@ -31,7 +31,6 @@ public class TipologiaControl extends HttpServlet{
 		else if (tipologia.compareTo("Collezionabili")==0) {
 			request.getSession().setAttribute("TipoProdotto", "Collezionabili");
 		}
-		
 		response.sendRedirect(request.getContextPath()+"/Paginaprodotti.jsp?TipoProdotto=" + tipologia);
 	}
 
