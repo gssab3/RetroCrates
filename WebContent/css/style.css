@@ -185,30 +185,9 @@ header{
     list-style-image: url("../images/wumpabullet.gif");
 }
 
-		.barraNavigazione li ul li#sony:hover{
+		.barraNavigazione li ul li#categoriaconsole:hover{
 			list-style-image: url("../images/cratebullet.gif");
 		}
-		
-		.barraNavigazione li ul li#microsoft:hover{
-			list-style-image: url("../images/cratebullet.gif");
-		}
-		
-		.barraNavigazione li ul li#nintendo:hover{
-			list-style-image: url("../images/cratebullet.gif");
-		}
-		
-		.barraNavigazione li ul li#sega:hover{
-			list-style-image: url("../images/cratebullet.gif");
-		}
-		
-		.barraNavigazione li ul li#atari:hover{
-			list-style-image: url("../images/cratebullet.gif");
-		}
-		
-		.barraNavigazione li ul li#altre:hover{
-			list-style-image: url("../images/cratebullet.gif");
-		}
-
 
 .barraNavigazione li#videogiochi:hover{
     list-style-image: url("../images/wumpabullet.gif");
@@ -221,6 +200,11 @@ header{
 .barraNavigazione li#collezionabili:hover{
     list-style-image: url("../images/wumpabullet.gif");
 }
+		.barraNavigazione li ul li#categoria:hover{
+			list-style-image: url("../images/cratebullet.gif");
+		}
+
+
 .barraNavigazione li#aboutus:hover{
     list-style-image: url("../images/wumpabullet.gif");
 }
@@ -273,6 +257,10 @@ header{
     -webkit-text-stroke-color: black;
 }
 
+.descrizionelogin, .titoloemailpass{
+	    font-family:'GTAfont', sans-serif;
+	    font-size: 30px;
+	}
 
 .contenutologin .loginform .campilogin {
   display: grid;
@@ -356,6 +344,28 @@ header{
   column-gap: 0.75rem;
 }
 
+/*.logreg{
+	text-transform: uppercase;
+    text-decoration: none;
+    font-family: "CCGeekSpeak", sans-serif;
+    color: #FFF;
+    text-shadow: #000000 -2px 2px 0px, #000000 -1px -1px 0px, #000000 1px -1px 0px, #000000 -1px 1px 0px, #000000 1px 1px 0px;
+    font-weight: normal;
+    background-color:transparent;
+    background-image: url("../images/pulsantelogin.png");
+    background-repeat: no-repeat;
+    background-size:contain;
+    width: 100%;
+    padding: 14px 2rem;
+    font-size: 30px;
+    text-wrap: nowrap;
+    margin-bottom: 1rem;
+	cursor: pointer;
+    	margin-left:5px;
+	border:0px;
+	box-sizing: content-box;
+}*/
+
 .logreg{
 	text-transform: uppercase;
     text-decoration: none;
@@ -367,6 +377,7 @@ header{
     background-image: url("../images/pulsantelogin.png");
     background-repeat: no-repeat;
     background-size:contain;
+    background-position-y: center;
     width: 100%;
     padding: 14px 2rem;
     font-size: 30px;
@@ -400,7 +411,6 @@ header{
   color: #fff;
   font-size: 20px;
   font-weight: var(--font-semi-bold);
-  
   margin-bottom: 1rem;
   cursor: pointer;
   margin-left:5px;
@@ -552,6 +562,10 @@ footer p.azienda{
 	
 	#barraRicerca {
 		width: calc(100% - 100px);
+	}
+	
+	.logreg{
+		width:40%;
 	}
 	
 	.squarelogin {
@@ -711,11 +725,6 @@ footer p.azienda{
 	    padding: 3rem;
 	    border-radius: 1.25rem;
 	    z-index: 1;
-	}
-	
-	.descrizionelogin, .titoloemailpass{
-	    font-family:'GTAfont', sans-serif;
-	    font-size: 30px;
 	}
 	
 	.campilogin {

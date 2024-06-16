@@ -16,15 +16,15 @@ import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
 
-@WebServlet("/CollezionabiliServlet")
-public class CollezionabiliServlet extends HttpServlet{
+@WebServlet("/CollezionabileServlet")
+public class CollezionabileServlet extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public CollezionabiliServlet() {
+	public CollezionabileServlet() {
 		super();
 	}
 	
@@ -32,19 +32,17 @@ public class CollezionabiliServlet extends HttpServlet{
 		
 		String tipologia = (String) request.getParameter("TipoProdotto");
 		
-		String categoria = (String) request.getParameter("Genere");
+		String categoria = (String) request.getParameter("Categoria");
 		
 		ProdottoDAODataSource model = new ProdottoDAODataSource();
 		Collection<ProdottoBean> prodotti = null;
 		
 		try {
 			if (tipologia != null && !tipologia.equals("TUTTI") && categoria != null && !categoria.equals("TUTTI")) {
-				prodotti = model.doRetrieveByCategoryProducer(tipologia, categoria);
-				request.setAttribute("Produttore", categoria);
+				prodotti = model.doRetrieveByCategoryColCat(tipologia, categoria);
+				request.setAttribute("Categoria", categoria);
 			} else if (tipologia != null && !tipologia.equals("TUTTI")) {
 				prodotti = model.doRetrieveByCategory(tipologia);
-			} else {
-				prodotti = model.doRetrieveAll("");
 			}
 			
 			request.setAttribute("TipoProdotto", tipologia);

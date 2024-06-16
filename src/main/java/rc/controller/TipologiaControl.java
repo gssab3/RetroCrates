@@ -32,8 +32,8 @@ public class TipologiaControl extends HttpServlet{
 			String genere = request.getParameter("Genere");
 			response.sendRedirect(request.getContextPath()+"/Paginaprodotti.jsp?TipoProdotto=" + tipologia +"&Genere=" + genere);
 		}
-		else if (tipologia.compareTo("Collezionabili")==0) {
-			request.getSession().setAttribute("TipoProdotto", "Collezionabili");
+		else if (tipologia.compareTo("Collezionabile")==0) {
+			request.getSession().setAttribute("TipoProdotto", "Collezionabile");
 			String categoria = request.getParameter("Categoria");
 			response.sendRedirect(request.getContextPath()+"/Paginaprodotti.jsp?TipoProdotto=" + tipologia +"&Categoria=" + categoria);
 		}
