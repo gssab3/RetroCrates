@@ -506,6 +506,7 @@ footer p.azienda{
     	justify-content: center;
     	margin: 0;
     	padding: 0;
+    	height: 100px;
 	}
     
     .ContentHeader a{
@@ -513,7 +514,7 @@ footer p.azienda{
     }
     
     .ContentHeader img{
-    	width:75px;
+    	width:125px;
     }
     
     .TastoMenu{
@@ -618,7 +619,8 @@ footer p.azienda{
 }
 
 
-@media only screen and (min-width:992px) and (max-width:1199px) {
+@media only screen and (min-width:992px) and (max-width:1199px) {   
+    
     .barraNavigazione.open {
         width: 35%;
     }

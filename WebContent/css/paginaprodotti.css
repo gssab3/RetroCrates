@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.riga{
+.rigaprodotti{
 	width:85%;
 	margin:auto;
 	display:flex;
@@ -9,7 +9,7 @@
 	justify-content: space-around;
 }
 
-.colonna{
+.colonnaprodotto{
 	flex-basis:0 0 24%;
 	padding:10px;
 	margin-bottom: 20px;

@@ -1,21 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
-
+<%@ page import="java.util.Collection" %>
 <%
+
+	String tipologia = request.getParameter("TipoProdotto");
+
+	String produttore = request.getParameter("Produttore");
+	String genere = request.getParameter("Genere");
+	String categoria = request.getParameter("Categoria");
 	
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
-	if(prodotti == null) {
-		response.sendRedirect("./ProdottoServlet?TipoProdotto=" + request.getParameter("TipoProdotto"));	
-		return;
-	} 
 	
-	String tipologia = request.getParameter("TipoProdotto");
-	if (tipologia == null) {
-		tipologia = "Nessuna tipologia specificata";
-	}
-
+	if(tipologia.equals("Console")){
+		 if(prodotti == null) {
+			String redirectURL = "./ConsoleServlet?TipoProdotto=" + tipologia;
+			if(produttore != null && !produttore.isEmpty()) {
+				redirectURL += "&Produttore=" + produttore;
+			}
+			response.sendRedirect(redirectURL);
+			return;
+		} 
+	 }else if(tipologia.equals("Videogioco")){
+		if(prodotti == null) {
+			String redirectURL = "./VideogiochiServlet?TipoProdotto=" + tipologia;
+			if(genere != null && !genere.isEmpty()) {
+				redirectURL += "&Genere=" + genere;
+			}
+			response.sendRedirect(redirectURL);
+			return;
+		} 
+	}else if(tipologia.equals("Collezionabili")){	
+		if(prodotti == null) {
+			String redirectURL = "./CollezionabiliServlet?TipoProdotto=" + tipologia;
+			if(categoria != null && !categoria.isEmpty()) {
+				redirectURL += "&Categoria=" + categoria;
+			}
+			response.sendRedirect(redirectURL);
+			return;
+		} 
+	} 
 %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,15 +62,15 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
-			<li id="console"> <a href="ProdottoControl?TipoProdotto=Console">Console</a>
+			<li id="console"> <a href="TipologiaControl?TipoProdotto=Console&Produttore=TUTTI">Console</a>
 			  	<ul>
 			  		<%-- Qua ci mettiamo le pagine con la ricerca --%>
-					<li id="sony"><a href="console.jsp">Sony</a> </li>
-					<li id="microsoft"><a href="console.jsp">Microsoft</a></li>
-					<li id="nintendo"><a href="console.jsp">Nintendo</a></li>
-					<li id="sega"><a href="console.jsp">Sega</a></li>
-					<li id="atari"><a href="console.jsp">Atari</a></li>
-					<li id="altre"><a href="console.jsp">Altre</a></li>
+					<li id="sony"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Sony">Sony</a> </li>
+					<li id="microsoft"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Microsoft">Microsoft</a></li>
+					<li id="nintendo"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Nintendo">Nintendo</a></li>
+					<li id="sega"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Sega">Sega</a></li>
+					<li id="atari"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Atari">Atari</a></li>
+					<li id="altre"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Altri">Altre</a></li>
 				</ul>
 			  </li>
 			<li id="videogiochi"><a href="videogiochi.jsp">Videogiochi</a>
@@ -112,10 +139,11 @@
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 		
 		
-		<h1 style="text-align: center;"> <%=tipologia %></h1>
+	 	<h1 style="text-align: center;"> <%=tipologia %></h1> 
 		
+	
 		
-		<div class = "riga" style="margin-top: 20px">
+		<div class = "rigaprodotti" style="margin-top: 20px">
 				<%
 				if (prodotti != null && prodotti.size() != 0) {
 					Iterator<?> it = prodotti.iterator();
@@ -124,7 +152,7 @@
 						Float costo = bean.getCosto();
 						String image="NULL"; //= "images/productIMG/" + bean.getPicture();
 				%>
-				<div class="colonna">
+				<div class="colonnaprodotto">
 					<div class = "immagineprodotto">
 						<% if(image!="NULL"){ %>
 							<a href="Servletprodottsingola"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
@@ -152,6 +180,7 @@
 					}
 				%> 
 </div>
+		
 		
 	
 		

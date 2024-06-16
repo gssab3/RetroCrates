@@ -24,14 +24,19 @@ public class TipologiaControl extends HttpServlet{
 		String tipologia = request.getParameter("TipoProdotto");
 		if(tipologia.compareTo("Console")==0) {
 			request.getSession().setAttribute("TipoProdotto", "Console");
+			String produttore = request.getParameter("Produttore");
+			response.sendRedirect(request.getContextPath()+"/Paginaprodotti.jsp?TipoProdotto=" + tipologia +"&Produttore=" + produttore);
 		}
-		else if (tipologia.compareTo("Videogiochi")==0) {
-			request.getSession().setAttribute("TipoProdotto", "Videogiochi");
+		else if (tipologia.compareTo("Videogioco")==0) {
+			request.getSession().setAttribute("TipoProdotto", "Videogioco");
+			String genere = request.getParameter("Genere");
+			response.sendRedirect(request.getContextPath()+"/Paginaprodotti.jsp?TipoProdotto=" + tipologia +"&Genere=" + genere);
 		}
 		else if (tipologia.compareTo("Collezionabili")==0) {
 			request.getSession().setAttribute("TipoProdotto", "Collezionabili");
+			String categoria = request.getParameter("Categoria");
+			response.sendRedirect(request.getContextPath()+"/Paginaprodotti.jsp?TipoProdotto=" + tipologia +"&Categoria=" + categoria);
 		}
-		response.sendRedirect(request.getContextPath()+"/Paginaprodotti.jsp?TipoProdotto=" + tipologia);
 	}
 
 	
