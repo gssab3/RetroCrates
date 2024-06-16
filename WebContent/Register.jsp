@@ -7,6 +7,7 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="css/style.css"/>
+ <link type="text/css" rel="stylesheet" href="css/register.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
  	<script src="js/sidebar.js" type="text/javascript"></script>
 	<script src="js/cart.js" type="text/javascript"></script>
@@ -17,23 +18,29 @@
             <div class="contenutologin">
                 <img src="images/loginbgtemp.jpg" alt="immaginelogin" class="immaginelogin">
 
-                <form action="" class="loginform">
+                <form action="" class="registerform">
                     <div>
                         <h1 class="titolologin">
-                            <span>Bentornato</span>
+                            <span>Benvenuto</span>
                         </h1>
-                        <p class="descrizionelogin">
-                            Effettua il Login per accedere alla tua area riservata
+                        <p class="descrizioneregister">
+                            Inizia da qui la tua registrazione su RetroCrates
                         </p>
                     </div>
                     
                     <div>
-                        <div class="campilogin">
+                        <div class="campiregister">
+                        
+                        	<div>
+                                <label for="input-email" class="titoloemailpass">Username</label>
+                                <input type="text" placeholder="Enter your Username" required class="emailpass" id="email">
+                            </div>
+                        
                             <div>
                                 <label for="input-email" class="titoloemailpass">Email</label>
                                 <input type="email" placeholder="Enter your email address" required class="emailpass" id="email">
                             </div>
-    
+                            
                             <div>
                                 <label for="input-pass" class="titoloemailpass">Password</label>
     
@@ -43,13 +50,20 @@
                                    è il pulsante per oscurare la password --%>
                                 </div>
                             </div>
+                            
+                            <div>
+                                <label for="input-email" class="titoloemailpass">Data di Nascita</label>
+                                <input type="date" required class="emailpass" id="email">
+                            </div>
+                            
+                            
                         </div>
                     </div>
 
                     <div>
-                        <div class="pulsantilogin">
-                            <input type="submit" value="Log In" class="logreg">
-                            <input type="button" value="Sign Up" class="logreg" onclick="location.href='Register.jsp';">
+                        <div class="pulsantiregister">
+                            <input type="submit" value="Register" class="reg">
+
                         </div>
                     </div>
                             <a href="index.jsp">Torna alla Home</a>

@@ -1,21 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
-
+<%@ page import="java.util.Collection" %>
 <%
+
+	String tipologia = request.getParameter("TipoProdotto");
+
+	String produttore = request.getParameter("Produttore");
+	String genere = request.getParameter("Genere");
+	String categoria = request.getParameter("Categoria");
 	
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
-	if(prodotti == null) {
-		response.sendRedirect("./ProdottoServlet?TipoProdotto=" + request.getParameter("TipoProdotto"));	
-		return;
-	} 
 	
-	String tipologia = request.getParameter("TipoProdotto");
-	if (tipologia == null) {
-		tipologia = "Nessuna tipologia specificata";
-	}
-
+	if(tipologia.equals("Console")){
+		 if(prodotti == null) {
+			String redirectURL = "./ConsoleServlet?TipoProdotto=" + tipologia;
+			if(produttore != null && !produttore.isEmpty()) {
+				redirectURL += "&Produttore=" + produttore;
+			}
+			response.sendRedirect(redirectURL);
+			return;
+		} 
+	 }else if(tipologia.equals("Videogioco")){
+		if(prodotti == null) {
+			String redirectURL = "./VideogiochiServlet?TipoProdotto=" + tipologia;
+			if(genere != null && !genere.isEmpty()) {
+				redirectURL += "&Genere=" + genere;
+			}
+			response.sendRedirect(redirectURL);
+			return;
+		} 
+	}else if(tipologia.equals("Collezionabile")){	
+		if(prodotti == null) {
+			String redirectURL = "./CollezionabileServlet?TipoProdotto=" + tipologia;
+			if(categoria != null && !categoria.isEmpty()) {
+				redirectURL += "&Categoria=" + categoria;
+			}
+			response.sendRedirect(redirectURL);
+			return;
+		} 
+	} 
 %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,24 +62,37 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
-			<li id="console"> <a href="ProdottoControl?TipoProdotto=Console">Console</a>
+			<li id="console"> <a href="TipologiaControl?TipoProdotto=Console&Produttore=TUTTI">Console</a>
 			  	<ul>
 			  		<%-- Qua ci mettiamo le pagine con la ricerca --%>
-					<li id="sony"><a href="console.jsp">Sony</a> </li>
-					<li id="microsoft"><a href="console.jsp">Microsoft</a></li>
-					<li id="nintendo"><a href="console.jsp">Nintendo</a></li>
-					<li id="sega"><a href="console.jsp">Sega</a></li>
-					<li id="atari"><a href="console.jsp">Atari</a></li>
-					<li id="altre"><a href="console.jsp">Altre</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Sony">Sony</a> </li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Microsoft">Microsoft</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Nintendo">Nintendo</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Sega">Sega</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Atari">Atari</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Altri">Altre</a></li>
 				</ul>
 			  </li>
-			<li id="videogiochi"><a href="videogiochi.jsp">Videogiochi</a>
+			<li id="videogiochi"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=TUTTI">Videogiochi</a>
 				<ul>
 			  		<%-- Qua ci mettiamo le pagine con la ricerca --%>
-					<li id="genere"><a href="videogiochi.jsp">Genere</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Action_Adventure">Action Adventure</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Picchiaduro">Picchiaduro</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=RPG">RPG</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Sparatutto">Sparatutto</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Simulazione">Simulazione</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Sport">Sport</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Strategia">Strategia</a>
 				</ul>
 			</li>
-			<li id="collezionabili"><a href="collezionabili.jsp">Collezionabili</a>
+			<li id="collezionabili"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=TUTTI">Collezionabili</a>
+				<ul>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Poster">Poster</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Gadget">Gadget</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Figure">Figure</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Plush">Plush</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
+				</ul>
 			</li>
 			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
 			</li>	
@@ -112,10 +152,11 @@
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 		
 		
-		<h1 style="text-align: center;"> <%=tipologia %></h1>
+	 	<h1 style="text-align: center;"> <%=tipologia %></h1> 
 		
+	
 		
-		<div class = "riga" style="margin-top: 20px">
+		<div class = "rigaprodotti" style="margin-top: 20px">
 				<%
 				if (prodotti != null && prodotti.size() != 0) {
 					Iterator<?> it = prodotti.iterator();
@@ -124,7 +165,7 @@
 						Float costo = bean.getCosto();
 						String image="NULL"; //= "images/productIMG/" + bean.getPicture();
 				%>
-				<div class="colonna">
+				<div class="colonnaprodotto">
 					<div class = "immagineprodotto">
 						<% if(image!="NULL"){ %>
 							<a href="Servletprodottsingola"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
@@ -152,6 +193,7 @@
 					}
 				%> 
 </div>
+		
 		
 	
 		

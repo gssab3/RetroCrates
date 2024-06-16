@@ -201,6 +201,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		}
 		return bean;
 	}
+	
 	public synchronized Collection<ProdottoBean> doRetrieveByCategory(String category) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -210,6 +211,153 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 			connection = ds.getConnection();	
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, category);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				int err = 0;
+				ProdottoBean bean = new ProdottoBean();
+				bean.setIdProdotto(rs.getString("IdProdotto"));
+				bean.setNome(rs.getString("Nome"));
+				bean.setDescr(rs.getString("Descrizione"));
+				bean.setQta(rs.getInt("Qta"));
+				bean.setDisp(rs.getBoolean("Disponibile"));
+				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setCosto(rs.getFloat("Costo"));
+				bean.setStelleTot(rs.getInt("stelleTot"));
+				bean.setRecTot(rs.getInt("recTot"));
+				bean.setProduttore(rs.getString("Produttore"));
+				bean.setGenere(rs.getString("Genere"));
+				bean.setPiattaforma(rs.getString("Piattaforma"));
+				bean.setTipoGioco(rs.getString("TipoGioco"));
+				bean.setTipoProdotto(rs.getString("TipoProdotto"));
+				bean.setCategoria(rs.getString("Categoria"));
+				bean.setEdizione(rs.getString("Edizione"));
+				
+				if(bean.isDisp() == false)
+					err = 1;
+				
+				if(err == 0)
+					prodotti.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
+	
+	public synchronized Collection<ProdottoBean> doRetrieveByCategoryProducer(String category, String producer) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<ProdottoBean> prodotti = new LinkedList<ProdottoBean>();
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE TipoProdotto = ? AND Produttore = ?";
+		try {
+			connection = ds.getConnection();	
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, category);
+			preparedStatement.setString(2, producer);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				int err = 0;
+				ProdottoBean bean = new ProdottoBean();
+				bean.setIdProdotto(rs.getString("IdProdotto"));
+				bean.setNome(rs.getString("Nome"));
+				bean.setDescr(rs.getString("Descrizione"));
+				bean.setQta(rs.getInt("Qta"));
+				bean.setDisp(rs.getBoolean("Disponibile"));
+				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setCosto(rs.getFloat("Costo"));
+				bean.setStelleTot(rs.getInt("stelleTot"));
+				bean.setRecTot(rs.getInt("recTot"));
+				bean.setProduttore(rs.getString("Produttore"));
+				bean.setGenere(rs.getString("Genere"));
+				bean.setPiattaforma(rs.getString("Piattaforma"));
+				bean.setTipoGioco(rs.getString("TipoGioco"));
+				bean.setTipoProdotto(rs.getString("TipoProdotto"));
+				bean.setCategoria(rs.getString("Categoria"));
+				bean.setEdizione(rs.getString("Edizione"));
+				
+				if(bean.isDisp() == false)
+					err = 1;
+				
+				if(err == 0)
+					prodotti.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
+	
+	public synchronized Collection<ProdottoBean> doRetrieveByCategoryGenre(String category, String genre) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<ProdottoBean> prodotti = new LinkedList<ProdottoBean>();
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE TipoProdotto = ? AND Genere = ?";
+		try {
+			connection = ds.getConnection();	
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, category);
+			preparedStatement.setString(2, genre);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				int err = 0;
+				ProdottoBean bean = new ProdottoBean();
+				bean.setIdProdotto(rs.getString("IdProdotto"));
+				bean.setNome(rs.getString("Nome"));
+				bean.setDescr(rs.getString("Descrizione"));
+				bean.setQta(rs.getInt("Qta"));
+				bean.setDisp(rs.getBoolean("Disponibile"));
+				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setCosto(rs.getFloat("Costo"));
+				bean.setStelleTot(rs.getInt("stelleTot"));
+				bean.setRecTot(rs.getInt("recTot"));
+				bean.setProduttore(rs.getString("Produttore"));
+				bean.setGenere(rs.getString("Genere"));
+				bean.setPiattaforma(rs.getString("Piattaforma"));
+				bean.setTipoGioco(rs.getString("TipoGioco"));
+				bean.setTipoProdotto(rs.getString("TipoProdotto"));
+				bean.setCategoria(rs.getString("Categoria"));
+				bean.setEdizione(rs.getString("Edizione"));
+				
+				if(bean.isDisp() == false)
+					err = 1;
+				
+				if(err == 0)
+					prodotti.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
+	
+	public synchronized Collection<ProdottoBean> doRetrieveByCategoryColCat(String category, String cat) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<ProdottoBean> prodotti = new LinkedList<ProdottoBean>();
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE TipoProdotto = ? AND Categoria = ?";
+		try {
+			connection = ds.getConnection();	
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, category);
+			preparedStatement.setString(2, cat);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				int err = 0;
