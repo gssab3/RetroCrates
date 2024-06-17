@@ -152,7 +152,17 @@
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 		
 		
-	 	<h1 style="text-align: center;"> <%=tipologia %></h1> 
+	 	<h1 style="text-align: center;"> 
+	 	<% if(tipologia.equals("Videogioco")){ %>
+	 		Videogiochi
+	 	<%	
+	 	}else{
+	 		%>
+	 		<%=tipologia %>
+	 		<%
+	 	}
+	 	%>
+	 	</h1> 
 		
 	
 		
@@ -168,13 +178,13 @@
 				<div class="colonnaprodotto">
 					<div class = "immagineprodotto">
 						<% if(image!="NULL"){ %>
-							<a href="Servletprodottsingola"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
+							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
 						<%
 							}
 							else
 							{
 						%>
-							<a href="Servletprodottosingola"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
+							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
 						<%
 							}
 						%>

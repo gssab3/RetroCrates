@@ -3,10 +3,6 @@
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
 
 <%
-
-	String tipologia = request.getParameter("TipoProdotto");
-	String produttore = request.getParameter("Produttore");	
-
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 	if(prodotti == null) {
 		response.sendRedirect(request.getContextPath()+"/index");	
@@ -134,13 +130,13 @@
 				<div class="colonnaprodotto">
 					<div class = "immagineprodotto">
 						<% if(image!="NULL"){ %>
-							<a href="Servletprodottsingola"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
+							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
 						<%
 							}
 							else
 							{
 						%>
-							<a href="Servletprodottosingola"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
+							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
 						<%
 							}
 						%>
