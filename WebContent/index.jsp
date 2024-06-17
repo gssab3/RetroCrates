@@ -3,15 +3,15 @@
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
 
 <%
-/*
+
 	String tipologia = request.getParameter("TipoProdotto");
 	String produttore = request.getParameter("Produttore");	
 
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 	if(prodotti == null) {
-		response.sendRedirect("./TipologiaControl?TipoProdotto=TUTTI&Produttore=TUTTI");	
+		response.sendRedirect(request.getContextPath()+"/index");	
 		return;
-	} */
+	} 
 %>
 
 <!DOCTYPE html>
@@ -122,8 +122,42 @@
 	
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 	
-	<div class="prova">
-	ciao
+	<div class = "rigaprodotti" style="margin-top: 20px">
+				<%
+				if (prodotti != null && prodotti.size() != 0) {
+					Iterator<?> it = prodotti.iterator();
+					while (it.hasNext()) {
+						ProdottoBean bean = (ProdottoBean) it.next();
+						Float costo = bean.getCosto();
+						String image="NULL"; //= "images/productIMG/" + bean.getPicture();
+				%>
+				<div class="colonnaprodotto">
+					<div class = "immagineprodotto">
+						<% if(image!="NULL"){ %>
+							<a href="Servletprodottsingola"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
+						<%
+							}
+							else
+							{
+						%>
+							<a href="Servletprodottosingola"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
+						<%
+							}
+						%>
+					</div>
+					<div>
+						<p class = "nome"><%=bean.getNome()%></p>
+						<p class = "prezzo"><%=costo%>€</p>
+					</div>	
+				</div>
+				<%
+					}
+				} else {
+					%>
+					<p>Nessun prodotto disponibile.</p>
+				<%
+					}
+				%> 
 	</div>
 	
 
