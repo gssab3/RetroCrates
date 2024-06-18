@@ -38,7 +38,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 		int err = 0;
 		BufferedImage image = null;
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (IdOrdine, Utente, Destinazione, Email) VALUES (?, ?, ?, ?, ?)";
+				+ " (IdOrdine, Utente, Destinazione, Email, Data) VALUES (?, ?, ?, ?, ?, ?)";
 		 //Sony, Microsoft, Nintendo, Atari, Sega, Altri
 		try {
 			connection = ds.getConnection();
@@ -47,6 +47,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 			preparedStatement.setString(2, ordine.getUtente());
 			preparedStatement.setString(3, ordine.getDestinazione());
 			preparedStatement.setString(4, ordine.getEmail());
+			preparedStatement.setString(5,  ordine.getData());
 			preparedStatement.executeUpdate();
 			connection.commit();
 
@@ -106,6 +107,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 				bean.setUtente(rs.getString("Utente"));
 				bean.setDestinazione(rs.getString("Destinazione"));
 				bean.setEmail(rs.getString("Email"));
+				bean.setData(rs.getString("Data"));
 			}
 		} finally {
 			try {
@@ -146,6 +148,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 				bean.setUtente(rs.getString("Utente"));
 				bean.setDestinazione(rs.getString("Destinazione"));
 				bean.setEmail(rs.getString("Email"));
+				bean.setEmail(rs.getString("Data"));
 				products.add(bean);
 			}
 

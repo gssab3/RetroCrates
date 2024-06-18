@@ -166,7 +166,7 @@
 				</div>
 				<%
 					}
-				} else {
+						else {
 					%>
 					<p>Nessun prodotto disponibile.</p>
 				<%

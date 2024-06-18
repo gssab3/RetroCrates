@@ -1,6 +1,5 @@
 package rc.model;
 
-import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,8 +60,10 @@ public class ContieneProdDAODataSource implements IBeanDAO<ContieneProdBean> {
 		}
 	}
 
+	//Non puoi eliminare qualcosa da un ordine... sarebbe illegale
 	@Override
 	public boolean doDelete(String code) throws SQLException {
+		/*
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -87,12 +88,55 @@ public class ContieneProdDAODataSource implements IBeanDAO<ContieneProdBean> {
 			}
 		}
 		return (result != 0);
+		*/
+		return false;
 	}
 
 	@Override
 	public ContieneProdBean doRetrieveByKey(String code) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public ContieneProdBean doRetrieveByIdOrdine(String idordine) throws SQLException {
+		return null;
+	}
+	
+	public Collection<ContieneProdBean> doRetrieveByOrder(String idordine) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<ContieneProdBean> contiene = new LinkedList<ContieneProdBean>();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + "WHERE IdOrdine = ?";
+
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				ContieneProdBean bean = new ContieneProdBean();
+				
+				bean.setIdProdotto(rs.getString("IdProdotto"));
+				bean.setIdOrdine(rs.getString("IdOrdine"));
+				bean.setQta(rs.getInt("Qta"));
+				bean.setCosto(rs.getFloat("Costo"));
+				
+				contiene.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return contiene;	
 	}
 
 	@Override
@@ -115,19 +159,14 @@ public class ContieneProdDAODataSource implements IBeanDAO<ContieneProdBean> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int err=0;
-				ProdottoBean bean = new ProdottoBean();
+				ContieneProdBean bean = new ContieneProdBean();
 				
 				bean.setIdProdotto(rs.getString("IdProdotto"));
-				bean.setDescr(rs.getString("Descrizione"));
+				bean.setIdOrdine(rs.getString("IdOrdine"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setCosto(rs.getFloat("Costo"));
 				
-				if(bean.isDisp() == false)
-					err = 1;
-				
-				if(err == 0)
-					contiene.add(bean);
+				contiene.add(bean);
 			}
 
 		} finally {
@@ -141,5 +180,4 @@ public class ContieneProdDAODataSource implements IBeanDAO<ContieneProdBean> {
 		}
 		return contiene;		
 	}
-
 }
