@@ -19,7 +19,7 @@ CREATE TABLE Ordine(
     Utente VARCHAR(20) NOT NULL,
     Destinazione VARCHAR(255),
     Email VARCHAR(50) NOT NULL,
-    Data DATE NOT NULL,
+    DataOrdine DATE NOT NULL,
     PRIMARY KEY (IdOrdine,Utente),
     FOREIGN KEY (Utente) REFERENCES Utente(Username)
 );
@@ -112,4 +112,19 @@ INSERT INTO Prodotto VALUES ('coll002', 'Poster di The Last of Us Part II', 'Pos
 INSERT INTO Prodotto VALUES ('coll003', 'Tazza di Halo Infinite', 'Tazza con logo di Halo Infinite', 100, TRUE, NULL, 7.99, 0, 0, 'Microsoft_Studios', NULL, NULL, NULL, 'Collezionabile', 'Gadget', 'Normale');
 INSERT INTO Prodotto VALUES ('coll004', 'Funko Pop Pac-Man', 'Funko Pop di Pac-Man', 100, TRUE, NULL, 9.99, 0, 0, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
 INSERT INTO Prodotto VALUES ('coll005', 'Poster di Sonic the Hedgehog', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Sega', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
+
+-- Insert a user
+INSERT INTO Utente (Username, Email, Passwordhash, Datanas, Foto, Tipo)
+VALUES ('user1', 'user1@example.com', 'passwordhash', '2000-01-01', NULL, 'Utente');
+
+-- Insert an order for the user
+INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, DataOrdine)
+VALUES ('ord001', 'user1', '123 Main St, City, Country', 'user1@example.com', '2024-11-11');
+
+-- Insert 4 items into the order
+INSERT INTO ContieneProd (IdOrdine, IdProdotto, Qta, Costo)
+VALUES ('ord001', 'con001', 1, 499.99),
+       ('ord001', 'game001', 1, 59.99),
+       ('ord001', 'coll001', 1, 9.99),
+       ('ord001', 'game003', 1, 59.99);
 

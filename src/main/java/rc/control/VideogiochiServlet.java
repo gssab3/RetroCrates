@@ -1,4 +1,4 @@
-package rc.controller;
+package rc.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,15 +16,15 @@ import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
 
-@WebServlet("/ConsoleServlet")
-public class ConsoleServlet extends HttpServlet{
+@WebServlet("/VideogiochiServlet")
+public class VideogiochiServlet extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ConsoleServlet() {
+	public VideogiochiServlet() {
 		super();
 	}
 	
@@ -32,21 +32,21 @@ public class ConsoleServlet extends HttpServlet{
 		
 		String tipologia = (String) request.getParameter("TipoProdotto");
 		
-		String produttore = (String) request.getParameter("Produttore");
+		String genere = (String) request.getParameter("Genere");
 		
 		ProdottoDAODataSource model = new ProdottoDAODataSource();
 		Collection<ProdottoBean> prodotti = null;
 		
 		try {
-			if (tipologia != null && !tipologia.equals("TUTTI") && produttore != null && !produttore.equals("TUTTI")) {
-				prodotti = model.doRetrieveByCategoryProducer(tipologia, produttore);
-				request.setAttribute("Produttore", produttore);
+			if (tipologia != null && !tipologia.equals("TUTTI") && genere != null && !genere.equals("TUTTI")) {
+				prodotti = model.doRetrieveByCategoryGenre(tipologia, genere);
+				request.setAttribute("Genere", genere);
 			} else if (tipologia != null && !tipologia.equals("TUTTI")) {
 				prodotti = model.doRetrieveByCategory(tipologia);
 			}
 			
 			request.setAttribute("TipoProdotto", tipologia);
-			request.setAttribute("Produttore", produttore);
+			request.setAttribute("Genere", genere);
 			request.setAttribute("prodotti", prodotti);
 		} catch (SQLException e) {
 			e.printStackTrace();

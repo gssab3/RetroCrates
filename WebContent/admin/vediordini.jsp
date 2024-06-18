@@ -85,6 +85,7 @@
 		    <th>Utente</th>
 		    <th>Destinazione</th>
 		    <th>Email</th>
+		    <th>Data</th>
 		</tr>
 				<%
 				if (ordini != null && ordini.size() != 0) {
@@ -97,6 +98,7 @@
 					    <td><%=bean.getUtente()%></td>
 					    <td><%=bean.getDestinazione()%></td>
 					    <td><%=bean.getEmail()%></td>
+					    <td><%=bean.getDataOrdine()%></td>
 					</tr>
 				<%
 					}

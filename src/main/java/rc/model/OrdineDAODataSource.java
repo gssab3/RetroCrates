@@ -47,7 +47,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 			preparedStatement.setString(2, ordine.getUtente());
 			preparedStatement.setString(3, ordine.getDestinazione());
 			preparedStatement.setString(4, ordine.getEmail());
-			preparedStatement.setString(5,  ordine.getData());
+			preparedStatement.setString(5,  ordine.getDataOrdine());
 			preparedStatement.executeUpdate();
 			connection.commit();
 
@@ -107,7 +107,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 				bean.setUtente(rs.getString("Utente"));
 				bean.setDestinazione(rs.getString("Destinazione"));
 				bean.setEmail(rs.getString("Email"));
-				bean.setData(rs.getString("Data"));
+				bean.setDataOrdine(rs.getString("DataOrdine"));
 			}
 		} finally {
 			try {
@@ -141,14 +141,13 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int err=0;
 				OrdineBean bean = new OrdineBean();
 				
 				bean.setIdOrdine(rs.getString("IdOrdine"));
 				bean.setUtente(rs.getString("Utente"));
 				bean.setDestinazione(rs.getString("Destinazione"));
 				bean.setEmail(rs.getString("Email"));
-				bean.setEmail(rs.getString("Data"));
+				bean.setDataOrdine(rs.getString("DataOrdine"));
 				products.add(bean);
 			}
 

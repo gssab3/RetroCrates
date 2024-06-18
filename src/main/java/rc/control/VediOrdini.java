@@ -1,4 +1,4 @@
-package rc.controller;
+package rc.control;
 
 import java.io.IOException;
 import java.sql.SQLException;

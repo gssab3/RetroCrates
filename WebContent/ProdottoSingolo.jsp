@@ -1,4 +1,4 @@
-<%@page import="rc.controller.ProdottoServlet"%>
+<%@page import="rc.control.ProdottoServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
 <%@ page import="java.util.Collection" %>

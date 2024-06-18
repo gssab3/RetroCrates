@@ -1,4 +1,4 @@
-package rc.controller;
+package rc.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,39 +11,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 
 import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
 
-@WebServlet("/ProdottoServlet")
-public class ProdottoServlet extends HttpServlet{
+@WebServlet("/CollezionabileServlet")
+public class CollezionabileServlet extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ProdottoServlet() {
+	public CollezionabileServlet() {
 		super();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String idprodotto = (String) request.getParameter("IdProdotto");
+		String tipologia = (String) request.getParameter("TipoProdotto");
+		
+		String categoria = (String) request.getParameter("Categoria");
 		
 		ProdottoDAODataSource model = new ProdottoDAODataSource();
-		ProdottoBean prodotto = null;
+		Collection<ProdottoBean> prodotti = null;
 		
 		try {
-			prodotto=model.doRetrieveByKey(idprodotto);
+			if (tipologia != null && !tipologia.equals("TUTTI") && categoria != null && !categoria.equals("TUTTI")) {
+				prodotti = model.doRetrieveByCategoryColCat(tipologia, categoria);
+				request.setAttribute("Categoria", categoria);
+			} else if (tipologia != null && !tipologia.equals("TUTTI")) {
+				prodotti = model.doRetrieveByCategory(tipologia);
+			}
 			
-			request.setAttribute("IdProdotto", idprodotto);
-			request.setAttribute("prodotto", prodotto);
+			request.setAttribute("TipoProdotto", tipologia);
+			request.setAttribute("Categoria", categoria);
+			request.setAttribute("prodotti", prodotti);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProdottoSingolo.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Paginaprodotti.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

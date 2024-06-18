@@ -9,7 +9,7 @@ public class OrdineBean implements Serializable
 	private String Utente; //20 caratteri massimo
 	private String Destinazione; //massimo 255 caratteri
 	private String email; //massimo 50 caratteri
-	private String data; //yyyy-mm-dd
+	private String DataOrdine; //yyyy-mm-dd
 	
 	public OrdineBean()
 	{
@@ -51,12 +51,12 @@ public class OrdineBean implements Serializable
 		this.email = email;
 	}
 
-	public String getData() {
-		return data;
+	public String getDataOrdine() {
+		return DataOrdine;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setDataOrdine(String data) {
+		this.DataOrdine = data;
 	}
 	
 	

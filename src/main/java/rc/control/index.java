@@ -1,4 +1,4 @@
-package rc.controller;
+package rc.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,43 +16,33 @@ import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
 
-@WebServlet("/VideogiochiServlet")
-public class VideogiochiServlet extends HttpServlet{
+@WebServlet("/index")
+public class index extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public VideogiochiServlet() {
+	public index() {
 		super();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String tipologia = (String) request.getParameter("TipoProdotto");
-		
-		String genere = (String) request.getParameter("Genere");
-		
 		ProdottoDAODataSource model = new ProdottoDAODataSource();
 		Collection<ProdottoBean> prodotti = null;
 		
 		try {
-			if (tipologia != null && !tipologia.equals("TUTTI") && genere != null && !genere.equals("TUTTI")) {
-				prodotti = model.doRetrieveByCategoryGenre(tipologia, genere);
-				request.setAttribute("Genere", genere);
-			} else if (tipologia != null && !tipologia.equals("TUTTI")) {
-				prodotti = model.doRetrieveByCategory(tipologia);
-			}
-			
-			request.setAttribute("TipoProdotto", tipologia);
-			request.setAttribute("Genere", genere);
+			prodotti = model.doRetrieveAll("");
+
 			request.setAttribute("prodotti", prodotti);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Paginaprodotti.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
