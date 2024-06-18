@@ -4,7 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Header</title>
+	<link type="text/css" rel="stylesheet" href="styles/style.css"/>
+	<link rel="shortcut icon" href="images/cocoicon2.ico"/> 
+ 	<link type="text/css" rel="stylesheet" href="styles/paginaprodotti.css"/>
+ 	<script src="scripts/sidebar.js" type="text/javascript"></script>
+	<script src="scripts/cart.js" type="text/javascript"></script>
+	<script src="scripts/searchbar.js" type="text/javascript"></script>
 </head>
 <body>
 

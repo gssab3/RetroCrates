@@ -28,14 +28,14 @@
 <meta charset="UTF-8">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
- <link type="text/css" rel="stylesheet" href="css/style.css"/>
- <link type="text/css" rel="stylesheet" href="css/paginaprodotti.css"/>
+ <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
- 	<script src="js/sidebar.js" type="text/javascript"></script>
-	<script src="js/cart.js" type="text/javascript"></script>
-	<script src="js/searchbar.js" type="text/javascript"></script>
+ 	<script src="scripts/sidebar.js" type="text/javascript"></script>
+	<script src="scripts/cart.js" type="text/javascript"></script>
+	<script src="scripts/searchbar.js" type="text/javascript"></script>
+	<script src="scripts/focusontext.js" type="text/javascript"></script>
 </head>
-<body >
+<body>
 
 	<div class="barraNavigazione" id="barraNavigazione"> 
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>

@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>footer</title>
-	<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	<link type="text/css" rel="stylesheet" href="styles/style.css"/>
 	<link rel="shortcut icon" href="images/cocoicon2.ico"/> 
- 	<link type="text/css" rel="stylesheet" href="css/paginaprodotti.css"/>
- 	<script src="js/sidebar.js" type="text/javascript"></script>
-	<script src="js/cart.js" type="text/javascript"></script>
-	<script src="js/searchbar.js" type="text/javascript"></script>
+ 	<link type="text/css" rel="stylesheet" href="styles/paginaprodotti.css"/>
+ 	<script src="scripts/sidebar.js" type="text/javascript"></script>
+	<script src="scripts/cart.js" type="text/javascript"></script>
+	<script src="scripts/searchbar.js" type="text/javascript"></script>
 </head>
 <body>
 

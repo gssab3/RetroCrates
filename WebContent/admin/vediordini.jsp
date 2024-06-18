@@ -1,4 +1,15 @@
+<%@page import="rc.model.OrdineBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
+
+<%
+	Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
+	if(ordini == null) {
+		response.sendRedirect(request.getContextPath()+"/VediOrdini");	
+		return;
+	} 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,13 +17,10 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
- <link rel="shortcut icon" href="images/cocoicon2.ico" />
- <link type="text/css" rel="stylesheet" href="styles/giochino.css">
+ <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
 	<script src="scripts/searchbar.js" type="text/javascript"></script>
-	<script src="scripts/giochino.js" type="text/javascript"></script>
-	<script src="scripts/focusontext.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -67,28 +75,41 @@
 		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
 	</div>
 	
-	
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="../header.jsp"/>
 	
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
-	
-	
-	<div class="contienigioco">
-		<p class="Nomegioco">Inserisci un numero</p>	
-		<br>
-		<input id="inputGiocatore" type="number" min="1" max="100" >
-		<br>
-	    <button id="inviaRisposta" onclick="giochino()"><img class="tasto" alt="tasto" src="images/tastogiochino.png"></button>
-	    <button id="ricomincia" onclick="ricomincia()" style="display: block; visibility: hidden;"><img class="tastoretry" alt="tastoretry" src="images/retry.png"></button>
-	    <br>
-	    <div id="output"></div>
-	    <br>
-	    <div id="buono"></div>
-	    <br>
-	</div>
 
+	<table>
+		<tr>
+		    <th>IdOrdine</th>
+		    <th>Utente</th>
+		    <th>Destinazione</th>
+		    <th>Email</th>
+		</tr>
+				<%
+				if (ordini != null && ordini.size() != 0) {
+					Iterator<?> it = ordini.iterator();
+					while (it.hasNext()) {
+						OrdineBean bean = (OrdineBean) it.next();
+				%>
+					<tr>
+					    <td><%=bean.getIdOrdine()%></td>
+					    <td><%=bean.getUtente()%></td>
+					    <td><%=bean.getDestinazione()%></td>
+					    <td><%=bean.getEmail()%></td>
+					</tr>
+				<%
+					}
+				} else {
+					%>
+					<p>Nessun Ordine disponibile.</p>
+				<%
+					}
+				%> 
+	</table>
+	
+	<jsp:include page="../footer.jsp"/>
 
-	<jsp:include page="footer.jsp"/>
 
 </body>
 </html>
