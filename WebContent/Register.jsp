@@ -6,11 +6,13 @@
 <meta charset="ISO-8859-1">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
- <link type="text/css" rel="stylesheet" href="css/style.css"/>
- <link type="text/css" rel="stylesheet" href="css/register.css"/>
+ <link type="text/css" rel="stylesheet" href="styles/style.css"/>
+ <link type="text/css" rel="stylesheet" href="styles/register.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
- 	<script src="js/sidebar.js" type="text/javascript"></script>
-	<script src="js/cart.js" type="text/javascript"></script>
+ 	<script src="scripts/sidebar.js" type="text/javascript"></script>
+	<script src="scripts/cart.js" type="text/javascript"></script>
+	<script src="scripts/focusontext.js" type="text/javascript"></script>
+	<script src="scripts/darivedere.js" type="text/javascript"></script>
 </head>
 <body>
  
@@ -33,19 +35,19 @@
                         
                         	<div>
                                 <label for="input-email" class="titoloemailpass">Username</label>
-                                <input type="text" placeholder="Enter your Username" required class="emailpass" id="email">
+                                <input type="text" placeholder="Enter your Username" class="emailpass" id="email">
                             </div>
                         
                             <div>
                                 <label for="input-email" class="titoloemailpass">Email</label>
-                                <input type="email" placeholder="Enter your email address" required class="emailpass" id="email">
+                                <input type="email" placeholder="Enter your email address" class="emailpass" id="email">
                             </div>
                             
                             <div>
                                 <label for="input-pass" class="titoloemailpass">Password</label>
     
                                 <div class="bloccopass">
-                                    <input type="password" placeholder="Enter your password" required class="emailpass" id="password">
+                                    <input type="password" placeholder="Enter your password" class="emailpass" id="password">
                                    <%-- <i class="ri-eye-off-line login__eye" id="input-icon"></i>  da vedere bene come fare
                                    è il pulsante per oscurare la password --%>
                                 </div>
@@ -53,7 +55,7 @@
                             
                             <div>
                                 <label for="input-email" class="titoloemailpass">Data di Nascita</label>
-                                <input type="date" required class="emailpass" id="email">
+                                <input type="date" class="emailpass" id="email">
                             </div>
                             
                             

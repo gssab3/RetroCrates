@@ -1,0 +1,5 @@
+/**
+ * 
+ */
+
+ document.getElementById("barraRicerca").focus();

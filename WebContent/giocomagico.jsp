@@ -5,40 +5,52 @@
 <meta charset="UTF-8">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
- <link type="text/css" rel="stylesheet" href="css/style.css"/>
+ <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico" />
- <link type="text/css" rel="stylesheet" href="css/cursor.css">
- <link type="text/css" rel="stylesheet" href="css/giochino.css">
- 	<script src="js/sidebar.js" type="text/javascript"></script>
-	<script src="js/cart.js" type="text/javascript"></script>
-	<script src="js/searchbar.js" type="text/javascript"></script>
-	<script src="js/giochino.js" type="text/javascript"></script>
+ <link type="text/css" rel="stylesheet" href="styles/giochino.css">
+ 	<script src="scripts/sidebar.js" type="text/javascript"></script>
+	<script src="scripts/cart.js" type="text/javascript"></script>
+	<script src="scripts/searchbar.js" type="text/javascript"></script>
+	<script src="scripts/giochino.js" type="text/javascript"></script>
+	<script src="scripts/focusontext.js" type="text/javascript"></script>
 </head>
 <body>
 
-	<div class="cursor">	</div>
 	<div class="barraNavigazione" id="barraNavigazione"> 
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
-			<li id="console"> <a href="console.jsp">Console</a>
+			<li id="console"> <a href="TipologiaControl?TipoProdotto=Console&Produttore=TUTTI">Console</a>
 			  	<ul>
 			  		<%-- Qua ci mettiamo le pagine con la ricerca --%>
-					<li id="sony"><a href="console.jsp">Sony</a> </li>
-					<li id="microsoft"><a href="console.jsp">Microsoft</a></li>
-					<li id="nintendo"><a href="console.jsp">Nintendo</a></li>
-					<li id="sega"><a href="console.jsp">Sega</a></li>
-					<li id="atari"><a href="console.jsp">Atari</a></li>
-					<li id="altre"><a href="console.jsp">Altre</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Sony">Sony</a> </li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Microsoft">Microsoft</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Nintendo">Nintendo</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Sega">Sega</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Atari">Atari</a></li>
+					<li id="categoriaconsole"><a href="TipologiaControl?TipoProdotto=Console&Produttore=Altri">Altre</a></li>
 				</ul>
 			  </li>
-			<li id="videogiochi"><a href="videogiochi.jsp">Videogiochi</a>
+			<li id="videogiochi"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=TUTTI">Videogiochi</a>
 				<ul>
 			  		<%-- Qua ci mettiamo le pagine con la ricerca --%>
-					<li id="genere"><a href="videogiochi.jsp">Genere</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Action_Adventure">Action Adventure</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Picchiaduro">Picchiaduro</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=RPG">RPG</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Sparatutto">Sparatutto</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Simulazione">Simulazione</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Sport">Sport</a>
+					<li id="genere"><a href="TipologiaControl?TipoProdotto=Videogioco&Genere=Strategia">Strategia</a>
 				</ul>
 			</li>
-			<li id="collezionabili"><a href="collezionabili.jsp">Collezionabili</a>
+			<li id="collezionabili"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=TUTTI">Collezionabili</a>
+				<ul>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Poster">Poster</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Gadget">Gadget</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Figure">Figure</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Plush">Plush</a>
+					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
+				</ul>
 			</li>
 			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
 			</li>	
@@ -56,44 +68,7 @@
 	</div>
 	
 	
-	<header>
-		<div class="TastoMenu" >
-			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
-				<img src="images/iconamenu.png" alt="open">
-			</span>
-		</div>
-		
-		<div class="TastoRicerca" >
-			<span style="font-size:30px;cursor:pointer" onclick="openSearch()">
-				<img src="images/lenteicona.png" alt="openSearch">
-			</span>
-		</div>
-		
-		<div class="ContentHeader" style="cursor: none;">
-			<a href="index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="images/logofinale.png"></a>
-		</div>
-		
-		
-		<%-- Qui dobbiamo fare un if, che se siamo loggati il tato login reinderizza al profilo e non alla pagina di login --%>
-		<div class="TastoLogin">
-			<span style="font-size:30px;cursor:pointer">
-				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="openLog"></a>
-			</span>
-		</div>
-		
-		<%-- 
-		<div class="TastoLogin">
-			<span style="font-size:30px;cursor:pointer">
-				<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
-			</span>
-		</div> --%>	
-		
-		<div class="TastoCarrello">
-			<span style="font-size:30px;cursor:pointer" onclick="openCart()">
-				<img src="images/cart.png" alt="opencart">
-			</span>
-		</div> 
-	</header>
+	<jsp:include page="header.jsp"/>
 	
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
 	
@@ -113,44 +88,7 @@
 	</div>
 
 
-
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="js/cursor.js"></script>
-<footer>
-		<div class="rigafooter">
-			
-				<div class="colonnafooter">
-					<img src="images/logofinale.png" class="logofooter">
-					<p>RetroCrates Inc.</p>
-				</div>
-				
-				<div class="colonnafooter">
-					<h3>About Us</h3> 
-					<p>RetroCrates è un sito che punta a riportare in vita la magia dei videogiochi retrò. 
-					Offriamo una vasta selezione di titoli classici, divenuti ormai capolavori 
-					dimenticati, ma non solo.
-					RetroCrates, il tuo portale per l’era d’oro dei videogiochi. </p>
-					<p class="email-id">s.davanzo5@studenti.unisa.it</p>
-					<p class="email-id">g.sabetta3@studenti.unisa.it</p>
-					<h4>+39 123 456 7890</h4>
-				</div>
-				
-				<div class="colonnafooter">
-					<h3>Naviga</h3>
-					<ul>
-						<li><a href="index.jsp">Home</a>
-						<li><a href="">Account</a>
-					</ul>
-					
-				</div>
-				
-			
-			</div>
-			
-			<hr>
-			<p class="copyright"> RetroCrates Inc. &copy; - All Rights Reserved</p>
-	</footer>
+	<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

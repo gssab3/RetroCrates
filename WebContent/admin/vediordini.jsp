@@ -1,48 +1,15 @@
+<%@page import="rc.model.OrdineBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
-<%@ page import="java.util.Collection" %>
+
 <%
-
-	String tipologia = request.getParameter("TipoProdotto");
-
-	String produttore = request.getParameter("Produttore");
-	String genere = request.getParameter("Genere");
-	String categoria = request.getParameter("Categoria");
-	
-	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
-	
-	if(tipologia.equals("Console")){
-		 if(prodotti == null) {
-			String redirectURL = "./ConsoleServlet?TipoProdotto=" + tipologia;
-			if(produttore != null && !produttore.isEmpty()) {
-				redirectURL += "&Produttore=" + produttore;
-			}
-			response.sendRedirect(redirectURL);
-			return;
-		} 
-	 }else if(tipologia.equals("Videogioco")){
-		if(prodotti == null) {
-			String redirectURL = "./VideogiochiServlet?TipoProdotto=" + tipologia;
-			if(genere != null && !genere.isEmpty()) {
-				redirectURL += "&Genere=" + genere;
-			}
-			response.sendRedirect(redirectURL);
-			return;
-		} 
-	}else if(tipologia.equals("Collezionabile")){	
-		if(prodotti == null) {
-			String redirectURL = "./CollezionabileServlet?TipoProdotto=" + tipologia;
-			if(categoria != null && !categoria.isEmpty()) {
-				redirectURL += "&Categoria=" + categoria;
-			}
-			response.sendRedirect(redirectURL);
-			return;
-		} 
+	Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
+	if(ordini == null) {
+		response.sendRedirect(request.getContextPath()+"/VediOrdini");	
+		return;
 	} 
 %>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,14 +17,12 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
- <link type="text/css" rel="stylesheet" href="styles/paginaprodotti.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
 	<script src="scripts/searchbar.js" type="text/javascript"></script>
-	<script src="scripts/focusontext.js" type="text/javascript"></script>
 </head>
-<body >
+<body>
 
 	<div class="barraNavigazione" id="barraNavigazione"> 
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
@@ -110,73 +75,41 @@
 		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
 	</div>
 	
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="../header.jsp"/>
 	
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
-		
-		
-	 	<h1 style="text-align: center;"> 
-	 	<% if(tipologia.equals("Videogioco")){ %>
-	 		Videogiochi
-	 	<%	
-	 	}else{
-	 		%>
-	 		<%=tipologia %>
-	 		<%
-	 	}
-	 	%>
-	 	</h1> 
-		
-	
-		
-		<div class = "rigaprodotti" style="margin-top: 20px">
-				<%@ page import="java.sql.Blob" %>
-				
+
+	<table>
+		<tr>
+		    <th>IdOrdine</th>
+		    <th>Utente</th>
+		    <th>Destinazione</th>
+		    <th>Email</th>
+		</tr>
 				<%
-				if (prodotti != null && prodotti.size() != 0) {
-					Iterator<?> it = prodotti.iterator();
+				if (ordini != null && ordini.size() != 0) {
+					Iterator<?> it = ordini.iterator();
 					while (it.hasNext()) {
-						ProdottoBean bean = (ProdottoBean) it.next();
-						Float costo = bean.getCosto();
-						Blob image = bean.getPicture();
+						OrdineBean bean = (OrdineBean) it.next();
 				%>
-				<div class="colonnaprodotto">
-					<div class = "immagineprodotto">
-<<<<<<< HEAD
-						<% if(image!= null){ %>
-							<a href="Servletprodottsingola"><img src = "<%="data:image/jpeg;base64," + Base64.getEncoder().encodeToString(image.getBytes(1, (int) image.length()))%>" alt = "ImmagineProdotto"></a>
-=======
-						<% if(image!="NULL"){ %>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
->>>>>>> branch 'master' of https://github.com/gssab3/RetroCrates.git
-						<%
-							}
-							else
-							{
-						%>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
-						<%
-							}
-						%>
-					</div>
-					<div>
-						<p class = "nome"><%=bean.getNome()%></p>
-						<p class = "prezzo"><%=costo%>€</p>
-					</div>	
-				</div>
+					<tr>
+					    <td><%=bean.getIdOrdine()%></td>
+					    <td><%=bean.getUtente()%></td>
+					    <td><%=bean.getDestinazione()%></td>
+					    <td><%=bean.getEmail()%></td>
+					</tr>
 				<%
 					}
 				} else {
 					%>
-					<p>Nessun prodotto disponibile.</p>
+					<p>Nessun Ordine disponibile.</p>
 				<%
 					}
 				%> 
-</div>
-		
-		
+	</table>
 	
-		
-		<jsp:include page="footer.jsp"/>
+	<jsp:include page="../footer.jsp"/>
+
+
 </body>
 </html>
