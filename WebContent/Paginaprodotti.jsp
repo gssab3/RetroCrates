@@ -157,18 +157,20 @@
 	
 		
 		<div class = "rigaprodotti" style="margin-top: 20px">
+				<%@ page import="java.sql.Blob" %>
+				
 				<%
 				if (prodotti != null && prodotti.size() != 0) {
 					Iterator<?> it = prodotti.iterator();
 					while (it.hasNext()) {
 						ProdottoBean bean = (ProdottoBean) it.next();
 						Float costo = bean.getCosto();
-						String image="NULL"; //= "images/productIMG/" + bean.getPicture();
+						Blob image = bean.getPicture();
 				%>
 				<div class="colonnaprodotto">
 					<div class = "immagineprodotto">
-						<% if(image!="NULL"){ %>
-							<a href="Servletprodottsingola"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
+						<% if(image!= null){ %>
+							<a href="Servletprodottsingola"><img src = "<%="data:image/jpeg;base64," + Base64.getEncoder().encodeToString(image.getBytes(1, (int) image.length()))%>" alt = "ImmagineProdotto"></a>
 						<%
 							}
 							else
