@@ -130,48 +130,41 @@
 	
 		
 		<div class = "rigaprodotti" style="margin-top: 20px">
-				<%@ page import="java.sql.Blob" %>
-				
-				<%
-				if (prodotti != null && prodotti.size() != 0) {
-					Iterator<?> it = prodotti.iterator();
-					while (it.hasNext()) {
-						ProdottoBean bean = (ProdottoBean) it.next();
-						Float costo = bean.getCosto();
-						Blob image = bean.getPicture();
-				%>
-				<div class="colonnaprodotto">
-					<div class = "immagineprodotto">
-<<<<<<< HEAD
-						<% if(image!= null){ %>
-							<a href="Servletprodottsingola"><img src = "<%="data:image/jpeg;base64," + Base64.getEncoder().encodeToString(image.getBytes(1, (int) image.length()))%>" alt = "ImmagineProdotto"></a>
-=======
-						<% if(image!="NULL"){ %>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
->>>>>>> branch 'master' of https://github.com/gssab3/RetroCrates.git
-						<%
-							}
-							else
-							{
-						%>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
-						<%
-							}
-						%>
-					</div>
-					<div>
-						<p class = "nome"><%=bean.getNome()%></p>
-						<p class = "prezzo"><%=costo%>€</p>
-					</div>	
-				</div>
-				<%
-					}
-						else {
-					%>
-					<p>Nessun prodotto disponibile.</p>
-				<%
-					}
-				%> 
+                <%
+                if (prodotti != null && prodotti.size() != 0) {
+                    Iterator<?> it = prodotti.iterator();
+                    while (it.hasNext()) {
+                        ProdottoBean bean = (ProdottoBean) it.next();
+                        Float costo = bean.getCosto();
+                        String image="NULL"; //= "images/productIMG/" + bean.getPicture();
+                %>
+                <div class="colonnaprodotto">
+                    <div class = "immagineprodotto">
+                        <% if(image!="NULL"){ %>
+                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
+                        <%
+                            }
+                            else
+                            {
+                        %>
+                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
+                        <%
+                            }
+                        %>
+                    </div>
+                    <div>
+                        <p class = "nome"><%=bean.getNome()%></p>
+                        <p class = "prezzo"><%=costo%>€</p>
+                    </div>    
+                </div>
+                <%
+                    }
+                } else {
+                    %>
+                    <p>Nessun prodotto disponibile.</p>
+                <%
+                    }
+                %> 
 </div>
 		
 		
