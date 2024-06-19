@@ -11,7 +11,7 @@
  <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
-	<script src="scripts/focusontext.js" type="text/javascript"></script>
+	<script src="scripts/focusregister.js" type="text/javascript"></script>
 	<script src="scripts/darivedere.js" type="text/javascript"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
                         
                         	<div>
                                 <label for="input-email" class="titoloemailpass">Username</label>
-                                <input type="text" placeholder="Enter your Username" class="emailpass" id="email">
+                                <input type="text" placeholder="Enter your Username" class="emailpass" id="username">
                             </div>
                         
                             <div>
@@ -55,7 +55,7 @@
                             
                             <div>
                                 <label for="input-email" class="titoloemailpass">Data di Nascita</label>
-                                <input type="date" class="emailpass" id="email">
+                                <input type="date" class="emailpass" id="datanascita">
                             </div>
                             
                             

@@ -112,7 +112,11 @@
 	
 	<jsp:include page="header.jsp"/>
 	
+	<form action="">
 	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
+	<input id="submitRicerca" type="submit">
+	</form>
+	<div id="risultatiRicerca"></div>
 		
 		
 	 	<h1 style="text-align: center;"> 
@@ -167,6 +171,9 @@
                 %> 
 </div>
 		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="scripts/ricerca.js" type="text/javascript"></script>
 		
 	
 		

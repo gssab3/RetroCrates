@@ -472,14 +472,14 @@ footer p.azienda{
     flex: 2;
 }
 
-.email-id a{
+/*.email-id a{
 	width:fit-content;
 	border-bottom: 1px solid #ccc;
 	margin: 5px 0;
 	text-align: center;
 	text-decoration: none;
 	color: white;
-}
+}*/
 
 .copyright{
 	text-align:center;

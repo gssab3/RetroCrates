@@ -10,7 +10,7 @@
  <link rel="shortcut icon" href="images/cocoicon2.ico" /> 
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
-	<script src="scripts/focusontext.js" type="text/javascript"></script>
+	<script src="scripts/focuslogin.js" type="text/javascript"></script>
 </head>
 <body>
  

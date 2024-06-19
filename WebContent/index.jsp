@@ -22,7 +22,6 @@
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
 	<script src="scripts/searchbar.js" type="text/javascript"></script>
-	<script src="scripts/focusontext.js" type="text/javascript"></script>
 </head>
 <body >
 
@@ -80,7 +79,13 @@
 	
 	<jsp:include page="header.jsp"/>
 	
-	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
+	<form action="./RicercaProdottoServlet" method="get">
+	<input id="barraRicerca" name="query" type="text" placeholder="Cerca nel sito">
+	<input id="submitRicerca" type="submit">
+	<input type="hidden" name="input" value="1">
+	</form>
+
+	<div id="risultatiRicerca"></div>
 	
 	<div class = "rigaprodotti" style="margin-top: 20px">
 				<%
@@ -119,6 +124,9 @@
 					}
 				%> 
 	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="scripts/ricerca.js" type="text/javascript"></script>
 	
 	<jsp:include page="footer.jsp"/>
 	

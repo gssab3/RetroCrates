@@ -396,5 +396,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		}
 		return prodotti;
 	}
+	
+	
 }
 
