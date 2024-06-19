@@ -32,6 +32,7 @@ public class RicercaProdottoServlet extends HttpServlet {
 		
 		String numero = request.getParameter("input")	;	
 		String query = request.getParameter("query");
+		String tipoprodotto = "Console"; 
 		
 		Collection<ProdottoBean> risultato = new ArrayList<>();
 		ProdottoDAODataSource dao = new ProdottoDAODataSource();
@@ -52,14 +53,14 @@ public class RicercaProdottoServlet extends HttpServlet {
 					}
 				}
 				
-				request.setAttribute("TipoProdotto", "TUTTI");
+				request.setAttribute("TipoProdotto", tipoprodotto);
 				request.setAttribute("prodotti", prodotti);
 				
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
 			} finally {
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaProdotti.jsp");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Paginaprodotti.jsp");
 				dispatcher.forward(request, response);
 			}
 		}

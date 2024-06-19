@@ -38,7 +38,9 @@
 			response.sendRedirect(redirectURL);
 			return;
 		} 
-	} 
+	}else{
+		return;
+	}
 %>
 
 
