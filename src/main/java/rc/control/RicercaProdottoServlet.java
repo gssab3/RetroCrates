@@ -30,7 +30,7 @@ public class RicercaProdottoServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		String numero = request.getParameter("input")	;	
+		String numero = request.getParameter("input");	
 		String query = request.getParameter("query");
 		String tipoprodotto = "Console"; 
 		
@@ -40,22 +40,11 @@ public class RicercaProdottoServlet extends HttpServlet {
 		
 		if(numero.equals("1")){
 			try {
-				prodotti = dao.doRetrieveAll(null);
-				for(ProdottoBean p : prodotti) {
-					for(int i=0; i<p.getNome().length() - 1;i++) {
-						for(int j=i+1; j<p.getNome().length(); j++) {
-							if(((String) p.getNome().subSequence(i,j)).equalsIgnoreCase(query) && !risultato.contains(p)){
-								risultato.add(p);
-							}
-
-						}
-						
-					}
-				}
-				
-				request.setAttribute("TipoProdotto", tipoprodotto);
-				request.setAttribute("prodotti", prodotti);
-				
+				prodotti = dao.doRetrieveByName(query);
+				for(ProdottoBean p : prodotti)
+					risultato.add(p);
+			request.setAttribute("TipoProdotto", tipoprodotto);
+			request.setAttribute("prodotti", prodotti);
 			} catch (SQLException e) {
 				
 				e.printStackTrace();

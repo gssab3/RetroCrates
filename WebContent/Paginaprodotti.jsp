@@ -3,7 +3,7 @@
 <%@ page import="java.util.Collection" %>
 <%
 
-	String tipologia = request.getParameter("TipoProdotto");
+	String tipologia = (String) request.getAttribute("TipoProdotto");
 
 	String produttore = request.getParameter("Produttore");
 	String genere = request.getParameter("Genere");
@@ -38,8 +38,6 @@
 			response.sendRedirect(redirectURL);
 			return;
 		} 
-	}else{
-		return;
 	}
 %>
 
