@@ -1,6 +1,5 @@
 package rc.model;
 
-import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,10 +34,8 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 	public synchronized void doSave(UtenteBean utente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		int err = 0;
-		BufferedImage image = null;
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (Username, Email, PasswordHash, Datanas, Foto, Tipo) VALUES (?, ?, ?, ?, ?, ?)";
+				+ " (Username, Email, PasswordHash, Datanas, Tipo) VALUES (?, ?, ?, ?, ?)";
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
@@ -46,7 +43,6 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 			preparedStatement.setString(2, utente.getEmail());
 			preparedStatement.setString(3, utente.getPasswordHash());
 			preparedStatement.setString(4, utente.getDatanas());
-			preparedStatement.setBlob(5,  utente.getPicture());
 			preparedStatement.setString(6, utente.getTipo());
 			preparedStatement.executeUpdate();
 			connection.commit();
@@ -108,7 +104,6 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 				bean.setPasswordHash(rs.getString("PasswordHash"));
 				bean.setDatanas(rs.getString("Datanas"));
 				bean.setTipo(rs.getString("Tipo"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 			}
 		} finally {
 			try {
@@ -142,7 +137,6 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int err=0;
 				UtenteBean bean = new UtenteBean();
 				
 				bean.setUsername(rs.getString("Username"));
@@ -150,7 +144,6 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 				bean.setPasswordHash(rs.getString("PasswordHash"));
 				bean.setDatanas(rs.getString("Datanas"));
 				bean.setTipo(rs.getString("Tipo"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				products.add(bean);
 			}
 

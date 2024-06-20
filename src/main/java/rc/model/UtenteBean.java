@@ -3,6 +3,7 @@ package rc.model;
 import java.io.Serializable;
 import com.mysql.cj.jdbc.Blob;
 
+@SuppressWarnings("serial")
 public class UtenteBean implements Serializable
 {
 	//Enum
@@ -12,7 +13,6 @@ public class UtenteBean implements Serializable
 	private String email; //massimo 50 caratteri
 	private String PasswordHash; //Da Hashare
 	private String Datanas; 
-	private Blob picture;	
 	
 	public UtenteBean() 
 	{
@@ -21,7 +21,6 @@ public class UtenteBean implements Serializable
 		email = null;
 		PasswordHash = null;
 		Datanas = null;
-		picture = null;
 	}
 
 	public String getTipo() {
@@ -63,14 +62,4 @@ public class UtenteBean implements Serializable
 	public void setDatanas(String date) {
 		Datanas = date;
 	}
-
-	public Blob getPicture() {
-		return picture;
-	}
-
-	public void setPicture(Blob picture) {
-		this.picture = picture;
-	}
-	
-	
 }

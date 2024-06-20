@@ -9,7 +9,6 @@ CREATE TABLE Utente(
     Email VARCHAR(50),
     Passwordhash VARCHAR(128) NOT null,
     Datanas DATE NOT NULL,
-    Foto BLOB,
     Tipo ENUM('Admin', 'Utente') NOT NULL,
     PRIMARY KEY (Username)
 );
