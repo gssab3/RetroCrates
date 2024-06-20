@@ -17,13 +17,13 @@
 	<header>
 		<div class="TastoMenu" >
 			<span style="font-size:30px;cursor:pointer" onclick="openNav()">
-				<img src="images/iconamenu.png" alt="open">
+				<img src="images/icone/Header/iconamenu.png" alt="open">
 			</span>
 		</div>
 		
 		<div class="TastoRicerca" >
 			<span style="font-size:30px;cursor:pointer" onclick="openSearch()">
-				<img src="images/lenteicona.png" alt="openSearch">
+				<img src="images/icone/Header/lenteicona.png" alt="openSearch">
 			</span>
 		</div>
 		
@@ -35,7 +35,7 @@
 		<%-- Qui dobbiamo fare un if, che se siamo loggati il tato login reinderizza al profilo e non alla pagina di login --%>
 		<div class="TastoLogin">
 			<span style="font-size:30px;cursor:pointer">
-				<a href="login.jsp"><img src="images/crashIconLogin.png" alt="openLog"></a>
+				<a href="login.jsp"><img src="images/icone/Header/crashIconLogin.png" alt="openLog"></a>
 			</span>
 		</div>
 		
@@ -48,7 +48,7 @@
 		
 		<div class="TastoCarrello">
 			<span style="font-size:30px;cursor:pointer" onclick="openCart()">
-				<img src="images/cart.png" alt="opencart">
+				<img src="images/icone/Header/cart.png" alt="opencart">
 			</span>
 		</div> 
 	</header>

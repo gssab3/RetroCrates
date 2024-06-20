@@ -17,13 +17,9 @@
 
 @font-face {
     font-family: "CCGeekSpeak";
-    src: url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.eot");
-    src: url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.svg#CCGeekSpeak W00 Regular")format("svg");
+    src: url("https://db.onlinewebfonts.com/t/eca2f6d7a08be97ebbfb8a1c2c2be5e6.woff2") format("woff2");
 }
+
 
 *::before,
 *::after {
@@ -571,9 +567,13 @@ footer p.azienda{
 		width:50px;
 	}
 	
-	#barraRicerca {
-		width: calc(100% - 100px);
-	}
+	#barraRicerca.open {
+       width: calc(100% - 100px) 
+    }
+    
+    #barraRicerca.close {
+       width: calc(100% - 100px) 
+    }
 	
 	.logreg{
 		width:40%;
@@ -782,26 +782,35 @@ footer p.azienda{
     100%{display: none;}
 }
 
+#formRicerca {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 #barraRicerca {
-	display:none;
-	visibility: hidden;
-	height:0%;
+    display: none;
+    visibility: hidden;
+    height: 0%;
     margin-top: 10px;
-    width: 98vw;
-    z-index: 1;
+    width: 80%; 
+    z-index: 0;
     margin-top: 20px;
     margin-bottom: 20px;
-  	padding: 12px 12px;
-  	border-radius: 6px;
-  	border: 3px solid blue;
-  	background-color: hsla(244, 16%, 92%, 0.6);
-  	color: var(--title-color);
-  	font-size: var(--smaller-font-size);
-  	font-weight: var(--font-medium);
-  	margin-left: auto;
-    margin-right: auto;	
+    padding: 12px 12px;
+    border-radius: 6px;
+    border: 3px solid blue;
+    background-color: hsla(244, 16%, 92%, 0.6);
+    color: var(--title-color);
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-medium);
+    margin-right: 10px; 
     box-sizing: border-box;
+}
+
+#submitRicerca{
+	display:none;
+	margin-right: 10px;
 }
 
 #barraRicerca.open {
@@ -810,9 +819,19 @@ footer p.azienda{
     display: block;
 }
 
+#submitRicerca.open{
+	visibility: visible;
+    display: block;
+}
+
 #barraRicerca.close {
     height: auto;
     visibility: hidden;
+    display: block;
+}
+
+#submitRicerca.close{
+	visibility: hidden;
     display: block;
 }
 
@@ -823,8 +842,22 @@ footer p.azienda{
     animation-fill-mode: forwards; 
 }
 
+#submitRicerca.close{
+	animation-name: chiudiricerca;
+    animation-duration: 1s; 
+    animation-timing-function: ease-in-out; 
+    animation-fill-mode: forwards; 
+}
+
 #barraRicerca.open {
     animation-name: apriricerca;
+    animation-duration: 1s; 
+    animation-timing-function: ease-in-out; 
+    animation-fill-mode: forwards; 
+}
+
+#submitRicerca.open{
+	animation-name: apriricerca;
     animation-duration: 1s; 
     animation-timing-function: ease-in-out; 
     animation-fill-mode: forwards; 

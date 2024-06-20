@@ -30,6 +30,7 @@
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
+ <link type="text/css" rel="stylesheet" href="styles/prodotto.css"/>
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
 	<script src="scripts/searchbar.js" type="text/javascript"></script>
@@ -90,10 +91,13 @@
 	
 	<jsp:include page="header.jsp"/>
 	
-	<form action="">
-	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
-	<input id="submitRicerca" type="submit">
+	<form id="formRicerca" action="./RicercaProdottoServlet" method="get"> 
+    <input id="barraRicerca" name="query" type="text" placeholder="Cerca nel sito">
+    <input id="submitRicerca" type="submit" value="Cerca" >
+    <input type="hidden" name="input" value="1">
+    <input type="hidden" name="TipoProdotto" value="TUTTI">
 	</form>
+
 	<div id="risultatiRicerca"></div>
 		
 		
@@ -101,81 +105,102 @@
 		<div class = "prodottosingolo">
 				<%
 				if (prodotto != null) {
-					if(prodotto.getTipoProdotto().equals("Videogioco")){
-						
+					%>
+					
+					<%if(prodotto.getTipoProdotto().equals("Videogioco")){
 						%>
+						<div class="immagine-prodotto">
 						<% if(prodotto.getPicture()!=null){ %>
-							<img src = "<%=prodotto.getPicture()%>" alt = "ImmagineProdotto" style="width: 400px">
+							<img src = "<%=prodotto.getPicture()%>" class="imgprodotto" alt = "ImmagineProdotto" >
 						<%
 							}
 							else
 							{
 						%>
-							<img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 400px">
+							<img src = "images/productIMG/noimg.png" class="imgprodotto" alt = "ImmagineProdotto" >
 						<%
 							}
 						%>
+						</div>
+						<div class="info-prodotto">
 						<p><%=prodotto.getNome()%></p>
-						<p><%=prodotto.getDescr()%></p>
-						<p><%=prodotto.getQta()%></p>
-						<p><%=prodotto.getCosto()%></p>
+						<p>Quantità Disponibile: <%=prodotto.getQta()%></p>
+						<p><%=prodotto.getCosto()%>€</p>
 						<p><%=(prodotto.getStelleTot())/(x)%></p>
 						<p><%=prodotto.getRecTot()%></p>
-						<p><%=prodotto.getProduttore()%></p>
+						<p>Produttore: <%=prodotto.getProduttore()%></p>
 						<p><%=prodotto.getGenere()%></p>
 						<p><%=prodotto.getPiattaforma()%></p>
 						<p><%=prodotto.getTipoGioco()%></p>
 						<p><%=prodotto.getEdizione()%></p>
+						</div>
+						<div class="descrizione-prodotto">
+							<p><%=prodotto.getDescr()%></p>
+						</div>
 						<%
 						
 					}
+					
+					
 					else if(prodotto.getTipoProdotto().equals("Console")){
 						
 						%>
+						<div class="immagine-prodotto">
 						<% if(prodotto.getPicture()!=null){ %>
-							<img src = "<%=prodotto.getPicture()%>" alt = "ImmagineProdotto" style="width: 400px">
+							<img src = "<%=prodotto.getPicture()%>" class="imgprodotto" alt = "ImmagineProdotto" >
 						<%
 							}
 							else
 							{
 						%>
-							<img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 400px">
+							<img src = "images/productIMG/noimg.png" class="imgprodotto" alt = "ImmagineProdotto" >
 						<%
 							}
 						%>
+						</div>
+						<div class="info-prodotto">
 						<p><%=prodotto.getNome()%></p>
-						<p><%=prodotto.getDescr()%></p>
-						<p><%=prodotto.getQta()%></p>
-						<p><%=prodotto.getCosto()%></p>
+						<p>Quantità Disponibile: <%=prodotto.getQta()%></p>
+						<p><%=prodotto.getCosto()%>€</p>
 						<p><%=(prodotto.getStelleTot())/(x)%></p>
 						<p><%=prodotto.getRecTot()%></p>
-						<p><%=prodotto.getProduttore()%></p>
+						<p>Produttore: <%=prodotto.getProduttore()%></p>
+						</div>
+						<div class="descrizione-prodotto">
+							<p><%=prodotto.getDescr()%></p>
+						</div>
 						<%
 						
 					}
 					else if(prodotto.getTipoProdotto().equals("Collezionabile")){
 						
 						%>
+						<div class="immagine-prodotto">
 						<% if(prodotto.getPicture()!=null){ %>
-							<img src = "<%=prodotto.getPicture()%>" alt = "ImmagineProdotto" style="width: 400px">
+							<img src = "<%=prodotto.getPicture()%>" class="imgprodotto" alt = "ImmagineProdotto" >
 						<%
 							}
 							else
 							{
 						%>
-							<img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 400px">
+							<img src = "images/productIMG/noimg.png" class="imgprodotto" alt = "ImmagineProdotto" >
 						<%
 							}
 						%>
+						</div>
+						<div class="info-prodotto">
 						<p><%=prodotto.getNome()%></p>
-						<p><%=prodotto.getDescr()%></p>
-						<p><%=prodotto.getQta()%></p>
-						<p><%=prodotto.getCosto()%></p>
+						<p>Quantità Disponibile: <%=prodotto.getQta()%></p>
+						<p><%=prodotto.getCosto()%>€</p>
 						<p><%=(prodotto.getStelleTot())/(x)%></p>
 						<p><%=prodotto.getRecTot()%></p>
-						<p><%=prodotto.getProduttore()%></p>
+						<p>Produttore: <%=prodotto.getProduttore()%></p>
 						<p><%=prodotto.getCategoria()%></p>
 						<p><%=prodotto.getEdizione()%></p>
+						</div>
+						<div class="descrizione-prodotto">
+							<p><%=prodotto.getDescr()%></p>
+						</div>
 						<%
 						
 					}
