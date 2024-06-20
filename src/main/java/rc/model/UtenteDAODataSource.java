@@ -43,9 +43,8 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 			preparedStatement.setString(2, utente.getEmail());
 			preparedStatement.setString(3, utente.getPasswordHash());
 			preparedStatement.setString(4, utente.getDatanas());
-			preparedStatement.setString(6, utente.getTipo());
+			preparedStatement.setString(5, utente.getTipo());
 			preparedStatement.executeUpdate();
-			connection.commit();
 
 		} finally {
 			try {
@@ -158,5 +157,84 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 		}
 		return products;
 	}
+	
+	
+	
+	public UtenteBean doRetrieveUsPass(String username, String password) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
+		UtenteBean bean = new UtenteBean();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Username = ? AND Passwordhash = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			if(rs.next() == false)
+				bean = null;
+			else
+				while (rs.next()) {
+				
+					bean.setUsername(rs.getString("Username"));
+					bean.setEmail(rs.getString("Email"));
+					bean.setPasswordHash(rs.getString("PasswordHash"));
+					bean.setDatanas(rs.getString("Datanas"));
+					bean.setTipo(rs.getString("Tipo"));
+				}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
+	}
+
+	
+	public UtenteBean doRetrieveByEmail(String email) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		UtenteBean bean = new UtenteBean();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Email = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, email);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			if(rs.next() == false)
+				bean = null;
+			else
+				while (rs.next()) {
+				
+					bean.setUsername(rs.getString("Username"));
+					bean.setEmail(rs.getString("Email"));
+					bean.setPasswordHash(rs.getString("PasswordHash"));
+					bean.setDatanas(rs.getString("Datanas"));
+					bean.setTipo(rs.getString("Tipo"));
+				}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return bean;
+	}
 }

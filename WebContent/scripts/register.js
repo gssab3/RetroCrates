@@ -33,23 +33,6 @@ function checkPassword(inputtxt) {
 function validate(obj) {    
     var valid = true;    
     
-    var nome = document.getElementsByName("nome")[0];
-    if(!checkNomeCognome(nome)) {
-        valid = false;
-        document.getElementById("errNome").innerHTML = "nome non valido" ;
-        errNome.style.color = "red";
-    } else {
-        document.getElementById("errNome").innerHTML = "" ;
-    }
-    
-    var cognome = document.getElementsByName("cognome")[0];
-    if(!checkNomeCognome(cognome)) {
-        valid = false;
-        document.getElementById("errCognome").innerHTML = "cognome non valido";
-    } else {
-        document.getElementById("errCognome").innerHTML = "";
-    }
-    
     var email = document.getElementsByName("email")[0];
     if(!checkEmail(email)) {
         valid = false;
@@ -59,7 +42,7 @@ function validate(obj) {
         document.getElementById("errEmail").innerHTML = "";    
     }        
     
-    var data = document.getElementsByName("nascita")[0];
+    var data = document.getElementsByName("data")[0];
     if(!checkData(data)) {
         valid = false;
         document.getElementById("errNascita").innerHTML = "data non valida";
@@ -68,7 +51,7 @@ function validate(obj) {
         document.getElementById("errNascita").innerHTML = "";
     }        
     
-    var user = document.getElementsByName("us")[0];
+    var user = document.getElementsByName("username")[0];
     if(!checkUserName(user)) {
         valid = false;
         document.getElementById("errUser").innerHTML = "username non valida";
@@ -77,7 +60,7 @@ function validate(obj) {
         document.getElementById("errUser").innerHTML = "";
     }        
     
-    var pw = document.getElementsByName("pw")[0];
+    var pw = document.getElementsByName("password")[0];
     if(!checkPassword(pw)) {
         valid = false;
         document.getElementById("errPass").innerHTML = "password non valida";

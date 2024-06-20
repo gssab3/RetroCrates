@@ -18,7 +18,13 @@
             <div class="contenutologin">
                 <img src="images/loginbgtemp.jpg" alt="immaginelogin" class="immaginelogin">
 
-                <form action="" class="loginform">
+                <form action="Login" class="loginform">
+                <%if(request.getParameter("action")!=null && request.getParameter("action").equalsIgnoreCase("error") ){ %>
+				<div class="tableRow">
+					<p></p>
+					<p class="error">Username o password errati!</p> 
+				</div>
+				<%} %>
                     <div>
                         <h1 class="titolologin">
                             <span>Bentornato</span>
@@ -32,14 +38,14 @@
                         <div class="campilogin">
                             <div>
                                 <label for="input-email" class="titoloemailpass">Email</label>
-                                <input type="email" placeholder="Enter your email address" required class="emailpass" id="email">
+                                <input type="email" name="username" placeholder="Enter your email address" required class="emailpass" id="email">
                             </div>
     
                             <div>
                                 <label for="input-pass" class="titoloemailpass">Password</label>
     
                                 <div class="bloccopass">
-                                    <input type="password" placeholder="Enter your password" required class="emailpass" id="password">
+                                    <input type="password" name="password" placeholder="Enter your password" required class="emailpass" id="password">
                                    <%-- <i class="ri-eye-off-line login__eye" id="input-icon"></i>  da vedere bene come fare
                                    è il pulsante per oscurare la password --%>
                                 </div>

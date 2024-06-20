@@ -113,8 +113,8 @@ INSERT INTO Prodotto VALUES ('coll004', 'Funko Pop Pac-Man', 'Funko Pop di Pac-M
 INSERT INTO Prodotto VALUES ('coll005', 'Poster di Sonic the Hedgehog', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Sega', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
 
 -- Insert a user
-INSERT INTO Utente (Username, Email, Passwordhash, Datanas, Foto, Tipo)
-VALUES ('user1', 'user1@example.com', 'passwordhash', '2000-01-01', NULL, 'Utente');
+INSERT INTO Utente (Username, Email, Passwordhash, Datanas, Tipo)
+VALUES ('user1', 'user1@example.com', 'passwordhash', '2000-01-01', 'Utente');
 
 -- Insert an order for the user
 INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, DataOrdine)

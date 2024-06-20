@@ -20,7 +20,7 @@
             <div class="contenutologin">
                 <img src="images/loginbgtemp.jpg" alt="immaginelogin" class="immaginelogin">
 
-                <form action="" class="registerform">
+                <form action="Registrazione" class="registerform" method="POST" onsubmit="event.preventDefault(); validate(this)">
                     <div>
                         <h1 class="titolologin">
                             <span>Benvenuto</span>
@@ -32,30 +32,37 @@
                     
                     <div>
                         <div class="campiregister">
-                        
+                        <% if(request.getAttribute("errorMessage") != null) { %>
+    <p style="color:red;"><%= request.getAttribute("errorMessage") %></p>
+<% } %>
                         	<div>
+                        		<p id="errUser"></p>
                                 <label for="input-email" class="titoloemailpass">Username</label>
-                                <input type="text" placeholder="Enter your Username" class="emailpass" id="username">
+                                <input type="text" name="username" placeholder="Enter your Username" class="emailpass" id="username">
                             </div>
                         
                             <div>
+                            	<p id="errEmail"></p>
                                 <label for="input-email" class="titoloemailpass">Email</label>
-                                <input type="email" placeholder="Enter your email address" class="emailpass" id="email">
+                                <input type="email" name="email" placeholder="Enter your email address" class="emailpass" id="email">
                             </div>
                             
                             <div>
+                            	<p id="errPass"></p>
                                 <label for="input-pass" class="titoloemailpass">Password</label>
     
                                 <div class="bloccopass">
-                                    <input type="password" placeholder="Enter your password" class="emailpass" id="password">
+                                
+                                    <input type="password" name="password" placeholder="Enter your password" class="emailpass" id="password">
                                    <%-- <i class="ri-eye-off-line login__eye" id="input-icon"></i>  da vedere bene come fare
                                    è il pulsante per oscurare la password --%>
                                 </div>
                             </div>
                             
                             <div>
+                            	<p id="errNascita"></p>
                                 <label for="input-email" class="titoloemailpass">Data di Nascita</label>
-                                <input type="date" class="emailpass" id="datanascita">
+                                <input type="date" name="data" class="emailpass" id="datanascita">
                             </div>
                             
                             
@@ -71,6 +78,54 @@
                             <a href="index.jsp">Torna alla Home</a>
                 </form>
             </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="script/Registrazione.js"></script>
+			
+			<script>
+		$(document).ready(function(){
+			$("#username").keyup(function(){
+				var x $("#username").val();
+				if(x != ''){
+					$.post("./CheckUsername",{"username" : x},function(data){
+						if(data == '0'){
+							$("#errUser").html("username già in uso").css({"color" : "red"});
+						}
+						else{
+							$("#errUser").html("");
+						}
+						});
+					}
+				else{
+					$("#errUser").html("");
+				}
+
+			});
+		});
+	
+		
+		$(document).ready(function(){
+			$("#email").keyup(function(){
+				var x = $("#email").val();
+				if(x != ''){
+					$.post("./CheckEmail",{"email" : x},function(data){
+						if(data == '0'){
+							$("#errEmail").html("email già in uso").css({"color" : "red"});
+						}
+						else{
+							$("#errEmail").html("");
+						}
+						});
+					}
+				else{
+					$("#errEmail").html("");
+				}
+
+			});
+		});
+	
+
+
+	</script>
         </div>
 	 
 
