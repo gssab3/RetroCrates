@@ -17,6 +17,7 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
+ <link type="text/css" rel="stylesheet" href="styles/Risultati.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<link type="text/css" rel="stylesheet" href="styles/paginaprodotti.css"/>
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
