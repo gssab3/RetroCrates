@@ -402,11 +402,11 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		Collection<ProdottoBean> prodotti = new LinkedList<ProdottoBean>();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Nome IS LIKE = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE LOWER(Nome) LIKE LOWER(?)";
 		try {
 			connection = ds.getConnection();	
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, nome);
+			preparedStatement.setString(1, "%" + nome + "%");
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				int err = 0;

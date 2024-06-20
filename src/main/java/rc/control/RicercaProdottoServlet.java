@@ -32,7 +32,7 @@ public class RicercaProdottoServlet extends HttpServlet {
 		
 		String numero = request.getParameter("input");	
 		String query = request.getParameter("query");
-		String tipoprodotto = "Console"; 
+		String tipoprodotto = request.getParameter("TipoProdotto");
 		
 		Collection<ProdottoBean> risultato = new ArrayList<>();
 		ProdottoDAODataSource dao = new ProdottoDAODataSource();
@@ -43,7 +43,12 @@ public class RicercaProdottoServlet extends HttpServlet {
 				prodotti = dao.doRetrieveByName(query);
 				for(ProdottoBean p : prodotti)
 					risultato.add(p);
-			request.setAttribute("TipoProdotto", tipoprodotto);
+				if(prodotti.isEmpty()) {
+					request.setAttribute("TipoProdotto", "Cacca");
+				}else {
+					request.setAttribute("TipoProdotto", tipoprodotto);
+				}
+			
 			request.setAttribute("prodotti", prodotti);
 			} catch (SQLException e) {
 				
