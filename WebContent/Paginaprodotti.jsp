@@ -3,15 +3,15 @@
 <%@ page import="java.util.Collection" %>
 <%
 
-	String tipologia = (String) request.getAttribute("TipoProdotto");
-
+	String tipologia = request.getParameter("TipoProdotto");
+	request.setAttribute("TipoProdotto", tipologia);
 	String produttore = request.getParameter("Produttore");
 	String genere = request.getParameter("Genere");
 	String categoria = request.getParameter("Categoria");
 	
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 	
-	if(tipologia.equals("Console")){
+	if(tipologia != null && tipologia.equals("Console")){
 		 if(prodotti == null) {
 			String redirectURL = "./ConsoleServlet?TipoProdotto=" + tipologia;
 			if(produttore != null && !produttore.isEmpty()) {
@@ -20,7 +20,7 @@
 			response.sendRedirect(redirectURL);
 			return;
 		} 
-	 }else if(tipologia.equals("Videogioco")){
+	 }else if(tipologia != null && tipologia.equals("Videogioco")){
 		if(prodotti == null) {
 			String redirectURL = "./VideogiochiServlet?TipoProdotto=" + tipologia;
 			if(genere != null && !genere.isEmpty()) {
@@ -29,7 +29,7 @@
 			response.sendRedirect(redirectURL);
 			return;
 		} 
-	}else if(tipologia.equals("Collezionabile")){	
+	}else if(tipologia != null && tipologia.equals("Collezionabile")){	
 		if(prodotti == null) {
 			String redirectURL = "./CollezionabileServlet?TipoProdotto=" + tipologia;
 			if(categoria != null && !categoria.isEmpty()) {
