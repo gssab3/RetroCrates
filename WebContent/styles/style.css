@@ -267,7 +267,11 @@ header{
 .descrizionelogin, .titoloemailpass{
 	    font-family:'GTAfont', sans-serif;
 	    font-size: 30px;
-	}
+	    margin-block-start: 0em;
+	    margin-block-end: 0em;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+}
 
 .contenutologin .loginform .campilogin {
   display: grid;
@@ -386,7 +390,7 @@ header{
     background-size:contain;
     background-position-y: center;
     width: 100%;
-    padding: 14px 2rem;
+    padding: 14px 0.5rem;
     font-size: 30px;
     text-wrap: nowrap;
     margin-bottom: 1rem;
@@ -588,7 +592,7 @@ footer p.azienda{
   	}
   	
   	.loginform {
-	    margin-top:20%;
+	    margin-top:0%;
 	}
 
 	.contenutologin {
