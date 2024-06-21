@@ -70,10 +70,13 @@
 	
 	<jsp:include page="header.jsp"/>
 	
-	<form action="">
-	<input id="barraRicerca" type="text" placeholder="Cerca nel sito">
-	<input id="submitRicerca" type="submit">
+	<form id="formRicerca" action="./RicercaProdottoServlet" method="get"> 
+    <input id="barraRicerca" name="query" type="text" placeholder="Cerca nel sito">
+    <input id="submitRicerca" type="submit" value="Cerca" >
+    <input type="hidden" name="input" value="1">
+    <input type="hidden" name="TipoProdotto" value="TUTTI">
 	</form>
+
 	<div id="risultatiRicerca"></div>
 	
 	

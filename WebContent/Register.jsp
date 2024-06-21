@@ -22,7 +22,7 @@
 
                 <form action="Registrazione" class="registerform" method="POST" onsubmit="event.preventDefault(); validate(this)">
                     <div>
-                        <h1 class="titolologin">
+                        <h1 class="titoloregister">
                             <span>Benvenuto</span>
                         </h1>
                         <p class="descrizioneregister">
@@ -79,7 +79,7 @@
                 </form>
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-			<script src="script/Registrazione.js"></script>
+			<script src="script/register.js"></script>
 			
 			<script>
 		$(document).ready(function(){

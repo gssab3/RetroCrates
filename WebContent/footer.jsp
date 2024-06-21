@@ -31,6 +31,7 @@
 					<p class="email-id" style="cursor:pointer;"><a href="mailto:s.davanzo5@studenti.unisa.it">s.davanzo5@studenti.unisa.it</a></p>
 					<p class="email-id" style="cursor:pointer;"><a href="mailto:g.sabetta3@studenti.unisa.it">g.sabetta3@studenti.unisa.it</a></p>
 					<h4>+39 123 456 7890</h4>
+					<!--   -->
 				</div>
 				
 				<div class="colonnafooter">
@@ -40,6 +41,9 @@
 						<li><a href="#">Account</a>
 						<li><a href="giocomagico.jsp">Ti senti Fortunato?</a>
 					</ul>
+					<br>
+					<div id="socials"> <a href="https://www.instagram.com/miella.lyer/"><img alt="InstaS" src="images/icone/Social/instagram.png"></a> <a href="https://x.com/LyerDaku"><img alt="XS" src="images/icone/Social/x.png"></a> <a href="https://www.facebook.com/saverio.davanzo.7731/"><img alt="FacebookS" src="images/icone/Social/facebook.png"></a></div> 
+					<div id="socialg"> <a href="https://www.instagram.com/peppe_memes/"><img alt="InstaS" src="images/icone/Social/instagram.png"></a> <a href=""><img alt="XG" src="images/icone/Social/x.png"></a> <a href=""><img alt="FacebookG" src="images/icone/Social/facebook.png"></a></div></div>
 					
 				</div>
 				
