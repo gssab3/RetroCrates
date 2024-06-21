@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+@font-face{
+	font-family:'GTAfont';
+	src: url('../font/pricedownbl.ttf');
+}
+
+@font-face{
+	font-family:'RetroMario';
+	src: url('../font/SuperMarioBrosNES.ttf');
+}
+
+.contienigioco {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+p.Nomegioco{
+	font-family: 'GTAfont', sans-serif;
+	font-size: 30px;
+	margin: 20 auto;
+}
+
+div #output{
+	font-family:'RetroMario', sans-serif;
+}
+
+div #buono{
+	font-family: Verdana, sans-serif;
+}
+
+#inputGiocatore {
+	font-family: 'GTAfont', sans-serif;
+	font-size: 50px;
+    width: 100px;
+  	padding: 5px 5px;
+  	border-radius: 6px;
+  	border: 3px solid blue;
+  	background-color: hsla(244, 16%, 92%, 0.6);
+  	color: var(--title-color);
+  	font-weight: var(--font-medium);	
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#ricomincia {
+    display: none;
+}
+
+.tasto {
+    width: 75px; 
+}
+
+#inviaRisposta{
+	border:none;
+	cursor: pointer;
+	width:75px;
+	appearance: none;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+    margin: 0 auto;
+}
+
+.tasto:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.tasto:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.tasto:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+#output{
+	text-align: center;
+}
+
+#ricomincia{
+	border:none;
+	cursor: pointer;
+	width:200px;
+	appearance: none;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+    margin: 0 auto;
+}
+
+.tastoretry{
+	 width: 100px; 
+}
+
+.tastoretry:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.tastoretry:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.tastoretry:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
