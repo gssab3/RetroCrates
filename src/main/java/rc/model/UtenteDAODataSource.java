@@ -65,7 +65,7 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE CODE = ?";
+		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE Username = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -90,8 +90,10 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 	public UtenteBean doRetrieveByKey(String code) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		if(code == null || code.equals(""))
+			return null;
 		UtenteBean bean = new UtenteBean();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE CODE = ?";
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Username = ?";
 		try {
 			connection = ds.getConnection();	
 			preparedStatement = connection.prepareStatement(selectSQL);
@@ -113,6 +115,8 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 					connection.close();
 			}
 		}
+		if(bean == null || bean.getUsername() == null)
+			return null;
 		return bean;
 	}
 
@@ -121,7 +125,7 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<UtenteBean> products = new LinkedList<UtenteBean>();
+		Collection<UtenteBean> utenti = new LinkedList<UtenteBean>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME;
 
@@ -143,7 +147,7 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 				bean.setPasswordHash(rs.getString("PasswordHash"));
 				bean.setDatanas(rs.getString("Datanas"));
 				bean.setTipo(rs.getString("Tipo"));
-				products.add(bean);
+				utenti.add(bean);
 			}
 
 		} finally {
@@ -155,7 +159,7 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 					connection.close();
 			}
 		}
-		return products;
+		return utenti;
 	}
 	
 	
@@ -165,7 +169,10 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 		PreparedStatement preparedStatement = null;
 
 		UtenteBean bean = new UtenteBean();
-
+		if(username == null || username.equals(""))
+			return null;
+		if(password == null || password.equals(""))
+			return null;
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Username = ? AND Passwordhash = ?";
 
 		try {
@@ -196,6 +203,8 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 					connection.close();
 			}
 		}
+		if(bean == null || bean.getUsername() == null)
+			return null;
 		return bean;
 	}
 
@@ -205,6 +214,8 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 		PreparedStatement preparedStatement = null;
 
 		UtenteBean bean = new UtenteBean();
+		if(email == null || email.equals(""))
+			return null;
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Email = ?";
 
@@ -235,6 +246,8 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 					connection.close();
 			}
 		}
+		if(bean == null || bean.getUsername() == null)
+			return null;
 		return bean;
 	}
 }

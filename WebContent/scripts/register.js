@@ -7,7 +7,7 @@ function checkEmail(inputtxt) {
 }
 
 function checkData(inputtxt) {
-    var data = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/;
+    var data = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
     if(inputtxt.value.match(data)) 
         return true;
 
@@ -63,7 +63,7 @@ function validate(obj) {
     var pw = document.getElementsByName("password")[0];
     if(!checkPassword(pw)) {
         valid = false;
-        document.getElementById("errPass").innerHTML = "password non valida";
+        document.getElementById("errPass").innerHTML = "password non valida. Introdurre caratteri minuscoli, maiuscoli, numeri e simboli. Minimo 8 caratteri";
         errPass.style.color = "red";
     } else {
         document.getElementById("errPass").innerHTML = "";

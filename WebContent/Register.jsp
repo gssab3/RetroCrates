@@ -79,12 +79,18 @@
                 </form>
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-			<script src="script/register.js"></script>
+			<script src="scripts/register.js"></script>
 			
 			<script>
+			
+			var errEmail = document.getElementById("errEmail");
+			var errNascita = document.getElementById("errNascita");
+			var errUser = document.getElementById("errUser");
+			var errPass = document.getElementById("errPass");
+
 		$(document).ready(function(){
 			$("#username").keyup(function(){
-				var x $("#username").val();
+				var x = $("#username").val();
 				if(x != ''){
 					$.post("./CheckUsername",{"username" : x},function(data){
 						if(data == '0'){

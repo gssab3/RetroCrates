@@ -39,9 +39,10 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentSessionUser", user);
+                /*
                 if (checkout != null)
                     response.sendRedirect(request.getContextPath() + "/account?page=Checkout.jsp");
-                else
+                else qui bisogna mettere praticamente la parte del carrello*/
                     response.sendRedirect(request.getContextPath() + "/index.jsp");
             } else {
                 response.sendRedirect(request.getContextPath() + "/login.jsp?action=error");

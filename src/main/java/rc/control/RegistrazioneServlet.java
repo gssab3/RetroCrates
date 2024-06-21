@@ -24,51 +24,31 @@ public class RegistrazioneServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UtenteDAODataSource dao = new UtenteDAODataSource();
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = hashPassword(request.getParameter("password"));
-        String data = request.getParameter("data");
-        UtenteDAODataSource prova = new UtenteDAODataSource();
-        String userprova = null;
-		try {
-			userprova = prova.doRetrieveByKey(username).getUsername();
-			if(userprova != null) {
-				request.setAttribute("errorMessage", "Username o email già in uso");
-		        request.getRequestDispatcher("/register.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        String emailprova = null;
-		try {
-			emailprova = prova.doRetrieveByEmail(email).getEmail();
-			if(emailprova != null) {
-				request.setAttribute("errorMessage", "Username o email già in uso");
-		        request.getRequestDispatcher("/register.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        if(userprova == null && emailprova == null) {
-        	try {
-            UtenteBean user = new UtenteBean();
-            user.setUsername(username);
-            user.setEmail(email);
-            user.setDatanas(data);
-            user.setPasswordHash(password);
-            user.setTipo("Utente");
-            dao.doSave(user);
-            }
-             catch (SQLException e) {
-            System.out.println("Error:" + e.getMessage());
-	        }
-	
-	        response.sendRedirect(request.getContextPath() + "/login.jsp");
-	        
-        }
+    	 UtenteDAODataSource dao = new UtenteDAODataSource();
+    	    String username = request.getParameter("username");
+    	    String email = request.getParameter("email");
+    	    String password = hashPassword(request.getParameter("password"));
+    	    String data = request.getParameter("data");
+
+    	    try {
+    	        if((dao.doRetrieveByKey(username) != null) || (dao.doRetrieveByEmail(email) != null)) {
+    	            request.setAttribute("errorMessage", "Username o email già in uso");
+    	            request.getRequestDispatcher("/Register.jsp").forward(request, response);
+    	        } else {
+    	            UtenteBean user = new UtenteBean();
+    	            user.setUsername(username);
+    	            user.setEmail(email);
+    	            user.setDatanas(data);
+    	            user.setPasswordHash(password);
+    	            user.setTipo("Utente");
+    	            dao.doSave(user);
+    	            response.sendRedirect(request.getContextPath() + "/login.jsp");
+    	        }
+    	    } catch (SQLException e) {
+    	        // Log the exception and redirect the user to an error page
+    	        System.out.println("Error:" + e.getMessage());
+    	        response.sendRedirect("errorPage.jsp");
+    	    }
 
         
     }
