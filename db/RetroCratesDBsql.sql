@@ -18,6 +18,7 @@ CREATE TABLE Ordine(
     Utente VARCHAR(20) NOT NULL,
     Destinazione VARCHAR(255),
     Email VARCHAR(50) NOT NULL,
+    CostoTotale DECIMAL(10,2) NOT NULL,
     DataOrdine DATE NOT NULL,
     PRIMARY KEY (IdOrdine,Utente),
     FOREIGN KEY (Utente) REFERENCES Utente(Username)

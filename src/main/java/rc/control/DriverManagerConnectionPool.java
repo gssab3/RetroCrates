@@ -6,11 +6,14 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+
+
 public class DriverManagerConnectionPool  {
 
-	private List<Connection> freeDbConnections;
+	private static List<Connection> freeDbConnections;
 
 	static {	
+		freeDbConnections = new LinkedList<Connection>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -18,17 +21,13 @@ public class DriverManagerConnectionPool  {
 		} 
 	}
 	
-	public DriverManagerConnectionPool() {
-		freeDbConnections = new LinkedList<Connection>();
-	}
-	
-	private synchronized Connection createDBConnection() throws SQLException {
+	private static synchronized Connection createDBConnection() throws SQLException {
 		Connection newConnection = null;
 		String ip = "localhost";
 		String port = "3306";
 		String db = "retrocrates";
-		String username = "gsab3";
-		String password = "911MBLSC!a";
+		String username = "root";
+		String password = "admin";
 		
 		try {
 	        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -42,7 +41,7 @@ public class DriverManagerConnectionPool  {
 	}
 
 
-	public synchronized Connection getConnection() throws SQLException {
+	public static synchronized Connection getConnection() throws SQLException {
 		Connection connection;
 
 		if (!freeDbConnections.isEmpty()) {
@@ -69,7 +68,7 @@ public class DriverManagerConnectionPool  {
 		return connection;
 	}
 
-	public synchronized void releaseConnection(Connection connection) throws SQLException {
-		if(connection != null) freeDbConnections.add(connection);
+	public static synchronized void releaseConnection(Connection connection) throws SQLException {
+		if(connection != null) DriverManagerConnectionPool.freeDbConnections.add(connection);
 	}
 }
