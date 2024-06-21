@@ -10,6 +10,7 @@ public class OrdineBean implements Serializable
 	private String Destinazione; //massimo 255 caratteri
 	private String email; //massimo 50 caratteri
 	private String DataOrdine; //yyyy-mm-dd
+	private float CostoTotale; //decimal 10,2
 	
 	public OrdineBean()
 	{
@@ -57,6 +58,14 @@ public class OrdineBean implements Serializable
 
 	public void setDataOrdine(String data) {
 		this.DataOrdine = data;
+	}
+
+	public float getCostoTotale() {
+		return CostoTotale;
+	}
+
+	public void setCostoTotale(float costoTotale) {
+		CostoTotale = costoTotale;
 	}
 	
 	

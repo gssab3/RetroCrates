@@ -75,7 +75,13 @@ public class CarrelloServlet extends HttpServlet{
 			//request.getRequestDispatcher("/ProductsPage.jsp").forward(request, response);
 		}
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("svuota")) {
+			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
 			
+			if (!carrello.isEmpty()) {
+				carrello.removeAllItems();
+			}
+			request.getSession().setAttribute("carrello", carrello);
+			//request.getRequestDispatcher("/cart.jsp").forward(request, response);
 		}
 		
 	}
