@@ -102,111 +102,147 @@
 		
 		
 	 
-		<div class = "prodottosingolo">
-				<%
-				if (prodotto != null) {
-					%>
-					
-					<%if(prodotto.getTipoProdotto().equals("Videogioco")){
-						%>
-						<div class="immagine-prodotto">
-						<% if(prodotto.getPicture()!=null){ %>
-							<img src = "<%=prodotto.getPicture()%>" class="imgprodotto" alt = "ImmagineProdotto" >
-						<%
-							}
-							else
-							{
-						%>
-							<img src = "images/productIMG/noimg.png" class="imgprodotto" alt = "ImmagineProdotto" >
-						<%
-							}
-						%>
-						</div>
-						<div class="info-prodotto">
-						<p><%=prodotto.getNome()%></p>
-						<p>Quantità Disponibile: <%=prodotto.getQta()%></p>
-						<p><%=prodotto.getCosto()%>€</p>
-						<p><%=(prodotto.getStelleTot())/(x)%></p>
-						<p><%=prodotto.getRecTot()%></p>
-						<p>Produttore: <%=prodotto.getProduttore()%></p>
-						<p><%=prodotto.getGenere()%></p>
-						<p><%=prodotto.getPiattaforma()%></p>
-						<p><%=prodotto.getTipoGioco()%></p>
-						<p><%=prodotto.getEdizione()%></p>
-						</div>
-						<div class="descrizione-prodotto">
-							<p><%=prodotto.getDescr()%></p>
-						</div>
-						<%
-						
-					}
-					
-					
-					else if(prodotto.getTipoProdotto().equals("Console")){
-						
-						%>
-						<div class="immagine-prodotto">
-						<% if(prodotto.getPicture()!=null){ %>
-							<img src = "<%=prodotto.getPicture()%>" class="imgprodotto" alt = "ImmagineProdotto" >
-						<%
-							}
-							else
-							{
-						%>
-							<img src = "images/productIMG/noimg.png" class="imgprodotto" alt = "ImmagineProdotto" >
-						<%
-							}
-						%>
-						</div>
-						<div class="info-prodotto">
-						<p><%=prodotto.getNome()%></p>
-						<p>Quantità Disponibile: <%=prodotto.getQta()%></p>
-						<p><%=prodotto.getCosto()%>€</p>
-						<p><%=(prodotto.getStelleTot())/(x)%></p>
-						<p><%=prodotto.getRecTot()%></p>
-						<p>Produttore: <%=prodotto.getProduttore()%></p>
-						</div>
-						<div class="descrizione-prodotto">
-							<p><%=prodotto.getDescr()%></p>
-						</div>
-						<%
-						
-					}
-					else if(prodotto.getTipoProdotto().equals("Collezionabile")){
-						
-						%>
-						<div class="immagine-prodotto">
-						<% if(prodotto.getPicture()!=null){ %>
-							<img src = "<%=prodotto.getPicture()%>" class="imgprodotto" alt = "ImmagineProdotto" >
-						<%
-							}
-							else
-							{
-						%>
-							<img src = "images/productIMG/noimg.png" class="imgprodotto" alt = "ImmagineProdotto" >
-						<%
-							}
-						%>
-						</div>
-						<div class="info-prodotto">
-						<p><%=prodotto.getNome()%></p>
-						<p>Quantità Disponibile: <%=prodotto.getQta()%></p>
-						<p><%=prodotto.getCosto()%>€</p>
-						<p><%=(prodotto.getStelleTot())/(x)%></p>
-						<p><%=prodotto.getRecTot()%></p>
-						<p>Produttore: <%=prodotto.getProduttore()%></p>
-						<p><%=prodotto.getCategoria()%></p>
-						<p><%=prodotto.getEdizione()%></p>
-						</div>
-						<div class="descrizione-prodotto">
-							<p><%=prodotto.getDescr()%></p>
-						</div>
-						<%
-						
-					}
-				}
-				%>
-		</div>
+		<div class="prodottosingolo">
+    <%
+    if (prodotto != null) {
+        if (prodotto.getTipoProdotto().equals("Videogioco")) {
+    %>
+    
+            <div class="immagine-prodotto">
+                <% if (prodotto.getPicture() != null) { %>
+                    <img src="<%= prodotto.getPicture() %>" class="imgprodotto" alt="ImmagineProdotto">
+                <% } else { %>
+                    <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
+                <% } %>
+            </div>
+            
+            <div class="info-prodotto">
+                <p><%= prodotto.getNome() %></p>
+                <p>Quantità Disponibile: <%= prodotto.getQta() %></p>
+                <p><%= prodotto.getCosto() %>€</p>
+                <p><%= (prodotto.getStelleTot()) / x %></p>
+                <p><%= prodotto.getRecTot() %></p>
+                <p>Produttore: <%= prodotto.getProduttore() %></p>
+                <p><%= prodotto.getGenere() %></p>
+                <p><%= prodotto.getPiattaforma() %></p>
+                <p><%= prodotto.getTipoGioco() %></p>
+                <p><%= prodotto.getEdizione() %></p>
+                 <% if (prodotto.getQta() == 0) { %>
+            
+                <h1>Prodotto Non Disponibile</h1>
+                
+            <% } else { %>
+            
+                <form action="CarrelloServlet?" method="get">
+	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
+	                <input type="hidden" name="Azione" value="aggiungi">
+	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
+                </form>
+                
+            <% } %>
+            </div>
+            
+            <div class="descrizione-prodotto">
+                <p><%= prodotto.getDescr() %></p>
+            </div>
+            
+           
+    <%
+        } else if (prodotto.getTipoProdotto().equals("Console")) {
+    %>
+    
+            <div class="immagine-prodotto">
+                <% if (prodotto.getPicture() != null) { %>
+                    <img src="<%= prodotto.getPicture() %>" class="imgprodotto" alt="ImmagineProdotto">
+                <% } else { %>
+                    <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
+                <% } %>
+            </div>
+            
+            <div class="info-prodotto">
+                <p><%= prodotto.getNome() %></p>
+                <p>Quantità Disponibile: <%= prodotto.getQta() %></p>
+                <p><%= prodotto.getCosto() %>€</p>
+                <p><%= (prodotto.getStelleTot()) / x %></p>
+                <p><%= prodotto.getRecTot() %></p>
+                <p>Produttore: <%= prodotto.getProduttore() %></p>
+                 <% if (prodotto.getQta() == 0) { %>
+            
+                <h1>Prodotto Non Disponibile</h1>
+                
+            <% } else { %>
+            
+                <form action="CarrelloServlet?" method="get">
+	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
+	                <input type="hidden" name="Azione" value="aggiungi">
+	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
+                </form>
+                
+            <% } %>
+            </div>
+            
+            <div class="descrizione-prodotto">
+                <p><%= prodotto.getDescr() %></p>
+            </div>
+            
+           
+            
+    <%
+        } else if (prodotto.getTipoProdotto().equals("Collezionabile")) {
+    %>
+            <div class="immagine-prodotto">
+                <% if (prodotto.getPicture() != null) { %>
+                    <img src="<%= prodotto.getPicture() %>" class="imgprodotto" alt="ImmagineProdotto">
+                <% } else { %>
+                    <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
+                <% } %>
+            </div>
+            <div class="info-prodotto">
+                <p><%= prodotto.getNome() %></p>
+                <p>Quantità Disponibile: <%= prodotto.getQta() %></p>
+                <p><%= prodotto.getCosto() %>€</p>
+                <p><%= (prodotto.getStelleTot()) / x %></p>
+                <p><%= prodotto.getRecTot() %></p>
+                <p>Produttore: <%= prodotto.getProduttore() %></p>
+                <p><%= prodotto.getCategoria() %></p>
+                <p><%= prodotto.getEdizione() %></p>
+                 <% if (prodotto.getQta() == 0) { %>
+            
+                <h1>Prodotto Non Disponibile</h1>
+                
+            <% } else { %>
+            
+            	<form action="CarrelloServlet?" method="get">
+	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
+	                <input type="hidden" name="Azione" value="aggiungi">
+	    			<input type="hidden" name="IdProdotto" value="<%= prodotto.getIdProdotto()%>">
+                </form>
+                
+            <% } %>
+            </div>
+            <div class="descrizione-prodotto">
+                <p><%= prodotto.getDescr() %></p>
+            </div>
+            
+           
+    <%
+        }
+    }
+    %>
+</div>
+
+
+	<form action="">
+		<label for="Tipo">Tipo di Prodotto</label>
+		<select name="Tipo" id="tipo">
+		  <option value="Console">Console</option>
+		  <option value="Videogiochi">Videogioco</option>
+		  <option value="Collezionabile">Collezionabile</option>
+		</select>
+	</form>
+
+
+
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/ricerca.js" type="text/javascript"></script>

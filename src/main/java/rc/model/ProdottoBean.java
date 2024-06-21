@@ -165,6 +165,16 @@ public class ProdottoBean implements Serializable{
 	public int getQta() {
 		return qta;
 	}
+	
+	public void decrQta() {
+		if (qta > 0) {
+			qta--;
+		}
+	}
+	
+	public void addQta() {
+		qta++;
+	}
 
 	public void setQta(int qta) {
 		this.qta = qta;
