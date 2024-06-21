@@ -182,17 +182,15 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 			preparedStatement.setString(2, password);
 
 			ResultSet rs = preparedStatement.executeQuery();
-			if(rs.next() == false)
-				bean = null;
-			else
-				while (rs.next()) {
-				
-					bean.setUsername(rs.getString("Username"));
-					bean.setEmail(rs.getString("Email"));
-					bean.setPasswordHash(rs.getString("PasswordHash"));
-					bean.setDatanas(rs.getString("Datanas"));
-					bean.setTipo(rs.getString("Tipo"));
-				}
+			if(rs.next()) {
+			    bean.setUsername(rs.getString("Username"));
+			    bean.setEmail(rs.getString("Email"));
+			    bean.setPasswordHash(rs.getString("PasswordHash"));
+			    bean.setDatanas(rs.getString("Datanas"));
+			    bean.setTipo(rs.getString("Tipo"));
+			} else {
+			    bean = null;
+			}
 
 		} finally {
 			try {
@@ -203,8 +201,6 @@ public class UtenteDAODataSource implements IBeanDAO<UtenteBean>{
 					connection.close();
 			}
 		}
-		if(bean == null || bean.getUsername() == null)
-			return null;
 		return bean;
 	}
 

@@ -19,10 +19,11 @@
                 <img src="images/loginbgtemp.jpg" alt="immaginelogin" class="immaginelogin">
 
                 <form action="Login" class="loginform">
+                
                 <%if(request.getParameter("action")!=null && request.getParameter("action").equalsIgnoreCase("error") ){ %>
 				<div class="tableRow">
 					<p></p>
-					<p class="error">Username o password errati!</p> 
+					<p class="error">email o password errati!</p> 
 				</div>
 				<%} %>
                     <div>
@@ -37,8 +38,8 @@
                     <div>
                         <div class="campilogin">
                             <div>
-                                <label for="input-email" class="titoloemailpass">Email</label>
-                                <input type="email" name="username" placeholder="Enter your email address" required class="emailpass" id="email">
+                                <label for="input-email" class="titoloemailpass">Username</label>
+                                <input type="text" name="username" placeholder="Enter your username" required class="emailpass" id="email">
                             </div>
     
                             <div>

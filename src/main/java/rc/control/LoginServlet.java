@@ -31,10 +31,9 @@ public class LoginServlet extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = hashPassword(request.getParameter("password"));
-
             UtenteBean user = utenteDao.doRetrieveUsPass(username, password);
 
-            String checkout = request.getParameter("checkout");
+            //String checkout = request.getParameter("checkout");
 
             if (user != null) {
                 HttpSession session = request.getSession(true);
@@ -43,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                 if (checkout != null)
                     response.sendRedirect(request.getContextPath() + "/account?page=Checkout.jsp");
                 else qui bisogna mettere praticamente la parte del carrello*/
-                    response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
             } else {
                 response.sendRedirect(request.getContextPath() + "/login.jsp?action=error");
             }
