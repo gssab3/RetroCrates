@@ -82,7 +82,7 @@ public class CarrelloDAODataSource{
 					query.executeUpdate();
 				}
 				con.commit();
-				carrello.removeAllItems();
+				//carrello.removeAllItems();
 			}
 			return carrello;
 		}
@@ -141,7 +141,7 @@ public class CarrelloDAODataSource{
 					prodotto.setDescr(rs.getString("Descrizione"));
 				}
 			}
-			carrello.setCarrello(prodotto);
+			//carrello.setCarrello(prodotto);
 			return carrello;
 		}
 		catch (Exception e) {
