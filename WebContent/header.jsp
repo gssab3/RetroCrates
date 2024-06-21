@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="rc.model.UtenteBean,java.util.*, javax.servlet.RequestDispatcher" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,19 +34,45 @@
 		</div>
 		
 		
-		<%-- Qui dobbiamo fare un if, che se siamo loggati il tato login reinderizza al profilo e non alla pagina di login --%>
+		<!--
+		<%
+		/*
+		System.out.println("Diarrea");
+		HttpSession sessione = request.getSession(true); 
+		System.out.println("Spiscio");
+		UtenteBean utente = (UtenteBean) sessione.getAttribute("currentSessionUser");
+
+		
+		if(utente.getTipo() != null){
+			if(utente.getTipo().equals("Utente")){ */
+		%>
+				<div class="TastoLogin">
+					<span style="font-size:30px;cursor:pointer">
+						<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
+					</span>
+				</div>
+		<% /*}else if(utente.getTipo().equals("Admin")){ */%>
+				<div class="TastoLogin">
+					<span style="font-size:30px;cursor:pointer">
+						<a href="admin/admin.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
+					</span>
+				</div>
+		<%
+		/*	}
+		}else{ */
+		%>
+			  
+				
+				
 		<div class="TastoLogin">
 			<span style="font-size:30px;cursor:pointer">
 				<a href="login.jsp"><img src="images/icone/Header/crashIconLogin.png" alt="openLog"></a>
 			</span>
 		</div>
 		
-		<%-- 
-		<div class="TastoAccount">
-			<span style="font-size:30px;cursor:pointer">
-				<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
-			</span>
-		</div> --%>	
+		
+		<%/* } */%>
+			  -->
 		
 		<div class="TastoCarrello">
 			<span style="font-size:30px;cursor:pointer" onclick="openCart()">
