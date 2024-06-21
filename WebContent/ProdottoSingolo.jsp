@@ -136,7 +136,7 @@
                 <form action="CarrelloServlet?" method="get">
 	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
 	                <input type="hidden" name="Azione" value="aggiungi">
-	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
+	    			<input type="hidden" name="IdProdotto" value="<%= prodotto.getIdProdotto()%>">
                 </form>
                 
             <% } %>

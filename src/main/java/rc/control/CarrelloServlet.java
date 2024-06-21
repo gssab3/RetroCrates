@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import rc.model.CarrelloBean;
 import rc.model.CarrelloDAODataSource;
 
+@WebServlet("/CarrelloServlet")
 public class CarrelloServlet extends HttpServlet{
 
 	/**
@@ -45,7 +48,7 @@ public class CarrelloServlet extends HttpServlet{
 				carrello.retriveByKey(idprodotto).addQta();
 			}
 			request.getSession().setAttribute("carrello", carrello);
-			//request.getRequestDispatcher("/cart.jsp").forward(request, response);
+			request.getRequestDispatcher("/carrello.jsp").forward(request, response);
 		}
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("rimuovere")) {
 			
@@ -71,8 +74,11 @@ public class CarrelloServlet extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+			request.setAttribute("IdProdotto", idprodotto);
 			request.getSession().setAttribute("carrello", carrello);
-			//request.getRequestDispatcher("/ProductsPage.jsp").forward(request, response);
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
+			dispatcher.forward(request, response);
 		}
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("svuota")) {
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");

@@ -1,7 +1,12 @@
+<%@page import="rc.model.CarrelloBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
+
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -80,6 +85,58 @@
 	</form>
 
 	<div id="risultatiRicerca"></div>
+	
+	<table>
+		<tr>
+			<th>Immagine</th>
+			<th>Prodotto</th>
+			<th>Prezzo</th>
+			<th>Quantità</th>
+			<th>Rimuovi</th>
+			<th>Totale</th>
+		</tr>
+		<%
+		Collection<ProdottoBean> carrello = null;
+		double somma = 0;
+
+		if (session.getAttribute("carrello") != null) {
+			CarrelloBean cart = (CarrelloBean) session.getAttribute("carrello");
+			carrello = cart.getCarrello();
+		}
+
+		if (carrello != null && carrello.size() != 0) {
+			Iterator<?> it = carrello.iterator();
+			while (it.hasNext()) {
+				ProdottoBean prodotto = (ProdottoBean) it.next();
+				
+				Float costo = prodotto.getCosto();
+			
+				Float costototale = prodotto.getCosto() * prodotto.getQta();
+				somma += costototale;
+			
+				String image = "img/productIMG/" + prodotto.getPicture();
+		%>
+		<tr>
+	<td>
+				<div class="">
+					<img src="<%=image%>" style="width: 160px; height: 160px">
+				</div>
+			</td>
+			<td><%=prodotto.getNome()%></td>
+			<td id=""><%=costo%> &euro;</td>
+			<td>
+				<a href="/CarrelloServlet?Azione=diminuisci&codice=<%=prodotto.getIdProdotto()%>"><i class=""></i></a>
+				<input id="" type="number" value="<%=prodotto.getQta()%>" min="1" max="5" readonly>
+				<a href="/CarrelloServlet?Azione=aumenta&codice=<%=prodotto.getIdProdotto()%>"><i class=""></i></a>
+			</td>
+			<td><a href="/CarrelloServlet?Azione=rimuovere&codice=<%=prodotto.getIdProdotto()%>"><i class=""></i></a></td>
+			<td class="" id=""><%=costototale%> &euro;</td>
+		</tr>
+		<% 		}
+			}
+		%>
+	</table>
+	  
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/ricerca.js" type="text/javascript"></script>
