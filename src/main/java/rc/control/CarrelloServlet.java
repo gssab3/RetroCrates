@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import rc.model.CarrelloBean;
 import rc.model.CarrelloDAODataSource;
+import rc.model.ProdottoDAODataSource;
 
 @WebServlet("/CarrelloServlet")
 public class CarrelloServlet extends HttpServlet{
@@ -31,50 +32,54 @@ public class CarrelloServlet extends HttpServlet{
 			
 			String idprodotto = request.getParameter("IdProdotto");
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
-			carrello.retriveByKey(idprodotto).decrQta();
-			
-			if(carrello.retriveByKey(idprodotto).getQta()==0) {
+			if(carrello.retrieveByKey(idprodotto) != null)
+				carrello.retrieveByKey(idprodotto).decrQta();
+			else if(carrello.retrieveByKey(idprodotto) != null && carrello.retrieveByKey(idprodotto).getQta() == 1)
 				carrello.removeItem(idprodotto);
-			}
+			
 			request.getSession().setAttribute("carrello", carrello);
-			//request.getRequestDispatcher()
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
+			dispatcher.forward(request, response);
 		}
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("aumenta")) {
 			
 			String idprodotto = request.getParameter("IdProdotto");
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
+			if(carrello.retrieveByKey(idprodotto) != null)
+				carrello.retrieveByKey(idprodotto).addQta();
 			
-			if (carrello.retriveByKey(idprodotto).getQta() != 99) {
-				carrello.retriveByKey(idprodotto).addQta();
-			}
 			request.getSession().setAttribute("carrello", carrello);
-			request.getRequestDispatcher("/carrello.jsp").forward(request, response);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
+			dispatcher.forward(request, response);
 		}
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("rimuovere")) {
 			
 			String idprodotto = request.getParameter("IdProdotto");
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
 			
-			if (!carrello.isEmpty()) {
+			if(!carrello.getCarrello().isEmpty())
 				carrello.removeItem(idprodotto);
-			}
 			request.getSession().setAttribute("carrello", carrello);
-			//request.getRequestDispatcher("/cart.jsp").forward(request, response);
-		}
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
+			dispatcher.forward(request, response);
+		} //Aggiungi = aggiungere un prodotto al carrello
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("aggiungi")) {
 			
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
 			String idprodotto = request.getParameter("IdProdotto");
-			CarrelloDAODataSource model = new CarrelloDAODataSource();
-			
-			try {
-				carrello = model.aggiungiAlCarrello(carrello, idprodotto);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			//Se c'è già nel carrello
+			if(carrello.retrieveByKey(idprodotto) != null)
+				carrello.retrieveByKey(idprodotto).addQta();
+			//Se non c'è già
+			else {
+				ProdottoDAODataSource prodDao = new ProdottoDAODataSource();
+				try {
+					carrello.aggiungiCarrello(prodDao.doRetrieveByKey(idprodotto));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 			}
-			
-			request.setAttribute("IdProdotto", idprodotto);
 			request.getSession().setAttribute("carrello", carrello);
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
@@ -83,11 +88,12 @@ public class CarrelloServlet extends HttpServlet{
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("svuota")) {
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
 			
-			if (!carrello.isEmpty()) {
-				carrello.removeAllItems();
+			if (!carrello.getCarrello().isEmpty()) {
+				carrello.getCarrello().clear();
 			}
 			request.getSession().setAttribute("carrello", carrello);
-			//request.getRequestDispatcher("/cart.jsp").forward(request, response);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
+			dispatcher.forward(request, response);
 		}
 		
 	}

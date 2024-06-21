@@ -6,7 +6,7 @@
 <%
 	Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
 	if(ordini == null) {
-		response.sendRedirect(request.getContextPath()+"/VediOrdini");	
+		response.sendRedirect(request.getContextPath()+"/VediOrdini?sort=0");	
 		return;
 	} 
 %>
@@ -109,7 +109,12 @@
 					}
 				%> 
 	</table>
-	
+	<form method="GET" action="VediOrdini?sort=1">
+		<label class="titoloemailpass">Data di Partenza</label>
+        <input type="date" name="datax">
+        <label>Data di Fine</label>
+        <input type="date" name="datay">
+	</form>
 	<jsp:include page="../footer.jsp"/>
 
 

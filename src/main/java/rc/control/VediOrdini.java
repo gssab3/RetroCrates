@@ -34,19 +34,38 @@ public class VediOrdini extends HttpServlet{
 		
 		OrdineDAODataSource model = new OrdineDAODataSource();
 		Collection<OrdineBean> ordini = null;
-		
-		try {
-			ordini = model.doRetrieveAll("");
+		String sortMode = request.getParameter("sort");
+		String datex = request.getParameter("datax");
+		String datey = request.getParameter("datay");
+		if(sortMode.equals("0"))
+		{
+			try {
+				ordini = model.doRetrieveAll("");
 
-			request.setAttribute("ordini", ordini);
+				request.setAttribute("ordini", ordini);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			finally {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
+		else if(sortMode.equals("1")) {
+			try {
+				ordini = model.doRetrieveDateByDate(datex, datey);
+				request.setAttribute("ordini", ordini);
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			finally {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
+				dispatcher.forward(request, response);
+			}
 		}
-		finally {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
-			dispatcher.forward(request, response);
-		}
+		
 	}
 
 

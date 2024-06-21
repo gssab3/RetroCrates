@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -13,7 +14,7 @@ import rc.control.DriverManagerConnectionPool;
 import java.security.SecureRandom;
 
 public class CarrelloDAODataSource{
-	public synchronized CarrelloBean updateCarrello(ProdottoBean prodotto, CarrelloBean carrello) {
+	/*public synchronized CarrelloBean updateCarrello(ProdottoBean prodotto, CarrelloBean carrello) {
 		Collection<ProdottoBean> collection = carrello.getCarrello();
 		Collection<ProdottoBean> lista = new LinkedList<ProdottoBean>();
 		
@@ -55,11 +56,12 @@ public class CarrelloDAODataSource{
 		
 		return carrello;
 	}
+	*/
 	
 	public synchronized CarrelloBean acquista(CarrelloBean carrello, UtenteBean utente, String Destinazione) throws SQLException {
 		Connection con = null;
 		Collection<ProdottoBean> carrellobean = carrello.getCarrello();
-		String sql = "INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, DataOrdine, CostoTotale) VALUES (?, ?, ?, ?, ?, current_date())";
+		String sql = "INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, CostoTotale, DataOrdine) VALUES (?, ?, ?, ?,?, current_date())";
 		
 		try {
 			con = DriverManagerConnectionPool.getConnection();
@@ -75,6 +77,7 @@ public class CarrelloDAODataSource{
 					query.setString(3, Destinazione);
 					query.setString(4, utente.getEmail());
 					query.setDouble(5, prezzoTot);
+					
 					
 					query.executeUpdate();
 				}
@@ -163,5 +166,4 @@ public class CarrelloDAODataSource{
         }
         return sb.toString();
     }
-	
 }

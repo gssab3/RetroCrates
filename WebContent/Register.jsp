@@ -54,8 +54,6 @@
                                 <div class="bloccopass">
                                 
                                     <input type="password" name="password" placeholder="Enter your password" class="emailpass" id="password">
-                                   <%-- <i class="ri-eye-off-line login__eye" id="input-icon"></i>  da vedere bene come fare
-                                   è il pulsante per oscurare la password --%>
                                 </div>
                             </div>
                             

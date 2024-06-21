@@ -165,5 +165,111 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 		}
 		return products;
 	}
+	
+	//da una datax a una datay
+	public Collection<OrdineBean> doRetrieveDateByDate(String datex, String datey) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
+		Collection<OrdineBean> products = new LinkedList<OrdineBean>();
+
+		//Solo datay quindi tutti fino a datay
+		if(datex == null && datey!=null) {
+			String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine < ?";
+			try {
+				connection = ds.getConnection();	
+				preparedStatement = connection.prepareStatement(selectSQL);
+				preparedStatement.setDate(1, java.sql.Date.valueOf(datey));
+				ResultSet rs = preparedStatement.executeQuery();
+
+				while (rs.next()) {
+					OrdineBean bean = new OrdineBean();
+					
+					bean.setIdOrdine(rs.getString("IdOrdine"));
+					bean.setUtente(rs.getString("Utente"));
+					bean.setDestinazione(rs.getString("Destinazione"));
+					bean.setEmail(rs.getString("Email"));
+					bean.setDataOrdine(rs.getString("DataOrdine"));
+					bean.setCostoTotale(rs.getFloat("CostoTotale"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					if (connection != null)
+						connection.close();
+				}
+			}
+			return products;
+		}
+		//Solo datax, quindi da lì in poi
+		else if(datey == null && datex!=null) {
+			String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine > ?";
+			try {
+				connection = ds.getConnection();	
+				preparedStatement = connection.prepareStatement(selectSQL);
+				preparedStatement.setDate(1, java.sql.Date.valueOf(datex));
+				ResultSet rs = preparedStatement.executeQuery();
+
+				while (rs.next()) {
+					OrdineBean bean = new OrdineBean();
+					
+					bean.setIdOrdine(rs.getString("IdOrdine"));
+					bean.setUtente(rs.getString("Utente"));
+					bean.setDestinazione(rs.getString("Destinazione"));
+					bean.setEmail(rs.getString("Email"));
+					bean.setDataOrdine(rs.getString("DataOrdine"));
+					bean.setCostoTotale(rs.getFloat("CostoTotale"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					if (connection != null)
+						connection.close();
+				}
+			}
+			return products;
+		}
+		//Entrambe	
+		else if(datex != null && datey != null) {
+			String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine BETWEEN ? AND ?";
+			try {
+				connection = ds.getConnection();	
+				preparedStatement = connection.prepareStatement(selectSQL);
+				preparedStatement.setDate(1, java.sql.Date.valueOf(datex));
+				preparedStatement.setDate(2, java.sql.Date.valueOf(datey));
+				ResultSet rs = preparedStatement.executeQuery();
+
+				while (rs.next()) {
+					OrdineBean bean = new OrdineBean();
+					
+					bean.setIdOrdine(rs.getString("IdOrdine"));
+					bean.setUtente(rs.getString("Utente"));
+					bean.setDestinazione(rs.getString("Destinazione"));
+					bean.setEmail(rs.getString("Email"));
+					bean.setDataOrdine(rs.getString("DataOrdine"));
+					bean.setCostoTotale(rs.getFloat("CostoTotale"));
+					products.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					if (connection != null)
+						connection.close();
+				}
+			}
+			return products;
+		}		
+		return products;
+	}
 }
