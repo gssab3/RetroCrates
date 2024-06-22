@@ -16,14 +16,14 @@
 
 .descrizione-prodotto {
 	flex: 1 100%;
-	margin-left:50px;
+	margin-left:20px;
 	border: 1px solid black;
 }
 
 .imgprodotto {
 	width: 400px;
 	margin-left: 50px;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 .aggiungi {
@@ -54,7 +54,7 @@
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  width: 50%;
+  width: 100%;
 }
 
 .aggiungi:after {
@@ -110,9 +110,6 @@
         align-items: center;
     }
     
-    .info-prodotto p{
-    	 border: 1px solid blue;
-    }
 
     .descrizione-prodotto {
         margin-left: 0;
@@ -127,6 +124,12 @@
     }
 }
 
+
+.prodottosingolo{
+	background-color: white;
+    border-radius: 15px;
+    margin: 100px 30px 100px 30px;
+}
 
 
 

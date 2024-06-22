@@ -26,8 +26,8 @@ public class DriverManagerConnectionPool  {
 		String ip = "localhost";
 		String port = "3306";
 		String db = "retrocrates";
-		String username = "gsab3";
-		String password = "911MBLSC!a";
+		String username = "root";
+		String password = "admin";
 		
 		try {
 	        Class.forName("com.mysql.cj.jdbc.Driver");

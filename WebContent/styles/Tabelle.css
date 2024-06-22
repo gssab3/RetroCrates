@@ -15,13 +15,18 @@
     box-shadow: 0 2px 2px -2px #0E1119;
 }
 
+table, th, td {
+  border: 3px solid white;
+  border-collapse: collapse;
+}
+
 .tabella {
     text-align: left;
     overflow: hidden;
     width: 80%;
     margin: 0 auto;
   display: table;
-  padding: 40px 0px 40px 0px;
+  margin: 40px auto 40px auto;
 }
 
 .tabella td, .tabella th {
@@ -85,6 +90,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    background-color: #1F2739;
+    border-radius: 15px;
+    margin: 10% 25% 10% 25%;
+	padding: 2%;
+	color: white;
 }
 
 form label{
