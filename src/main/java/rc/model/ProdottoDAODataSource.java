@@ -40,7 +40,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		int err = 0;
 		BufferedImage image = null;
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ " (IdProdotto, Nome, Descrizione, Qta, Disponibile, Foto, Costo, stelleTot, recTot, Produttore, Genere, Piattaforma, TipoGioco, TipoProdotto, Categoria, Edizione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (IdProdotto, Nome, Descrizione, Qta, Disponibile, Foto, Costo, stelleTot, Produttore, Genere, Piattaforma, TipoGioco, TipoProdotto, Categoria, Edizione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
@@ -52,14 +52,13 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 			preparedStatement.setBlob(6, prodotto.getPicture());
 			preparedStatement.setFloat(7, prodotto.getCosto());
 			preparedStatement.setInt(8, prodotto.getStelleTot());
-			preparedStatement.setInt(9, prodotto.getRecTot());
-			preparedStatement.setString(10, prodotto.getProduttore());
-			preparedStatement.setString(11, prodotto.getGenere());
-			preparedStatement.setString(12, prodotto.getPiattaforma());
-			preparedStatement.setString(13,  prodotto.getTipoGioco());
-			preparedStatement.setString(14, prodotto.getTipoProdotto());
-			preparedStatement.setString(15,  prodotto.getCategoria());
-			preparedStatement.setString(16, prodotto.getEdizione());
+			preparedStatement.setString(9, prodotto.getProduttore());
+			preparedStatement.setString(10, prodotto.getGenere());
+			preparedStatement.setString(11, prodotto.getPiattaforma());
+			preparedStatement.setString(12,  prodotto.getTipoGioco());
+			preparedStatement.setString(13, prodotto.getTipoProdotto());
+			preparedStatement.setString(14,  prodotto.getCategoria());
+			preparedStatement.setString(15, prodotto.getEdizione());
 			preparedStatement.executeUpdate();
 			connection.commit();
 
@@ -133,7 +132,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
-				bean.setRecTot(rs.getInt("recTot"));
 				bean.setProduttore(rs.getString("Produttore"));
 				bean.setGenere(rs.getString("Genere"));
 				bean.setPiattaforma(rs.getString("Piattaforma"));
@@ -181,7 +179,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
-				bean.setRecTot(rs.getInt("recTot"));
 				bean.setProduttore(rs.getString("Produttore"));
 				bean.setGenere(rs.getString("Genere"));
 				bean.setPiattaforma(rs.getString("Piattaforma"));
@@ -223,7 +220,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
-				bean.setRecTot(rs.getInt("recTot"));
 				bean.setProduttore(rs.getString("Produttore"));
 				bean.setGenere(rs.getString("Genere"));
 				bean.setPiattaforma(rs.getString("Piattaforma"));
@@ -272,7 +268,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
-				bean.setRecTot(rs.getInt("recTot"));
 				bean.setProduttore(rs.getString("Produttore"));
 				bean.setGenere(rs.getString("Genere"));
 				bean.setPiattaforma(rs.getString("Piattaforma"));
@@ -321,7 +316,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
-				bean.setRecTot(rs.getInt("recTot"));
 				bean.setProduttore(rs.getString("Produttore"));
 				bean.setGenere(rs.getString("Genere"));
 				bean.setPiattaforma(rs.getString("Piattaforma"));
@@ -370,7 +364,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
-				bean.setRecTot(rs.getInt("recTot"));
 				bean.setProduttore(rs.getString("Produttore"));
 				bean.setGenere(rs.getString("Genere"));
 				bean.setPiattaforma(rs.getString("Piattaforma"));
@@ -419,7 +412,6 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
-				bean.setRecTot(rs.getInt("recTot"));
 				bean.setProduttore(rs.getString("Produttore"));
 				bean.setGenere(rs.getString("Genere"));
 				bean.setPiattaforma(rs.getString("Piattaforma"));

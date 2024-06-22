@@ -52,7 +52,6 @@ public class ProdottoBean implements Serializable{
 	protected float costo; // decimal (10,2) >= 0
 	protected Blob picture;
 	protected int stelleTot; //minimo 1 massimo 5
-	protected int recTot; //numero totale di stelle e recensioni;
 	
 	public ProdottoBean()
 	{
@@ -64,7 +63,6 @@ public class ProdottoBean implements Serializable{
 		costo = -1;
 		picture = null;
 		stelleTot = 0;
-		recTot = 0;
 		TipoGioco = null;
 		TipoProdotto = null;
 		Categoria = null;
@@ -128,14 +126,6 @@ public class ProdottoBean implements Serializable{
 
 	public void setStelleTot(int stelleTot) {
 		this.stelleTot = stelleTot;
-	}
-
-	public int getRecTot() {
-		return recTot;
-	}
-
-	public void setRecTot(int recTot) {
-		this.recTot = recTot;
 	}
 
 	public String getProduttore() {

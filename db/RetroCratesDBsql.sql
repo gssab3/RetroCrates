@@ -34,7 +34,6 @@ CREATE TABLE Prodotto(
 	Foto Blob,
 	Costo DECIMAL(10,2) NOT NULL,
 	stelleTot INT NOT NULL,
-	recTot INT NOT NULL,
 	
 	Produttore ENUM('Sony', 'Microsoft', 'Nintendo', 'Atari', 'Sega', 'Altri', 
 	'Ubisoft', 'Rockstar_Games', 'Activision', 'Electronic_Arts', 'Naughty_Dog', 'Microsoft_Studios', 
@@ -63,19 +62,6 @@ CREATE TABLE Prodotto(
     CHECK (Costo>=0)
 );
 
-
-CREATE TABLE Recensione(
-    IdRecensione CHAR(10) NOT NULL,
-    Utente VARCHAR(20) NOT NULL,      
-    Prodotto CHAR(7),
-    Stelle DECIMAL(2,1) NOT NULL,
-    Descrizione TEXT,
-    PRIMARY KEY (IdRecensione,Utente),
-    FOREIGN KEY (Utente) REFERENCES Utente(Username),
-    FOREIGN KEY (Prodotto) REFERENCES Prodotto(IdProdotto),
-    CHECK (Stelle >= 1 AND Stelle <= 5)
-);
-
 CREATE TABLE ContieneProd(
     IdOrdine CHAR(10) NOT NULL,
     IdProdotto CHAR(7) NOT NULL,
@@ -102,11 +88,10 @@ INSERT INTO Prodotto VALUES ('game004', 'Pac-Man', 'Arcade', 100, TRUE, NULL, 19
 INSERT INTO Prodotto VALUES ('game005', 'Sonic the Hedgehog', 'Azione Avventura', 100, TRUE, NULL, 29.99, 0, 0, 'Sega', 'Action_Adventure', 'Sega_Mega_Drive', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
 
 -- Collezionabili
-INSERT INTO Prodotto VALUES ('coll001', 'Funko Pop Mario', 'Funko Pop di Super Mario', 100, TRUE, NULL, 9.99, 0, 0, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
-INSERT INTO Prodotto VALUES ('coll002', 'Poster di The Last of Us Part II', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Naughty_Dog', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
-INSERT INTO Prodotto VALUES ('coll003', 'Tazza di Halo Infinite', 'Tazza con logo di Halo Infinite', 100, TRUE, NULL, 7.99, 0, 0, 'Microsoft_Studios', NULL, NULL, NULL, 'Collezionabile', 'Gadget', 'Normale');
-INSERT INTO Prodotto VALUES ('coll004', 'Funko Pop Pac-Man', 'Funko Pop di Pac-Man', 100, TRUE, NULL, 9.99, 0, 0, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
-INSERT INTO Prodotto VALUES ('coll005', 'Poster di Sonic the Hedgehog', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Sega', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
+INSERT INTO Prodotto VALUES ('coll001', 'Poster di The Last of Us Part II', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Naughty_Dog', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
+INSERT INTO Prodotto VALUES ('coll002', 'Tazza di Halo Infinite', 'Tazza con logo di Halo Infinite', 100, TRUE, NULL, 7.99, 0, 0, 'Microsoft_Studios', NULL, NULL, NULL, 'Collezionabile', 'Gadget', 'Normale');
+INSERT INTO Prodotto VALUES ('coll003', 'Funko Pop Pac-Man', 'Funko Pop di Pac-Man', 100, TRUE, NULL, 9.99, 0, 0, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
+INSERT INTO Prodotto VALUES ('coll004', 'Poster di Sonic the Hedgehog', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Sega', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
 
 -- Insert a user
 INSERT INTO Utente (Username, Email, Passwordhash, Datanas, Tipo)
@@ -121,6 +106,5 @@ VALUES ('ord001', 'user1', '123 Main St, City, Country', 'user1@example.com', '2
 INSERT INTO ContieneProd (IdOrdine, IdProdotto, Qta, Costo)
 VALUES ('ord001', 'con0001', 1, 499.99),
        ('ord001', 'game001', 1, 59.99),
-       ('ord001', 'coll001', 1, 9.99),
        ('ord001', 'game003', 1, 59.99);
 
