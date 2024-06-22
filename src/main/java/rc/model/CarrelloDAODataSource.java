@@ -59,43 +59,52 @@ public class CarrelloDAODataSource{
 	*/
 	
 	public synchronized CarrelloBean acquista(CarrelloBean carrello, UtenteBean utente, String Destinazione) throws SQLException {
-		Connection con = null;
-		Collection<ProdottoBean> carrellobean = carrello.getCarrello();
-		String sql = "INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, CostoTotale, DataOrdine) VALUES (?, ?, ?, ?,?, current_date())";
-		
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			
-			if (carrellobean != null && carrellobean.size() != 0) {
-				for (Iterator<ProdottoBean> i = carrello.getCarrello().iterator(); i.hasNext();) {
-					ProdottoBean prodotto = (ProdottoBean) i.next();
-					Double prezzoTot = (double) (prodotto.getCosto() * prodotto.getQta());
-					
-					PreparedStatement query = con.prepareStatement(sql);
-					query.setString(1, generateUniqueString());
-					query.setString(2, utente.getUsername());
-					query.setString(3, Destinazione);
-					query.setString(4, utente.getEmail());
-					query.setDouble(5, prezzoTot);
-					
-					
-					query.executeUpdate();
-				}
-				con.commit();
-				//carrello.removeAllItems();
-			}
-			return carrello;
-		}
-		catch (Exception e) {
-			return carrello;
-		}
-		finally {
-			if (con != null) {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}	
+	    Connection con = null;
+	    Collection<ProdottoBean> carrellobean = carrello.getCarrello();
+	    String sql = "INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, CostoTotale, DataOrdine) VALUES (?, ?, ?, ?, ?, current_date())";
+	    String sql2 = "INSERT INTO ContieneProd (IdOrdine, IdProdotto, Qta, Costo) VALUES (?, ?, ?, ?)";
+	    Double prezzotot = (double) 0;
+	    String ordinecodice = null;
+	    try {
+	        con = DriverManagerConnectionPool.getConnection();
+
+	        if (carrellobean != null && carrellobean.size() != 0) {
+	        	//Codice univoco dell'ordine
+	        	ordinecodice = generateUniqueString();
+	            for (Iterator<ProdottoBean> i = carrello.getCarrello().iterator(); i.hasNext();) {
+	                ProdottoBean prodotto = i.next();
+	                prezzotot += prodotto.getCosto() * prodotto.getQta();
+	                // Insert product details into ContieneProd table
+	                PreparedStatement query2 = con.prepareStatement(sql2);
+	                query2.setString(1, ordinecodice); // Id Ordine
+	                query2.setString(2, prodotto.getIdProdotto()); // Id Prodotto
+	                query2.setInt(3, prodotto.getQta());
+	                query2.setDouble(4, prodotto.getCosto());
+	                query2.executeUpdate();
+	            }
+	            // Insert order details into Ordine table
+	            PreparedStatement query = con.prepareStatement(sql);
+	            query.setString(1, ordinecodice); // Use a unique identifier for the order
+	            query.setString(2, utente.getUsername());
+	            query.setString(3, Destinazione);
+	            query.setString(4, utente.getEmail());
+	            query.setDouble(5, prezzotot);
+	            query.executeUpdate();
+
+	            con.commit();
+		        carrello.getCarrello().clear();
+	        }
+	    } catch (Exception e) {
+	    	System.out.println(e.getMessage());
+	    } finally {
+	        if (con != null) {
+	            DriverManagerConnectionPool.releaseConnection(con);
+	        }
+	    }
+	    return carrello;
 	}
-	
+
+	/*
 	public synchronized CarrelloBean aggiungiAlCarrello(CarrelloBean carrello, String idprodotto) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;		
@@ -153,6 +162,7 @@ public class CarrelloDAODataSource{
 			}
 		}
 	}
+	*/
 	
 	public static String generateUniqueString() {
         final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

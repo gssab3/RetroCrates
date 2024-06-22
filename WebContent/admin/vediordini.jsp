@@ -104,6 +104,7 @@
 		    <th>Destinazione</th>
 		    <th>Email</th>
 		    <th>Data</th>
+		    <th>Costo</th>
 		</tr>
 				<%
 				if (ordini != null && ordini.size() != 0) {
@@ -117,6 +118,7 @@
 					    <td><%=bean.getDestinazione()%></td>
 					    <td><%=bean.getEmail()%></td>
 					    <td><%=bean.getDataOrdine()%></td>
+					    <td><%=bean.getCostoTotale()%></td>
 					</tr>
 				<%
 					}
