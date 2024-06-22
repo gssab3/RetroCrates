@@ -27,6 +27,7 @@
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  <link type="text/css" rel="stylesheet" href="styles/prodotto.css"/>
+  <link type="text/css" rel="stylesheet" href="styles/Risultati.css">
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
 	<script src="scripts/searchbar.js" type="text/javascript"></script>

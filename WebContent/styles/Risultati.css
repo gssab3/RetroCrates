@@ -8,6 +8,7 @@
 	border: 1px solid black;
 	margin: 0 250px;
     box-sizing: border-box;
+    background-color: white;
 }
 
 #risultatiRicerca div[class^="item"] a{
@@ -29,6 +30,7 @@
 	#risultatiRicerca div[class^="item"]{
 	margin: 0 15%;
     box-sizing: border-box;
+    
 	}
 	
 }

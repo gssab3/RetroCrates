@@ -5,7 +5,13 @@
 
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%
-	String tipoutente = (String) request.getSession(false).getAttribute("currentSessionUser");
+	HttpSession sessione = request.getSession(true);
+	UtenteBean utUtil = (UtenteBean) sessione.getAttribute("currentSessionUser");
+	String tipoutente = null;
+	if(utUtil != null)
+		tipoutente = (String) utUtil.getTipo();
+	else
+		tipoutente = null;
 %>
 
 <!DOCTYPE html>
@@ -31,7 +37,7 @@
 		
 		<div class="TastoRicerca" >
 			<span style="font-size:30px;cursor:pointer" onclick="openSearch()">
-				<img src="images/icone/Header/lenteicona.png" alt="openSearch">
+				<img src="images/icone/Header/lenteingrandimento.png" alt="openSearch">
 			</span>
 		</div>
 		
@@ -46,13 +52,13 @@
 			if(tipoutente.equals("Utente")) { %>
 		    <div class="TastoLogin">
 				<span style="font-size:30px;cursor:pointer">
-					<a href="user/account.jsp"><img src="images/fotoprofilodellutente" alt="open"></a>
+					<a href="user/account.jsp"><img src="images/icone/Header/crashIconLogin.png" alt="open"></a>
 				</span>
 			</div>
 		<% } else if(tipoutente.equals("Admin")) { %>
 		    <div class="TastoLogin">
 					<span style="font-size:30px;cursor:pointer">
-						<a href="admin/admin.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
+						<a href="admin/Admin.jsp"><img src="images/icone/Header/crashIconLogin.png" alt="open"></a>
 					</span>
 				</div>
 		<% }
@@ -60,7 +66,7 @@
 		%>
 		<div class="TastoLogin">
 			<span style="font-size:30px;cursor:pointer">
-				<a href="login.jsp"><img src="images/icone/Header/crashIconLogin.png" alt="openLog"></a>
+				<a href="login.jsp"><img src="images/icone/Header/crashnologin.png" alt="openLog"></a>
 			</span>
 		</div>
 		<% }%>
