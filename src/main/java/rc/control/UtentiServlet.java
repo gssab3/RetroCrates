@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import rc.model.UtenteBean;
 import rc.model.UtenteDAODataSource;
 
-@WebServlet("/Utenti")
+@WebServlet("/Admin")
 public class UtentiServlet extends HttpServlet{
 
 	/**
