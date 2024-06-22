@@ -1,12 +1,35 @@
 <%@page import="rc.model.OrdineBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="rc.model.*,java.util.*, javax.servlet.RequestDispatcher" %>
+<%@ page import="rc.model.*,java.util.*, javax.servlet.RequestDispatcher, java.util.*" %>
 
 <%
-	String utenteId = (String) request.getParameter("utente");
-	Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
+    String utenteId = request.getParameter("utente");
+    String datax = request.getParameter("datax");
+    String datay = request.getParameter("datay");
+    String sort = request.getParameter("sort");
+
+    Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
+
+    if (ordini == null) {
+        if ("0".equals(sort)) {
+            String redirectURL = "/RetroCrates/VediOrdini?sort=0&utente=TUTTI&datax=NULL&datay=NULL";
+            response.sendRedirect(redirectURL);
+            return;
+        } else if ("1".equals(sort)) {
+            if (datax != null || datay != null) {
+                String redirectURL = "/RetroCrates/VediOrdini?sort=0&utente=TUTTI&datax=" + (datax != null ? datax : "NULL") + "&datay=" + (datay != null ? datay : "NULL");
+                response.sendRedirect(redirectURL);
+                return;
+            }
+        } else if ("2".equals(sort)) {
+            String redirectURL = "/RetroCrates/VediOrdini?sort=0&utente=" + utenteId + "&datax=NULL&datay=NULL";
+            response.sendRedirect(redirectURL);
+            return;
+        }
+    }
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,13 +108,14 @@
 	<div id="risultatiRicerca"></div>
 
 	<div class="contieniform">
-	<form method="GET" action="VediOrdini?sort=1">
+	<form method="GET" action="VediOrdini">
 		<label>Data di Partenza: </label>
         <input type="date" name="datax">
         <br>
         <label>Data di Fine: </label>
         <input type="date" name="datay">
         <br>
+        <input type="hidden" name="sort" value="1">
         <input type="hidden" name="utente" value="TUTTI">
         <input type="submit" value="Cerca" class="cerca">
 	</form>
@@ -104,6 +128,7 @@
 		    <th>Destinazione</th>
 		    <th>Email</th>
 		    <th>Data</th>
+		    <th>Costo
 		</tr>
 				<%
 				if (ordini != null && ordini.size() != 0) {
@@ -117,6 +142,7 @@
 					    <td><%=bean.getDestinazione()%></td>
 					    <td><%=bean.getEmail()%></td>
 					    <td><%=bean.getDataOrdine()%></td>
+					    <td><%=bean.getCostoTotale()%></td>
 					</tr>
 				<%
 					}

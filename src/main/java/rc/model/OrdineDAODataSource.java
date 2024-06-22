@@ -192,153 +192,73 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 	    return products;
 	}
 
-	//da una datax a una datay
-	//da una datax a una datay
+	
 	public Collection<OrdineBean> doRetrieveDateByDate(String datex, String datey) throws SQLException {
 	    Connection connection = null;
 	    PreparedStatement preparedStatement = null;
 
-	    Collection<OrdineBean> products = new LinkedList<OrdineBean>();
+	    Collection<OrdineBean> ordini = new LinkedList<OrdineBean>();
 
-	    if (datex != null && datex.isEmpty()) {
-	        datex = null;
+	    String selectSQL = "SELECT * FROM " + TABLE_NAME;
+	    if (datex != null && datey != null) {
+	        selectSQL += " WHERE DataOrdine >= ? AND DataOrdine <= ?";
+	    } else if (datex != null) {
+	        selectSQL += " WHERE DataOrdine >= ?";
+	    } else if (datey != null) {
+	        selectSQL += " WHERE DataOrdine <= ?";
 	    }
-	    if (datey != null && datey.isEmpty()) {
-	        datey = null;
-	    }
-	    
-	    //Solo datay quindi tutti fino a datay
-	    if(datex == null && datey!=null) {
-	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine <= ?";
-	        String selectSQL2 = "SELECT SUM(Costo) AS Costo FROM ContieneProd WHERE IdOrdine = ?";
-	        try {
-	            connection = ds.getConnection();    
-	            preparedStatement = connection.prepareStatement(selectSQL);
-	            preparedStatement.setDate(1, java.sql.Date.valueOf(datey));
-	            ResultSet rs = preparedStatement.executeQuery();
 
-	            while (rs.next()) {
-	                OrdineBean bean = new OrdineBean();
-	                
-	                bean.setIdOrdine(rs.getString("IdOrdine"));
-	                bean.setUtente(rs.getString("Utente"));
-	                bean.setDestinazione(rs.getString("Destinazione"));
-	                bean.setEmail(rs.getString("Email"));
-	                bean.setDataOrdine(rs.getString("DataOrdine"));
+	    String selectSQL2 = "SELECT SUM(Costo) AS Costo FROM ContieneProd WHERE IdOrdine = ?";
 
-	                // Execute the second query to get the total cost specific for this order
-	                try (PreparedStatement secondStatement = connection.prepareStatement(selectSQL2)) {
-	                    secondStatement.setString(1, bean.getIdOrdine());
-	                    ResultSet secondRs = secondStatement.executeQuery();
-	                    if (secondRs.next()) {
-	                    	float costoTotale = secondRs.getFloat("CostoTotale");
-			                bean.setCostoTotale(costoTotale);
-	                    }
-	                }
+	    try {
+	        connection = ds.getConnection();
+	        preparedStatement = connection.prepareStatement(selectSQL);
 
-	                products.add(bean);
-	            }
-
-	        } finally {
-	            try {
-	                if (preparedStatement != null)
-	                    preparedStatement.close();
-	            } finally {
-	                if (connection != null)
-	                    connection.close();
-	            }
-	        }
-	        return products;
-	    }
-	    //Solo datax, quindi da lì in poi
-	    else if(datey == null && datex!=null) {
-	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine >= ?";
-	        String selectSQL2 = "SELECT SUM(Costo) AS Costo FROM ContieneProd WHERE IdOrdine = ?";
-	        try {
-	            connection = ds.getConnection();    
-	            preparedStatement = connection.prepareStatement(selectSQL);
-	            preparedStatement.setDate(1, java.sql.Date.valueOf(datex));
-	            ResultSet rs = preparedStatement.executeQuery();
-
-	            while (rs.next()) {
-	                OrdineBean bean = new OrdineBean();
-	                
-	                bean.setIdOrdine(rs.getString("IdOrdine"));
-	                bean.setUtente(rs.getString("Utente"));
-	                bean.setDestinazione(rs.getString("Destinazione"));
-	                bean.setEmail(rs.getString("Email"));
-	                bean.setDataOrdine(rs.getString("DataOrdine"));
-
-	                // Execute the second query to get the total cost specific for this order
-	                try (PreparedStatement secondStatement = connection.prepareStatement(selectSQL2)) {
-	                    secondStatement.setString(1, bean.getIdOrdine());
-	                    ResultSet secondRs = secondStatement.executeQuery();
-	                    if (secondRs.next()) {
-	                    	float costoTotale = secondRs.getFloat("CostoTotale");
-			                bean.setCostoTotale(costoTotale);
-	                    }
-	                }
-
-	                products.add(bean);
-	            }
-
-	        } finally {
-	            try {
-	                if (preparedStatement != null)
-	                    preparedStatement.close();
-	            } finally {
-	                if (connection != null)
-	                    connection.close();
-	            }
-	        }
-	        return products;
-	    }
-	    //Entrambe    
-	    else if(datex != null && datey != null) {
-	    	String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine BETWEEN ? AND ?";
-	        String selectSQL2 = "SELECT SUM(Costo) AS Costo FROM ContieneProd WHERE IdOrdine = ?";
-	        try {
-	            connection = ds.getConnection();    
-	            preparedStatement = connection.prepareStatement(selectSQL);
+	        if (datex != null && datey != null) {
 	            preparedStatement.setDate(1, java.sql.Date.valueOf(datex));
 	            preparedStatement.setDate(2, java.sql.Date.valueOf(datey));
-	            ResultSet rs = preparedStatement.executeQuery();
-
-	            while (rs.next()) {
-	                OrdineBean bean = new OrdineBean();
-	                
-	                bean.setIdOrdine(rs.getString("IdOrdine"));
-	                bean.setUtente(rs.getString("Utente"));
-	                bean.setDestinazione(rs.getString("Destinazione"));
-	                bean.setEmail(rs.getString("Email"));
-	                bean.setDataOrdine(rs.getString("DataOrdine"));
-
-	                // Execute the second query to get the total cost specific for this order
-	                try (PreparedStatement secondStatement = connection.prepareStatement(selectSQL2)) {
-	                    secondStatement.setString(1, bean.getIdOrdine());
-	                    ResultSet secondRs = secondStatement.executeQuery();
-	                    if (secondRs.next()) {
-	                    	float costoTotale = secondRs.getFloat("CostoTotale");
-			                bean.setCostoTotale(costoTotale);
-	                    }
-	                }
-
-	                products.add(bean);
-	            }
-
-	        } finally {
-	            try {
-	                if (preparedStatement != null)
-	                    preparedStatement.close();
-	            } finally {
-	                if (connection != null)
-	                    connection.close();
-	            }
+	        } else if (datex != null) {
+	            preparedStatement.setDate(1, java.sql.Date.valueOf(datex));
+	        } else if (datey != null) {
+	            preparedStatement.setDate(1, java.sql.Date.valueOf(datey));
 	        }
-	        return products;
-	    }        
-	    return products;
+
+	        ResultSet rs = preparedStatement.executeQuery();
+
+	        while (rs.next()) {
+	            OrdineBean bean = new OrdineBean();
+
+	            bean.setIdOrdine(rs.getString("IdOrdine"));
+	            bean.setUtente(rs.getString("Utente"));
+	            bean.setDestinazione(rs.getString("Destinazione"));
+	            bean.setEmail(rs.getString("Email"));
+	            bean.setDataOrdine(rs.getString("DataOrdine"));
+
+	            // Execute the second query to get the total cost specific for this order
+	            try (PreparedStatement secondStatement = connection.prepareStatement(selectSQL2)) {
+	                secondStatement.setString(1, bean.getIdOrdine());
+	                ResultSet secondRs = secondStatement.executeQuery();
+	                if (secondRs.next()) {
+	                    float costoTotale = secondRs.getFloat("Costo");
+	                    bean.setCostoTotale(costoTotale);
+	                }
+	            }
+
+	            ordini.add(bean);
+	        }
+
+	    } finally {
+	        try {
+	            if (preparedStatement != null)
+	                preparedStatement.close();
+	        } finally {
+	            if (connection != null)
+	                connection.close();
+	        }
+	    }
+	    return ordini;
 	}
+
 
 	public Collection<OrdineBean> doRetrieveByUser(String user) throws SQLException {
 	    Connection connection = null;

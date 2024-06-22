@@ -38,56 +38,23 @@ public class VediOrdini extends HttpServlet{
 	    String datey = request.getParameter("datay");
 	    String utente = request.getParameter("utente");
 
-	    // Convert empty strings to null
-	    if (datex != null && datex.isEmpty()) {
-	        datex = null;
-	    }
-	    if (datey != null && datey.isEmpty()) {
-	        datey = null;
-	    }
-
-	    if(sortMode == null)
-	        sortMode = "0";
-	    if(sortMode.equals("0") && utente.equals("TUTTI"))
-	    {
-	        try {
+	    try {
+	        if (sortMode == null || sortMode.equals("0") && utente.equals("TUTTI")) {
 	            ordini = model.doRetrieveAll("");
-	            request.setAttribute("ordini", ordini);
-	            
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	        finally {
-	            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
-	            dispatcher.forward(request, response);
-	        }
-	    }
-	    else if(sortMode.equals("1")) {
-	        try {
+	        } else if (sortMode.equals("1")) {
 	            ordini = model.doRetrieveDateByDate(datex, datey);
-	            request.setAttribute("ordini", ordini);
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-	        finally {
-	            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
-	            dispatcher.forward(request, response);
-	        }
-	    }
-	    else if (sortMode.equals("2")) {
-	        try {
+	        } else if (sortMode.equals("2")) {
 	            ordini = model.doRetrieveByUser(utente);
-	            request.setAttribute("ordini", ordini);
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
 	        }
-	        finally {
-	            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
-	            dispatcher.forward(request, response);
-	        }
-	        
+	        request.setAttribute("ordini", ordini);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
+	        dispatcher.forward(request, response);
 	    }
 	}
+
 
 
 

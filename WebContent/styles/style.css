@@ -37,6 +37,11 @@ body, html{
     padding: 0;
     width:100%;
     overflow-x: hidden;
+    background-image: url("../images/bodywallpaper.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: right;
 }
 
 body .conbarra {
@@ -132,6 +137,8 @@ header{
 	text-decoration: none;
 	font-size: 100%;
 	text-align: center;
+	-webkit-text-stroke-color: black;
+	-webkit-text-stroke-width: 1px;
 }
 
 
@@ -163,7 +170,7 @@ header{
   	z-index: 2;
   	top: 0;
   	left: 0;
-  	background-color: #024821;
+  	background-color: #5dbb63;
   	overflow-x: hidden;
   	transition: 0.5s;
   	padding-top: 0px;
@@ -434,6 +441,7 @@ footer {
   padding: 3px;
   background-color: DarkSalmon;
   color: white;
+  position: sticky;
 }
 
 footer p.azienda{
@@ -492,6 +500,10 @@ footer p.azienda{
         width: 100%;
         font-size: 50px;
     }
+    
+    body{
+  		background-position: center;
+  	}
     
     .pulsantilogin {
     	flex-direction: column;
@@ -620,6 +632,11 @@ footer p.azienda{
     	display: grid;
     	place-items: center;
   	}
+  	
+  	body{
+  		background-position: center;
+  	}
+  	
     
     .loginform {
     	width: 450px;
@@ -791,6 +808,7 @@ footer p.azienda{
     display: flex;
     justify-content: center;
     width: 100%;
+    align-items:center; 
 }
 
 #barraRicerca {
@@ -886,7 +904,69 @@ header h1 {
 }
 
 
+#submitRicerca {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: din-round,sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 5px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 10%;
+}
 
+#submitRicerca:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+#submitRicerca:main,
+#submitRicerca:focus {
+  user-select: auto;
+}
+
+#submitRicerca:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+#submitRicerca:disabled {
+  cursor: auto;
+}
+
+#submitRicerca:active {
+  border-width: 4px 0 0;
+  background: none;
+}
 
 
 

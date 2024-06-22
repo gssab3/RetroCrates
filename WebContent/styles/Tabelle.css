@@ -50,6 +50,15 @@
 	color: #FB667A; 
 }
 
+.tabella td:nth-child(n+2) {
+	color: white;
+}
+
+.tabella td a{
+	text-decoration: none;
+	color: aqua;
+}
+
 .tabella tr:hover {
    		background-color: #464A52;
 		-webkit-box-shadow: 0 6px 6px -6px #0E1119;
@@ -218,11 +227,14 @@ input[type="date"] {
 }
 
 .aggiungere {
+	margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.totordini{
-}
+.totordini {
+        vertical-align: top;
+        display: inline-block;
+    }
 

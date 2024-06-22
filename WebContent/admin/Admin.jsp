@@ -107,7 +107,7 @@
 		
 		</div>
 			<br>
-			<a class="totordini" href="/RetroCrates/VediOrdini?sort=0&utente=TUTTI">Tutti gli Ordini</a>
+			<a class="totordini" href="/RetroCrates/VediOrdini?sort=0&utente=TUTTI&datax=NULL&datay=NULL">Tutti gli Ordini</a>
 		<table class="tabella">
 		
 		<tr>

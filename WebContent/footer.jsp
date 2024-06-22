@@ -28,26 +28,22 @@
 					Offriamo una vasta selezione di titoli classici, divenuti ormai capolavori 
 					dimenticati, ma non solo.
 					RetroCrates, il tuo portale per l’era d’oro dei videogiochi. </p>
-					<p class="email-id" style="cursor:pointer;"><a href="mailto:s.davanzo5@studenti.unisa.it">s.davanzo5@studenti.unisa.it</a></p>
-					<p class="email-id" style="cursor:pointer;"><a href="mailto:g.sabetta3@studenti.unisa.it">g.sabetta3@studenti.unisa.it</a></p>
-					<h4>+39 123 456 7890</h4>
+					<p class="email-id" style="cursor:pointer;"><a href="mailto:s.davanzo5@studenti.unisa.it" style="text-decoration: none; color: #297feb" >s.davanzo5@studenti.unisa.it</a></p>
+					<p class="email-id" style="cursor:pointer;"><a href="mailto:g.sabetta3@studenti.unisa.it" style="text-decoration: none; color: #297feb" >g.sabetta3@studenti.unisa.it</a></p>
+					<h4>+0512 118 330</h4>
+					<h4>+0512 117 895</h4>
 					<!--   -->
+					
 				</div>
 				
 				<div class="colonnafooter">
 					<h3>Naviga</h3>
 					<ul>
-						<li><a href="index.jsp">Home</a>
-						<li><a href="#">Account</a>
-						<li><a href="giocomagico.jsp">Ti senti Fortunato?</a>
+						<li><a href="index.jsp" style="text-decoration: none; color: #297feb">Home</a>
+						<li><a href="#" style="text-decoration: none; color: #297feb">Account</a>
+						<li><a href="giocomagico.jsp" style="text-decoration: none; color: #297feb">Ti senti Fortunato?</a>
 					</ul>
-					<br>
-					<div id="socials"> <a href="https://www.instagram.com/miella.lyer/"><img alt="InstaS" src="images/icone/Social/instagram.png"></a> <a href="https://x.com/LyerDaku"><img alt="XS" src="images/icone/Social/x.png"></a> <a href="https://www.facebook.com/saverio.davanzo.7731/"><img alt="FacebookS" src="images/icone/Social/facebook.png"></a></div> 
-					<div id="socialg"> <a href="https://www.instagram.com/peppe_memes/"><img alt="InstaS" src="images/icone/Social/instagram.png"></a> <a href=""><img alt="XG" src="images/icone/Social/x.png"></a> <a href=""><img alt="FacebookG" src="images/icone/Social/facebook.png"></a></div></div>
-					
 				</div>
-				
-			
 			</div>
 			
 			<hr>
