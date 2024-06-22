@@ -87,17 +87,12 @@ CREATE TABLE ContieneProd(
     CHECK (Costo>=0)
 );
 
-INSERT INTO Prodotto
-(IdProdotto, Nome, Descrizione, Qta, Disponibile, Foto, Costo, stelleTot, recTot, Produttore, Genere, Piattaforma, TipoGioco, TipoProdotto, Categoria, Edizione)
-VALUES
-('P123456', 'Ics Bocs', 'Fratm sta console ten halo e fortnite', 10, true, NULL, 549.99, 5, 100, 'Microsoft', NULL , NULL, NULL , 'Console', NULL, NULL);
-
 -- Console
-INSERT INTO Prodotto VALUES ('con001', 'PS5', 'Sony PlayStation 5', 100, TRUE, NULL, 499.99, 0, 0, 'Sony', NULL, 'PS5', NULL, 'Console', NULL, NULL);
-INSERT INTO Prodotto VALUES ('con002', 'Xbox Series X', 'Microsoft Xbox Series X', 100, TRUE, NULL, 499.99, 0, 0, 'Microsoft', NULL, 'Xbox_Series_X_S', NULL, 'Console', NULL, NULL);
-INSERT INTO Prodotto VALUES ('con003', 'Nintendo Switch', 'Nintendo Switch', 100, TRUE, NULL, 299.99, 0, 0, 'Nintendo', NULL, 'Switch', NULL, 'Console', NULL, NULL);
-INSERT INTO Prodotto VALUES ('con004', 'Atari 2600', 'Atari 2600', 100, TRUE, NULL, 199.99, 0, 0, 'Atari', NULL, 'Atari_2600', NULL, 'Console', NULL, 'RetroCrates');
-INSERT INTO Prodotto VALUES ('con005', 'Sega Mega Drive', 'Sega Mega Drive', 100, TRUE, NULL, 149.99, 0, 0, 'Sega', NULL, 'Sega_Mega_Drive', NULL, 'Console', NULL, 'RetroCrates');
+INSERT INTO Prodotto VALUES ('con0001', 'PS5', 'Sony PlayStation 5', 100, TRUE, NULL, 499.99, 0, 0, 'Sony', NULL, 'PS5', NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con0002', 'Xbox Series X', 'Microsoft Xbox Series X', 100, TRUE, NULL, 499.99, 0, 0, 'Microsoft', NULL, 'Xbox_Series_X_S', NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con0003', 'Nintendo Switch', 'Nintendo Switch', 100, TRUE, NULL, 299.99, 0, 0, 'Nintendo', NULL, 'Switch', NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con0004', 'Atari 2600', 'Atari 2600', 100, TRUE, NULL, 199.99, 0, 0, 'Atari', NULL, 'Atari_2600', NULL, 'Console', NULL, 'RetroCrates');
+INSERT INTO Prodotto VALUES ('con0005', 'Sega Mega Drive', 'Sega Mega Drive', 100, TRUE, NULL, 149.99, 0, 0, 'Sega', NULL, 'Sega_Mega_Drive', NULL, 'Console', NULL, 'RetroCrates');
 
 -- Videogiochi
 INSERT INTO Prodotto VALUES ('game001', 'The Last of Us Part II', 'Azione Avventura', 100, TRUE, NULL, 59.99, 0, 0, 'Naughty_Dog', 'Action_Adventure', 'PS4', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
@@ -124,7 +119,7 @@ VALUES ('ord001', 'user1', '123 Main St, City, Country', 'user1@example.com', '2
 
 -- Insert 4 items into the order
 INSERT INTO ContieneProd (IdOrdine, IdProdotto, Qta, Costo)
-VALUES ('ord001', 'con001', 1, 499.99),
+VALUES ('ord001', 'con0001', 1, 499.99),
        ('ord001', 'game001', 1, 59.99),
        ('ord001', 'coll001', 1, 9.99),
        ('ord001', 'game003', 1, 59.99);
