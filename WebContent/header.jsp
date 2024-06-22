@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="rc.model.UtenteBean,java.util.*, javax.servlet.RequestDispatcher" %>
+
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%
+	String tipoutente = (String) request.getSession(false).getAttribute("currentSessionUser");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,16 +40,34 @@
 		</div>
 		
 		
-		<!--
-		<%
-		/*
-		System.out.println("Diarrea");
-		HttpSession sessione = request.getSession(true); 
-		System.out.println("Spiscio");
-		UtenteBean utente = (UtenteBean) sessione.getAttribute("currentSessionUser");
-
 		
-		if(utente.getTipo() != null){
+		<%
+		if(tipoutente != null){
+			if(tipoutente.equals("Utente")) { %>
+		    <div class="TastoLogin">
+				<span style="font-size:30px;cursor:pointer">
+					<a href="user/account.jsp"><img src="images/fotoprofilodellutente" alt="open"></a>
+				</span>
+			</div>
+		<% } else if(tipoutente.equals("Admin")) { %>
+		    <div class="TastoLogin">
+					<span style="font-size:30px;cursor:pointer">
+						<a href="admin/admin.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
+					</span>
+				</div>
+		<% }
+		}else{
+		%>
+		<div class="TastoLogin">
+			<span style="font-size:30px;cursor:pointer">
+				<a href="login.jsp"><img src="images/icone/Header/crashIconLogin.png" alt="openLog"></a>
+			</span>
+		</div>
+		<% }%>
+		<!--	
+			
+			
+			/*
 			if(utente.getTipo().equals("Utente")){ */
 		%>
 				<div class="TastoLogin">

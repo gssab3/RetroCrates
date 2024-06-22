@@ -14,7 +14,7 @@
 	<script src="scripts/focusregister.js" type="text/javascript"></script>
 	<script src="scripts/darivedere.js" type="text/javascript"></script>
 </head>
-<body>
+<body style="background-image: none;">
  
 	 <div class="squarelogin">
             <div class="contenutologin">

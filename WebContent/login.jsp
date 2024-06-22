@@ -12,7 +12,7 @@
 	<script src="scripts/cart.js" type="text/javascript"></script>
 	<script src="scripts/focuslogin.js" type="text/javascript"></script>
 </head>
-<body>
+<body style="background-image: none;">
  
 	 <div class="squarelogin">
             <div class="contenutologin">
