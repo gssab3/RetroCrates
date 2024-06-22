@@ -84,6 +84,19 @@
 
 	<div id="risultatiRicerca"></div>
 
+	<div class="contieniform">
+	<form method="GET" action="VediOrdini?sort=1">
+		<label>Data di Partenza: </label>
+        <input type="date" name="datax">
+        <br>
+        <label>Data di Fine: </label>
+        <input type="date" name="datay">
+        <br>
+        <input type="hidden" name="utente" value="TUTTI">
+        <input type="submit" value="Cerca" class="cerca">
+	</form>
+	</div>
+
 	<table class="tabella">
 		<tr>
 		    <th>IdOrdine</th>
@@ -114,18 +127,7 @@
 					}
 				%> 
 	</table>
-	<div class="contieniform">
-	<form method="GET" action="VediOrdini?sort=1">
-		<label>Data di Partenza: </label>
-        <input type="date" name="datax">
-        <br>
-        <label>Data di Fine: </label>
-        <input type="date" name="datay">
-        <br>
-        <input type="hidden" name="utente" value="TUTTI">
-        <input type="submit" value="Cerca" class="cerca">
-	</form>
-	</div>
+	
 	<jsp:include page="../footer.jsp"/>
 
 

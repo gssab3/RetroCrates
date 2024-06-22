@@ -7,7 +7,7 @@
 <%
 	Collection<?> utenti = (Collection<?>) request.getAttribute("utenti");
 	if(utenti == null) {
-		response.sendRedirect(request.getContextPath()+"/Utenti");	
+		response.sendRedirect(request.getContextPath()+"/Admin");	
 		return;
 	} 
 %>
@@ -87,8 +87,29 @@
 	</form>
 
 	<div id="risultatiRicerca"></div>
+			
+			<!--  
+		<form method="GET" action="VediOrdini?sort=1">
+			<label class="titoloemailpass">Data di Partenza</label>
+       		<input type="date" name="datax">
+        	<label>Data di Fine</label>
+        	<input type="date" name="datay">
+		</form> -->
 		
+		<div class="aggiungere">
+		
+		<a href="AddProdotto?TipoProdotto=Console" class="add">Aggiungi una Console al Catalogo</a>
+		<br>
+		<a href="AddProdotto?TipoProdotto=Videogioco" class="add">Aggiungi un Videogioco al Catalogo</a>
+		<br>
+		<a href="AddProdotto?TipoProdotto=Collezionabile" class="add">Aggiungi un Collezionabile al Catalogo</a>
+		<br>
+		
+		</div>
+			<br>
+			<a class="totordini" href="/RetroCrates/VediOrdini?sort=0&utente=TUTTI">Tutti gli Ordini</a>
 		<table class="tabella">
+		
 		<tr>
 		    <th>Username</th>
 		    <th>Email</th>
@@ -119,15 +140,6 @@
 				%> 
 	</table>
 		
-	 <a href="/RetroCrates/VediOrdini?sort=0&utente=TUTTI">Tutti gli Ordini</a>
-	
-	<!--  
-	<form method="GET" action="VediOrdini?sort=1">
-		<label class="titoloemailpass">Data di Partenza</label>
-        <input type="date" name="datax">
-        <label>Data di Fine</label>
-        <input type="date" name="datay">
-	</form> -->
 	<jsp:include page="../footer.jsp"/>
 
 

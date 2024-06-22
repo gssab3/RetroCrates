@@ -176,3 +176,53 @@ input[type="date"] {
   background: none;
 }
 
+.add {
+    display: inline-block;
+    padding: 13px 16px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #FFFFFF;
+    background-color: #1899D6;
+    border: none;
+    border-radius: 16px;
+    text-transform: uppercase;
+    transition: filter .2s;
+    text-decoration: none; 
+}
+
+.add:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -4px;
+    left: 0;
+    z-index: -1;
+    border-radius: 16px;
+    background-clip: padding-box;
+}
+
+.add:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+.add:disabled {
+    cursor: auto;
+}
+
+.add:active {
+    border-width: 4px 0 0;
+    background: none;
+}
+
+.aggiungere {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.totordini{
+}
+
