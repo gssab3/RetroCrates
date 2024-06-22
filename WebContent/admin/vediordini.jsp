@@ -14,6 +14,7 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
+ <link type="text/css" rel="stylesheet" href="styles/Tabelle.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
@@ -83,7 +84,7 @@
 
 	<div id="risultatiRicerca"></div>
 
-	<table>
+	<table class="tabella">
 		<tr>
 		    <th>IdOrdine</th>
 		    <th>Utente</th>
@@ -113,14 +114,18 @@
 					}
 				%> 
 	</table>
+	<div class="contieniform">
 	<form method="GET" action="VediOrdini?sort=1">
-		<label>Data di Partenza</label>
+		<label>Data di Partenza: </label>
         <input type="date" name="datax">
-        <label>Data di Fine</label>
+        <br>
+        <label>Data di Fine: </label>
         <input type="date" name="datay">
+        <br>
         <input type="hidden" name="utente" value="TUTTI">
-        <input type="submit" value="Cerca">
+        <input type="submit" value="Cerca" class="cerca">
 	</form>
+	</div>
 	<jsp:include page="../footer.jsp"/>
 
 

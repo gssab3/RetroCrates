@@ -18,7 +18,8 @@
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
- <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
+ <link type="text/css" rel="stylesheet" href="styles/Tabelle.css"/>
+  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
 	<script src="scripts/cart.js" type="text/javascript"></script>
 	<script src="scripts/searchbar.js" type="text/javascript"></script>
@@ -87,7 +88,7 @@
 
 	<div id="risultatiRicerca"></div>
 		
-		<table>
+		<table class="tabella">
 		<tr>
 		    <th>Username</th>
 		    <th>Email</th>

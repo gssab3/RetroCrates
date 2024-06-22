@@ -231,7 +231,7 @@
     %>
 </div>
 
-
+<!--	
 	<form action="">
 		<label for="Tipo">Tipo di Prodotto</label>
 		<select name="Tipo" id="tipo">
@@ -239,7 +239,7 @@
 		  <option value="Videogiochi">Videogioco</option>
 		  <option value="Collezionabile">Collezionabile</option>
 		</select>
-	</form>
+	</form>   -->
 
 
 
