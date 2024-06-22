@@ -74,33 +74,33 @@ CREATE TABLE ContieneProd(
 );
 
 -- Console
-INSERT INTO Prodotto VALUES ('con0001', 'PS5', 'Sony PlayStation 5', 100, TRUE, NULL, 499.99, 0, 0, 'Sony', NULL, 'PS5', NULL, 'Console', NULL, NULL);
-INSERT INTO Prodotto VALUES ('con0002', 'Xbox Series X', 'Microsoft Xbox Series X', 100, TRUE, NULL, 499.99, 0, 0, 'Microsoft', NULL, 'Xbox_Series_X_S', NULL, 'Console', NULL, NULL);
-INSERT INTO Prodotto VALUES ('con0003', 'Nintendo Switch', 'Nintendo Switch', 100, TRUE, NULL, 299.99, 0, 0, 'Nintendo', NULL, 'Switch', NULL, 'Console', NULL, NULL);
-INSERT INTO Prodotto VALUES ('con0004', 'Atari 2600', 'Atari 2600', 100, TRUE, NULL, 199.99, 0, 0, 'Atari', NULL, 'Atari_2600', NULL, 'Console', NULL, 'RetroCrates');
-INSERT INTO Prodotto VALUES ('con0005', 'Sega Mega Drive', 'Sega Mega Drive', 100, TRUE, NULL, 149.99, 0, 0, 'Sega', NULL, 'Sega_Mega_Drive', NULL, 'Console', NULL, 'RetroCrates');
+INSERT INTO Prodotto VALUES ('con0001', 'PS5', 'Sony PlayStation 5', 100, TRUE, NULL, 499.99, 4, 'Sony', NULL, NULL, NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con0002', 'Xbox Series X', 'Microsoft Xbox Series X', 100, TRUE, NULL, 499.99, 4, 'Microsoft', NULL, NULL, NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con0003', 'Nintendo Switch', 'Nintendo Switch', 100, TRUE, NULL, 299.99, 5, 'Nintendo', NULL, NULL, NULL, 'Console', NULL, NULL);
+INSERT INTO Prodotto VALUES ('con0004', 'Atari 2600', 'Atari 2600', 100, TRUE, NULL, 199.99, 5, 'Atari', NULL, NULL, NULL, 'Console', NULL, 'RetroCrates');
+INSERT INTO Prodotto VALUES ('con0005', 'Sega Mega Drive', 'Sega Mega Drive', 100, TRUE, NULL, 149.99, 5, 'Sega', NULL, NULL, NULL, 'Console', NULL, 'RetroCrates');
 
 -- Videogiochi
-INSERT INTO Prodotto VALUES ('game001', 'The Last of Us Part II', 'Azione Avventura', 100, TRUE, NULL, 59.99, 0, 0, 'Naughty_Dog', 'Action_Adventure', 'PS4', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
-INSERT INTO Prodotto VALUES ('game002', 'Halo Infinite', 'Sparatutto', 100, TRUE, NULL, 59.99, 0, 0, 'Microsoft_Studios', 'Sparatutto', 'Xbox_Series_X_S', 'Digitale', 'Videogioco', NULL, 'Standard_Edition');
-INSERT INTO Prodotto VALUES ('game003', 'The Legend of Zelda: Breath of the Wild', 'Azione Avventura', 100, TRUE, NULL, 59.99, 0, 0, 'Nintendo', 'Action_Adventure', 'Switch', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
-INSERT INTO Prodotto VALUES ('game004', 'Pac-Man', 'Arcade', 100, TRUE, NULL, 19.99, 0, 0, 'Bandai_Namco_Entertainment', 'Picchiaduro', 'Atari_2600', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
-INSERT INTO Prodotto VALUES ('game005', 'Sonic the Hedgehog', 'Azione Avventura', 100, TRUE, NULL, 29.99, 0, 0, 'Sega', 'Action_Adventure', 'Sega_Mega_Drive', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
+INSERT INTO Prodotto VALUES ('game001', 'The Last of Us Part II', 'Azione Avventura', 100, TRUE, NULL, 59.99, 5, 'Naughty_Dog', 'Action_Adventure', 'PS4', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
+INSERT INTO Prodotto VALUES ('game002', 'Halo Infinite', 'Sparatutto', 100, TRUE, NULL, 59.99, 4, 'Microsoft_Studios', 'Sparatutto', 'Xbox_Series_X_S', 'Digitale', 'Videogioco', NULL, 'Standard_Edition');
+INSERT INTO Prodotto VALUES ('game003', 'The Legend of Zelda: Breath of the Wild', 'Azione Avventura', 100, TRUE, NULL, 59.99, 5, 'Nintendo', 'Action_Adventure', 'Switch', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
+INSERT INTO Prodotto VALUES ('game004', 'Pac-Man', 'Arcade', 100, TRUE, NULL, 19.99, 4, 'Bandai_Namco_Entertainment', 'Picchiaduro', 'Atari_2600', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
+INSERT INTO Prodotto VALUES ('game005', 'Sonic the Hedgehog', 'Azione Avventura', 100, TRUE, NULL, 29.99, 3, 'Sega', 'Action_Adventure', 'Sega_Mega_Drive', 'Fisico', 'Videogioco', NULL, 'Standard_Edition');
 
 -- Collezionabili
-INSERT INTO Prodotto VALUES ('coll001', 'Poster di The Last of Us Part II', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Naughty_Dog', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
-INSERT INTO Prodotto VALUES ('coll002', 'Tazza di Halo Infinite', 'Tazza con logo di Halo Infinite', 100, TRUE, NULL, 7.99, 0, 0, 'Microsoft_Studios', NULL, NULL, NULL, 'Collezionabile', 'Gadget', 'Normale');
-INSERT INTO Prodotto VALUES ('coll003', 'Funko Pop Pac-Man', 'Funko Pop di Pac-Man', 100, TRUE, NULL, 9.99, 0, 0, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
-INSERT INTO Prodotto VALUES ('coll004', 'Poster di Sonic the Hedgehog', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 0, 0, 'Sega', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
+INSERT INTO Prodotto VALUES ('coll001', 'Poster di The Last of Us Part II', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 3, 'Naughty_Dog', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
+INSERT INTO Prodotto VALUES ('coll002', 'Tazza di Halo Infinite', 'Tazza con logo di Halo Infinite', 100, TRUE, NULL, 7.99, 5, 'Microsoft_Studios', NULL, NULL, NULL, 'Collezionabile', 'Gadget', 'Normale');
+INSERT INTO Prodotto VALUES ('coll003', 'Funko Pop Pac-Man', 'Funko Pop di Pac-Man', 100, TRUE, NULL, 9.99, 1, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
+INSERT INTO Prodotto VALUES ('coll004', 'Poster di Sonic the Hedgehog', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 4, 'Sega', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
 
 -- Insert a user
 INSERT INTO Utente (Username, Email, Passwordhash, Datanas, Tipo)
-VALUES ('user1', 'user1@example.com', 'passwordhash', '2000-01-01', 'Utente'),
-		('Admin', NULL, 'Admin', '2004-01-27', 'Admin');
+VALUES ('user1', 'user1@example.com', 'bb0576674f2587b945c53ce914f52fcf96d924f1f2a194650f52b9a9a35a1270', '2000-01-01', 'Utente'),
+		('Admin', NULL, 'c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f', '2004-01-27', 'Admin');
 
 -- Insert an order for the user
 INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, DataOrdine, CostoTotale)
-VALUES ('ord001', 'user1', '123 Main St, City, Country', 'user1@example.com', '2024-11-11', 629.96);
+VALUES ('ord001', 'user1', '123 Main St, City, Country', 'user1@example.com', '2024-11-11', 619.97);
 
 -- Insert 4 items into the order
 INSERT INTO ContieneProd (IdOrdine, IdProdotto, Qta, Costo)
