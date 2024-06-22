@@ -128,11 +128,7 @@
 		    <th>Destinazione</th>
 		    <th>Email</th>
 		    <th>Data</th>
-<<<<<<< HEAD
 		    <th>Costo
-=======
-		    <th>Costo</th>
->>>>>>> branch 'master' of https://github.com/gssab3/RetroCrates.git
 		</tr>
 				<%
 				if (ordini != null && ordini.size() != 0) {
