@@ -1,12 +1,13 @@
+<%@page import="rc.model.UtenteBean"%>
 <%@page import="rc.model.OrdineBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
 
 <%
-	Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
-	if(ordini == null) {
-		response.sendRedirect(request.getContextPath()+"/VediOrdini?sort=0");	
+	Collection<?> utenti = (Collection<?>) request.getAttribute("utenti");
+	if(utenti == null) {
+		response.sendRedirect(request.getContextPath()+"/UtentiServlet");	
 		return;
 	} 
 %>
@@ -85,37 +86,39 @@
 	</form>
 
 	<div id="risultatiRicerca"></div>
-
-	<table>
+		
+		<table>
 		<tr>
-		    <th>IdOrdine</th>
-		    <th>Utente</th>
-		    <th>Destinazione</th>
+		    <th>Username</th>
 		    <th>Email</th>
-		    <th>Data</th>
+		    <th>Password</th>
+		    <th>Data di Nascita</th>
+		   	<th>Ordini</th>
 		</tr>
 				<%
-				if (ordini != null && ordini.size() != 0) {
-					Iterator<?> it = ordini.iterator();
+				if (utenti != null && utenti.size() != 0) {
+					Iterator<?> it = utenti.iterator();
 					while (it.hasNext()) {
-						OrdineBean bean = (OrdineBean) it.next();
+						UtenteBean bean = (UtenteBean) it.next();
 				%>
 					<tr>
-					    <td><%=bean.getIdOrdine()%></td>
-					    <td><%=bean.getUtente()%></td>
-					    <td><%=bean.getDestinazione()%></td>
+					    <td><%=bean.getUsername()%></td>
 					    <td><%=bean.getEmail()%></td>
-					    <td><%=bean.getDataOrdine()%></td>
+					    <td><%=bean.getPasswordHash()%></td>
+					    <td><%=bean.getDatanas()%></td>
+					    <td><a href="/VediOrdini?sort=2&utente=<%=bean.getUsername()%>">Dettagli Ordini</a></td>
 					</tr>
 				<%
 					}
 				} else {
 					%>
-					<p>Nessun Ordine disponibile.</p>
+					<p>Nessun Utente disponibile.</p>
 				<%
 					}
 				%> 
 	</table>
+		
+	
 	<form method="GET" action="VediOrdini?sort=1">
 		<label class="titoloemailpass">Data di Partenza</label>
         <input type="date" name="datax">

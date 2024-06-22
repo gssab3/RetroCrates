@@ -272,4 +272,36 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 		}		
 		return products;
 	}
+	
+	public Collection<OrdineBean> doRetrieveByUser(String user) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		Collection<OrdineBean> ordini = new LinkedList<OrdineBean>();
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Utente = ?";
+		try {
+			connection = ds.getConnection();	
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, user);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				OrdineBean bean = new OrdineBean();
+				bean.setIdOrdine(rs.getString("IdOrdine"));
+				bean.setUtente(rs.getString("Utente"));
+				bean.setDestinazione(rs.getString("Destinazione"));
+				bean.setEmail(rs.getString("Email"));
+				bean.setDataOrdine(rs.getString("DataOrdine"));
+				bean.setCostoTotale(rs.getFloat("CostoTotale"));
+				ordini.add(bean);
+			}
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return ordini;
+	}
 }

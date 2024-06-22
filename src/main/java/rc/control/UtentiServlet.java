@@ -11,48 +11,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
+import rc.model.UtenteBean;
+import rc.model.UtenteDAODataSource;
 
-import rc.model.ProdottoBean;
-import rc.model.ProdottoDAODataSource;
-
-@WebServlet("/index")
-public class index extends HttpServlet{
+@WebServlet("/Utenti")
+public class UtentiServlet extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	public index() {
-		super();
-	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ProdottoDAODataSource model = new ProdottoDAODataSource();
-		Collection<ProdottoBean> prodotti = null;
-		
-		try {
-			prodotti = model.doRetrieveAll("");
 
-			request.setAttribute("prodotti", prodotti);
-			
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UtenteDAODataSource model = new UtenteDAODataSource();
+		Collection<UtenteBean> utenti = null;
+		try {
+			utenti = model.doRetrieveAll("");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(request.getContextPath()+"/index.jsp");
-			dispatcher.forward(request, response);
-		}
+		request.setAttribute("utenti", utenti);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/Admin.jsp");
+		dispatcher.forward(request, response);
 	}
-
-
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
 }

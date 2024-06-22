@@ -65,6 +65,20 @@ public class VediOrdini extends HttpServlet{
 				dispatcher.forward(request, response);
 			}
 		}
+		else if (sortMode.equals("2")) {
+			String utente = request.getParameter("utente");
+			try {
+				ordini = model.doRetrieveByUser(utente);
+				request.setAttribute("ordini", ordini);
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			finally {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/vediordini.jsp");
+				dispatcher.forward(request, response);
+			}
+			
+		}
 		
 	}
 
