@@ -108,13 +108,13 @@
 				<div class="colonnaprodotto">
 					<div class = "immagineprodotto">
 						<% if(image!=null){ %>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" style="width: 200px"></a>
+							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" style="width: 200px; height: 225px"></a>
 						<%
 							}
 							else
 							{
 						%>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
+							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px; height: 225px"></a>
 						<%
 							}
 						%>

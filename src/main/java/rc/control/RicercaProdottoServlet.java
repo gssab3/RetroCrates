@@ -44,7 +44,7 @@ public class RicercaProdottoServlet extends HttpServlet {
 				for(ProdottoBean p : prodotti)
 					risultato.add(p);
 				if(prodotti.isEmpty()) {
-					request.setAttribute("TipoProdotto", "Cacca");
+					request.setAttribute("TipoProdotto", "TUTTI");
 				}else {
 					request.setAttribute("TipoProdotto", tipoprodotto);
 				}

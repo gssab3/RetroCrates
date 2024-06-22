@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
+<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream" %>
 <%@ page import="java.util.Collection" %>
 <%
 
@@ -143,18 +143,24 @@
                     while (it.hasNext()) {
                         ProdottoBean bean = (ProdottoBean) it.next();
                         Float costo = bean.getCosto();
-                        String image="NULL"; //= "images/productIMG/" + bean.getPicture();
+                        String image = null;
+                        if (bean.getPicture() != null) {
+						    InputStream blob = bean.getPicture().getBinaryStream();
+						    byte[] data = new byte[(int) bean.getPicture().length()];
+						    blob.read(data);
+						    image = Base64.getEncoder().encodeToString(data);
+						}
                 %>
                 <div class="colonnaprodotto">
                     <div class = "immagineprodotto">
-                        <% if(image!="NULL"){ %>
-                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "<%=image%>" alt = "ImmagineProdotto"></a>
+                        <% if(image!=null){ %>
+                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "data:image/png;base64,<%=image%>" alt = "ImmagineProdotto" style="width: 200px; height: 225px"></a>
                         <%
                             }
                             else
                             {
                         %>
-                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px"></a>
+                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px; height: 225px"></a>
                         <%
                             }
                         %>

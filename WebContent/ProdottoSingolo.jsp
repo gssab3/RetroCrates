@@ -1,6 +1,6 @@
 <%@page import="rc.control.ProdottoServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
+<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.control.utils" %>
 <%@ page import="java.util.Collection" %>
 <%
 	
@@ -8,16 +8,12 @@
 	
 
 	ProdottoBean prodotto = (ProdottoBean) request.getAttribute("prodotto");
-	int x;	
 	if(prodotto == null) {
 		response.sendRedirect("./ProdottoServlet?IdProdotto=" + idprodotto);
 		return;
-	} else if(prodotto.getRecTot()==0){
-		x=1;
-	}else{
-		x=prodotto.getRecTot();
 	}
-
+	
+	
 %>
 
 
@@ -106,11 +102,18 @@
     <%
     if (prodotto != null) {
         if (prodotto.getTipoProdotto().equals("Videogioco")) {
+        String image = null;
+        if (prodotto.getPicture() != null) {
+			InputStream blob = prodotto.getPicture().getBinaryStream();
+			byte[] data = new byte[(int) prodotto.getPicture().length()];
+			blob.read(data);
+			image = Base64.getEncoder().encodeToString(data);
+		}
     %>
     
             <div class="immagine-prodotto">
-                <% if (prodotto.getPicture() != null) { %>
-                    <img src="<%= prodotto.getPicture() %>" class="imgprodotto" alt="ImmagineProdotto">
+                <% if (image != null) { %>
+                    <img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
                 <% } else { %>
                     <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
                 <% } %>
@@ -119,14 +122,18 @@
             <div class="info-prodotto">
                 <p><%= prodotto.getNome() %></p>
                 <p>Quantità Disponibile: <%= prodotto.getQta() %></p>
-                <p><%= prodotto.getCosto() %>€</p>
-                <p><%= (prodotto.getStelleTot()) / x %></p>
-                <p><%= prodotto.getRecTot() %></p>
-                <p>Produttore: <%= prodotto.getProduttore() %></p>
-                <p><%= prodotto.getGenere() %></p>
-                <p><%= prodotto.getPiattaforma() %></p>
-                <p><%= prodotto.getTipoGioco() %></p>
-                <p><%= prodotto.getEdizione() %></p>
+                <p>Costo: <%= prodotto.getCosto() %>€</p>
+                <!--  Stelle  --> 
+                	<span> <% for(int i=1; i<=5; i++) {
+                		if(prodotto.getStelleTot() >= i)
+                			%><img src="images/stellapiena.png"> <% 
+                			else
+                			%> <img src="images/stellavuota.png"> <%} %></span>
+                <p>Produttore: <%= utils.formatta(prodotto.getProduttore()) %></p>
+                <p>Genere: <%= utils.formatta(prodotto.getGenere()) %></p>
+                <p>Piattaforma: <%= utils.formatta(prodotto.getPiattaforma()) %></p>
+                <p>Formato: <%= prodotto.getTipoGioco() %></p>
+                <p>Edizione: <%= utils.formatta(prodotto.getEdizione()) %></p>
                  <% if (prodotto.getQta() == 0) { %>
             
                 <h1>Prodotto Non Disponibile</h1>
@@ -149,11 +156,18 @@
            
     <%
         } else if (prodotto.getTipoProdotto().equals("Console")) {
+        	String image = null;
+            if (prodotto.getPicture() != null) {
+    			InputStream blob = prodotto.getPicture().getBinaryStream();
+    			byte[] data = new byte[(int) prodotto.getPicture().length()];
+    			blob.read(data);
+    			image = Base64.getEncoder().encodeToString(data);
+    		}
     %>
     
             <div class="immagine-prodotto">
-                <% if (prodotto.getPicture() != null) { %>
-                    <img src="<%= prodotto.getPicture() %>" class="imgprodotto" alt="ImmagineProdotto">
+                <% if (image != null) { %>
+                    <img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
                 <% } else { %>
                     <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
                 <% } %>
@@ -162,10 +176,14 @@
             <div class="info-prodotto">
                 <p><%= prodotto.getNome() %></p>
                 <p>Quantità Disponibile: <%= prodotto.getQta() %></p>
-                <p><%= prodotto.getCosto() %>€</p>
-                <p><%= (prodotto.getStelleTot()) / x %></p>
-                <p><%= prodotto.getRecTot() %></p>
-                <p>Produttore: <%= prodotto.getProduttore() %></p>
+                <p>Costo: <%= prodotto.getCosto() %>€</p>
+                <!--  Stelle  --> 
+                	<span> <% for(int i=1; i<=5; i++) {
+                		if(prodotto.getStelleTot() >= i)
+                			%><img src="images/stellapiena.png"> <% 
+                			else
+                			%> <img src="images/stellavuota.png"> <%} %></span>
+                <p>Produttore: <%= utils.formatta(prodotto.getProduttore()) %></p>
                  <% if (prodotto.getQta() == 0) { %>
             
                 <h1>Prodotto Non Disponibile</h1>
@@ -189,10 +207,17 @@
             
     <%
         } else if (prodotto.getTipoProdotto().equals("Collezionabile")) {
+        	String image = null;
+            if (prodotto.getPicture() != null) {
+    			InputStream blob = prodotto.getPicture().getBinaryStream();
+    			byte[] data = new byte[(int) prodotto.getPicture().length()];
+    			blob.read(data);
+    			image = Base64.getEncoder().encodeToString(data);
+    		}
     %>
             <div class="immagine-prodotto">
-                <% if (prodotto.getPicture() != null) { %>
-                    <img src="<%= prodotto.getPicture() %>" class="imgprodotto" alt="ImmagineProdotto">
+                <% if (image != null) { %>
+                    <img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
                 <% } else { %>
                     <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
                 <% } %>
@@ -200,12 +225,16 @@
             <div class="info-prodotto">
                 <p><%= prodotto.getNome() %></p>
                 <p>Quantità Disponibile: <%= prodotto.getQta() %></p>
-                <p><%= prodotto.getCosto() %>€</p>
-                <p><%= (prodotto.getStelleTot()) / x %></p>
-                <p><%= prodotto.getRecTot() %></p>
-                <p>Produttore: <%= prodotto.getProduttore() %></p>
-                <p><%= prodotto.getCategoria() %></p>
-                <p><%= prodotto.getEdizione() %></p>
+                <p>Costo: <%= prodotto.getCosto() %>€</p>
+                <!--  Stelle  --> 
+                	<span> <% for(int i=1; i<=5; i++) {
+                		if(prodotto.getStelleTot() >= i)
+                			%><img src="images/stellapiena.png"> <% 
+                			else
+                			%> <img src="images/stellavuota.png"> <%} %></span>
+                <p>Produttore: <%= utils.formatta(prodotto.getProduttore()) %></p>
+                <p>Categoria: <%= utils.formatta(prodotto.getCategoria()) %></p>
+                <p>Edizione: <%= utils.formatta(prodotto.getEdizione()) %></p>
                  <% if (prodotto.getQta() == 0) { %>
             
                 <h1>Prodotto Non Disponibile</h1>
@@ -230,18 +259,6 @@
     }
     %>
 </div>
-
-<!--	
-	<form action="">
-		<label for="Tipo">Tipo di Prodotto</label>
-		<select name="Tipo" id="tipo">
-		  <option value="Console">Console</option>
-		  <option value="Videogiochi">Videogioco</option>
-		  <option value="Collezionabile">Collezionabile</option>
-		</select>
-	</form>   -->
-
-
 
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

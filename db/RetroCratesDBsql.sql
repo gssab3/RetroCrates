@@ -90,7 +90,7 @@ INSERT INTO Prodotto VALUES ('game005', 'Sonic the Hedgehog', 'Azione Avventura'
 -- Collezionabili
 INSERT INTO Prodotto VALUES ('coll001', 'Poster di The Last of Us Part II', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 3, 'Naughty_Dog', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
 INSERT INTO Prodotto VALUES ('coll002', 'Tazza di Halo Infinite', 'Tazza con logo di Halo Infinite', 100, TRUE, NULL, 7.99, 5, 'Microsoft_Studios', NULL, NULL, NULL, 'Collezionabile', 'Gadget', 'Normale');
-INSERT INTO Prodotto VALUES ('coll003', 'Funko Pop Pac-Man', 'Funko Pop di Pac-Man', 100, TRUE, NULL, 9.99, 1, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
+INSERT INTO Prodotto VALUES ('coll003', 'Funko Pop Pac-Man', 'Funko Pop di Pac-Man', 100, FALSE, NULL, 9.99, 1, 'Funko', NULL, NULL, NULL, 'Collezionabile', 'Figure', 'Normale');
 INSERT INTO Prodotto VALUES ('coll004', 'Poster di Sonic the Hedgehog', 'Poster di alta qualità', 100, TRUE, NULL, 14.99, 4, 'Sega', NULL, NULL, NULL, 'Collezionabile', 'Poster', 'Normale');
 
 -- Insert a user
