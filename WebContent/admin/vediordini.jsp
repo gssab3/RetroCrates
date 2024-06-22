@@ -114,10 +114,12 @@
 				%> 
 	</table>
 	<form method="GET" action="VediOrdini?sort=1">
-		<label class="titoloemailpass">Data di Partenza</label>
+		<label>Data di Partenza</label>
         <input type="date" name="datax">
         <label>Data di Fine</label>
         <input type="date" name="datay">
+        <input type="hidden" name="utente" value="TUTTI">
+        <input type="submit" value="Cerca">
 	</form>
 	<jsp:include page="../footer.jsp"/>
 

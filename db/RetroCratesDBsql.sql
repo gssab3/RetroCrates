@@ -115,7 +115,8 @@ INSERT INTO Prodotto VALUES ('coll005', 'Poster di Sonic the Hedgehog', 'Poster 
 
 -- Insert a user
 INSERT INTO Utente (Username, Email, Passwordhash, Datanas, Tipo)
-VALUES ('user1', 'user1@example.com', 'passwordhash', '2000-01-01', 'Utente');
+VALUES ('user1', 'user1@example.com', 'passwordhash', '2000-01-01', 'Utente'),
+		('Admin', NULL, 'Admin', '2004-01-27', 'Admin');
 
 -- Insert an order for the user
 INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, DataOrdine, CostoTotale)

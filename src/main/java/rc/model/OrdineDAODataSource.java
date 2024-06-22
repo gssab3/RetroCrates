@@ -200,9 +200,16 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 
 	    Collection<OrdineBean> products = new LinkedList<OrdineBean>();
 
+	    if (datex != null && datex.isEmpty()) {
+	        datex = null;
+	    }
+	    if (datey != null && datey.isEmpty()) {
+	        datey = null;
+	    }
+	    
 	    //Solo datay quindi tutti fino a datay
 	    if(datex == null && datey!=null) {
-	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine < ?";
+	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine <= ?";
 	        String selectSQL2 = "SELECT SUM(Costo) AS Costo FROM ContieneProd WHERE IdOrdine = ?";
 	        try {
 	            connection = ds.getConnection();    
@@ -245,7 +252,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 	    }
 	    //Solo datax, quindi da lì in poi
 	    else if(datey == null && datex!=null) {
-	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine > ?";
+	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine >= ?";
 	        String selectSQL2 = "SELECT SUM(Costo) AS Costo FROM ContieneProd WHERE IdOrdine = ?";
 	        try {
 	            connection = ds.getConnection();    
@@ -288,7 +295,7 @@ public class OrdineDAODataSource implements IBeanDAO<OrdineBean>{
 	    }
 	    //Entrambe    
 	    else if(datex != null && datey != null) {
-	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine BETWEEN ? AND ?";
+	    	String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE DataOrdine BETWEEN ? AND ?";
 	        String selectSQL2 = "SELECT SUM(Costo) AS Costo FROM ContieneProd WHERE IdOrdine = ?";
 	        try {
 	            connection = ds.getConnection();    
