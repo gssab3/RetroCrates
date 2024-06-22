@@ -37,11 +37,13 @@ public class VediOrdini extends HttpServlet{
 		String sortMode = request.getParameter("sort");
 		String datex = request.getParameter("datax");
 		String datey = request.getParameter("datay");
-		if(sortMode.equals("0"))
+		String utente = request.getParameter("utente");
+		if(sortMode == null)
+			sortMode = "0";
+		if(sortMode.equals("0") && utente.equals("TUTTI"))
 		{
 			try {
 				ordini = model.doRetrieveAll("");
-
 				request.setAttribute("ordini", ordini);
 				
 			} catch (SQLException e) {
@@ -66,7 +68,6 @@ public class VediOrdini extends HttpServlet{
 			}
 		}
 		else if (sortMode.equals("2")) {
-			String utente = request.getParameter("utente");
 			try {
 				ordini = model.doRetrieveByUser(utente);
 				request.setAttribute("ordini", ordini);

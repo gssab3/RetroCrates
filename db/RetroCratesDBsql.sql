@@ -118,8 +118,8 @@ INSERT INTO Utente (Username, Email, Passwordhash, Datanas, Tipo)
 VALUES ('user1', 'user1@example.com', 'passwordhash', '2000-01-01', 'Utente');
 
 -- Insert an order for the user
-INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, DataOrdine)
-VALUES ('ord001', 'user1', '123 Main St, City, Country', 'user1@example.com', '2024-11-11');
+INSERT INTO Ordine (IdOrdine, Utente, Destinazione, Email, DataOrdine, CostoTotale)
+VALUES ('ord001', 'user1', '123 Main St, City, Country', 'user1@example.com', '2024-11-11', 629.96);
 
 -- Insert 4 items into the order
 INSERT INTO ContieneProd (IdOrdine, IdProdotto, Qta, Costo)

@@ -1,14 +1,11 @@
 <%@page import="rc.model.OrdineBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
+<%@ page import="rc.model.*,java.util.*, javax.servlet.RequestDispatcher" %>
 
 <%
+	String utenteId = (String) request.getParameter("utente");
 	Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
-	if(ordini == null) {
-		response.sendRedirect(request.getContextPath()+"/VediOrdini?sort=0");	
-		return;
-	} 
 %>
 <!DOCTYPE html>
 <html>

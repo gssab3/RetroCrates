@@ -42,7 +42,7 @@ public class index extends HttpServlet{
 			e.printStackTrace();
 		}
 		finally {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(request.getContextPath()+"/index.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

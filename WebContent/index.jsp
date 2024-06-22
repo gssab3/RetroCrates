@@ -7,7 +7,7 @@
 	if(prodotti == null) {
 		response.sendRedirect(request.getContextPath()+"/index");	
 		return;
-	} 
+	}
 %>
 
 <!DOCTYPE html>

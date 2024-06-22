@@ -7,7 +7,7 @@
 <%
 	Collection<?> utenti = (Collection<?>) request.getAttribute("utenti");
 	if(utenti == null) {
-		response.sendRedirect(request.getContextPath()+"/UtentiServlet");	
+		response.sendRedirect(request.getContextPath()+"/Utenti");	
 		return;
 	} 
 %>
@@ -106,7 +106,7 @@
 					    <td><%=bean.getEmail()%></td>
 					    <td><%=bean.getPasswordHash()%></td>
 					    <td><%=bean.getDatanas()%></td>
-					    <td><a href="/VediOrdini?sort=2&utente=<%=bean.getUsername()%>">Dettagli Ordini</a></td>
+					    <td><a href="/RetroCrates/VediOrdini?sort=2&utente=<%=bean.getUsername()%>">Dettagli Ordini</a></td>
 					</tr>
 				<%
 					}
@@ -118,13 +118,15 @@
 				%> 
 	</table>
 		
-	
+	<!-- <a href="/RetroCrates/VediOrdini?sort=0&utente=TUTTI">Tutti gli Ordini</a>
+	-->
+	<!--  
 	<form method="GET" action="VediOrdini?sort=1">
 		<label class="titoloemailpass">Data di Partenza</label>
         <input type="date" name="datax">
         <label>Data di Fine</label>
         <input type="date" name="datay">
-	</form>
+	</form> -->
 	<jsp:include page="../footer.jsp"/>
 
 
