@@ -7,18 +7,19 @@
 <%
 	String tipo = (String) request.getParameter("TipoProdotto");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
- <link type="text/css" rel="stylesheet" href="styles/style.css"/>
- <link type="text/css" rel="stylesheet" href="styles/Tabelle.css"/>
+ <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
+ <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/Tabelle.css"/>
   <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
- 	<script src="scripts/sidebar.js" type="text/javascript"></script>
-	<script src="scripts/cart.js" type="text/javascript"></script>
-	<script src="scripts/searchbar.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/scripts/sidebar.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/scripts/cart.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/scripts/searchbar.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -58,7 +59,7 @@
 					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
 				</ul>
 			</li>
-			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
+			<li id="aboutus"><a href="../aboutus.html">Chi Siamo</a>
 			</li>	
 		</ul>
 	</div>
@@ -75,7 +76,7 @@
 	
 	<jsp:include page="../header.jsp"/>
 	
-	<form id="formRicerca" action="./RicercaProdottoServlet" method="get"> 
+	<form id="formRicerca" action="${pageContext.request.contextPath}/RicercaProdottoServlet" method="get"> 
     <input id="barraRicerca" name="query" type="text" placeholder="Cerca nel sito">
     <input id="submitRicerca" type="submit" value="Cerca" >
     <input type="hidden" name="input" value="1">

@@ -98,11 +98,11 @@
 		
 		<div class="aggiungere">
 		
-		<a href="AddProdotto.jsp?TipoProdotto=Console" class="add">Aggiungi una Console al Catalogo</a>
+		<a href="AdminServlet?TipoProdotto=Console" class="add">Aggiungi una Console al Catalogo</a>
 		<br>
-		<a href="AddProdotto.jsp?TipoProdotto=Videogioco" class="add">Aggiungi un Videogioco al Catalogo</a>
+		<a href="AdminServlet?TipoProdotto=Videogioco" class="add">Aggiungi un Videogioco al Catalogo</a>
 		<br>
-		<a href="AddProdotto.jsp?TipoProdotto=Collezionabile" class="add">Aggiungi un Collezionabile al Catalogo</a>
+		<a href="AdminServlet?TipoProdotto=Collezionabile" class="add">Aggiungi un Collezionabile al Catalogo</a>
 		<br>
 		
 		</div>
