@@ -2,23 +2,6 @@
 
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.model.UtenteBean" %>
 
-<%
-	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
-	if(prodotti == null) {
-		response.sendRedirect(request.getContextPath()+"/index");	
-		return;
-	}
-	
-	HttpSession sessione = request.getSession(true);
-	UtenteBean utUtil = (UtenteBean) sessione.getAttribute("currentSessionUser");
-	String tipoutente = null;
-	if(utUtil != null)
-		tipoutente = (String) utUtil.getTipo();
-	else
-		tipoutente = null;
-	
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,67 +81,43 @@
 	</form>
 
 	<div id="risultatiRicerca"></div>
-	
-	<div class = "rigaprodotti" style="margin-top: 20px">
-				<%
-				if (prodotti != null && prodotti.size() != 0) {
-					Iterator<?> it = prodotti.iterator();
-					while (it.hasNext()) {
-						ProdottoBean bean = (ProdottoBean) it.next();
-						Float costo = bean.getCosto();
-						String image = null;
-						if (bean.getPicture() != null) {
-						    InputStream blob = bean.getPicture().getBinaryStream();
-						    byte[] data = new byte[(int) bean.getPicture().length()];
-						    blob.read(data);
-						    image = Base64.getEncoder().encodeToString(data);
-						}
-						
-				%>
-				<div class="colonnaprodotto">
-					<div class = "immagineprodotto">
-						<% if(image!=null){ %>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" style="width: 200px; height: 225px"></a>
-						<%
-							}
-							else
-							{
-						%>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "images/productIMG/noimg.png" alt = "ImmagineProdotto" style="width: 200px; height: 225px"></a>
-						<%
-							}
-						%>
-					</div>
-					<div>
-						<p class = "nome"><%=bean.getNome()%></p>
-						<p class = "prezzo"><%=costo%>€</p>
-					</div>	
-						
-						
-						<%if(tipoutente != null){
-							if(tipoutente.equals("Admin")) { %>
-			    				<div>
-									<span  style="font-size:20px;cursor:pointer">
-										<a class="add alli" href="rimuovi">Rimuovi Prodotto</a>
-									</span>
-									
-									<span  style="font-size:20px;cursor:pointer">
-										<a class="add alli" href="modi">Modifica Prodotto</a>
-									</span>
-								</div>
-							<%}
-							}%>
-				</div>
-				<%
-					}
-				} else {
-					%>
-					<p>Nessun prodotto disponibile.</p>
-				<%
-					}
-				%> 
-	</div>
-	
+	<div class="aboutus">
+        <h1>Chi Siamo - RetroCrates</h1>
+        <p>Benvenuti su RetroCrates, un sito dedicato a riportare in vita la magia senza 
+        tempo dei videogiochi retrò. La nostra missione è far rivivere le emozioni e la 
+        nostalgia di un'epoca in cui i videogiochi erano più di un semplice passatempo, 
+        ma una vera e propria forma d'arte e di intrattenimento.</p>
+        
+        <h2>La Nostra Offerta</h2>
+        <p>Su RetroCrates, offriamo una vasta selezione di titoli classici che hanno segnato 
+        un'epoca, diventando autentici capolavori. Questi giochi, spesso dimenticati con il 
+        passare del tempo, sono pronti per essere riscoperti e apprezzati ancora una volta. 
+        Non ci limitiamo solo ai titoli più famosi, ma esploriamo anche gemme nascoste che 
+        meritano di essere conosciute. La nostra collezione comprende una gamma diversificata 
+        di giochi, dai pionieri del genere arcade ai leggendari RPG e platform che hanno definito 
+        intere generazioni di giocatori.</p>
+        
+        <h2>La Nostra Missione</h2>
+        <p>RetroCrates non è solo un negozio, ma il tuo portale per l’era d’oro dei videogiochi. 
+        La nostra passione per il retrogaming ci spinge a curare con attenzione ogni singolo titolo, 
+        garantendo che ogni gioco offerto sia in condizioni eccellenti e pronto per essere giocato. 
+        Siamo convinti che ogni gioco abbia una storia unica da raccontare e che meriti di essere 
+        tramandata alle future generazioni di gamer.</p>
+        
+        <h2>Perché Sceglierci?</h2>
+        <p>In un mondo in cui la tecnologia avanza rapidamente, è facile dimenticare le radici del gaming moderno. 
+        RetroCrates si impegna a preservare questa eredità, offrendo ai giocatori di oggi e di ieri 
+        l'opportunità di rivivere le avventure che hanno plasmato la storia dei videogiochi. 
+        Che tu sia un collezionista appassionato, un nostalgico in cerca di rivivere i propri ricordi d'infanzia, 
+        o un nuovo giocatore curioso di scoprire le origini del gaming, 
+        RetroCrates è il luogo perfetto per te.</p>
+        
+        <h2>Unisciti a Noi</h2>
+        <p>Ti invitiamo a esplorare il nostro catalogo e a unirti alla comunità di appassionati 
+        che condividono la nostra stessa passione per i videogiochi retrò. 
+        Su RetroCrates, la tua avventura nell’era d’oro dei videogiochi inizia qui. 
+        Scopri, gioca e rivivi i momenti indimenticabili che hanno fatto la storia del gaming.</p>
+    </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/ricerca.js" type="text/javascript"></script>
 	

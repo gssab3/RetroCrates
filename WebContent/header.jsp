@@ -42,7 +42,7 @@
 		</div>
 		
 		<div class="ContentHeader">
-			<a href="index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="${pageContext.request.contextPath}/images/logofinale.png"></a>
+			<a href="${pageContext.request.contextPath}/index.jsp" style="cursor: pointer"><img alt="logo RetroCrates" src="${pageContext.request.contextPath}/images/logofinale.png"></a>
 		</div>
 		
 		

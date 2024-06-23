@@ -21,6 +21,9 @@ p.Nomegioco{
 	font-family: 'GTAfont', sans-serif;
 	font-size: 30px;
 	margin: 20 auto;
+	background-color: white;
+	padding:1%;
+	border-radius: 15px;
 }
 
 div #output{
