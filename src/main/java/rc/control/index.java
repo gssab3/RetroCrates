@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
-
 import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
 
