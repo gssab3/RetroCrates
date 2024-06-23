@@ -16,6 +16,7 @@
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/Tabelle.css"/>
+ <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/addprodotto.css"/>
   <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
   <script src="${pageContext.request.contextPath}/scripts/sidebar.js" type="text/javascript"></script>
   <script src="${pageContext.request.contextPath}/scripts/cart.js" type="text/javascript"></script>
@@ -86,6 +87,7 @@
 	<div id="risultatiRicerca"></div>
 
 	<%if(tipo.equals("Console")){ %>
+		<div class="addprod">
 	
 	<form class="Console" action="" method="post">
 	<label for="IdProdotto">Id Prodotto:</label><br>
@@ -125,10 +127,11 @@
     </select><br> 
 	<input type="submit" value="Inserisci">
 </form>
-
+</div>
 	<%}else if(tipo.equals("Videogioco")){ %>
 	
-	<form class="Collezionabile" action="" method="post">
+	<div class="addprod">
+	<form class="Videogioco" action="" method="post">
 		<label for="IdProdotto">Id Prodotto:</label><br>
 		<input type="text" id="IdProdotto" name="IdProdotto" required><br>
 		<label for="nome">Nome:</label><br>
@@ -220,9 +223,10 @@
 		<input type="submit" value="Inserisci">
 	</form>
 
-
+</div>
 <%}else if(tipo.equals("Collezionabile")){ %>
 		
+		<div class="addprod">
 	<form class="Collezionabile" action="" method="post">
 		<label for="IdProdotto">Id Prodotto:</label><br>
 		<input type="text" id="IdProdotto" name="IdProdotto" required><br>
@@ -270,7 +274,7 @@
 	    </select><br>  
 		<input type="submit" value="Inserisci">
 	</form>
-	
+	</div>
 <%} %>
 
 <jsp:include page="../footer.jsp"/>

@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.addprod{
+	padding:10px;
+	margin-bottom: 20px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+}
