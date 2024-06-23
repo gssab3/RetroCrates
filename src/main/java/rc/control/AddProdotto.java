@@ -1,11 +1,12 @@
 package rc.control;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.Enumeration;
-
+import rc.control.MyServletContextListener;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -49,69 +50,7 @@ public class AddProdotto extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProdottoBean prodotto = new ProdottoBean();
-		/*
-		String qtaValue = request.getParameter("Qta");
 		
-		prodotto.setDisp(Boolean.parseBoolean(request.getParameter("Disponibile")));
-		prodotto.setTipoProdotto(tipologia);
-		/*Part filePart = request.getPart("foto");
-
-		Part costoPart = request.getPart("Costo");
-		if (costoPart != null) {
-		    prodotto.setCosto(Float.parseFloat(new String(costoPart.getInputStream().readAllBytes())));
-		}
-		
-		Part stellePart = request.getPart("Stelle");
-		if (stellePart != null) {
-		    prodotto.setStelleTot(Integer.parseInt(new String(stellePart.getInputStream().readAllBytes())));
-		}
-		
-        Part produttorePart = request.getPart("Produttore");
-        if (produttorePart != null) {
-            prodotto.setProduttore(new String(produttorePart.getInputStream().readAllBytes()));
-        }
-        
-        Part generePart = request.getPart("Genere");
-        if (generePart != null) {
-            prodotto.setGenere(new String(generePart.getInputStream().readAllBytes()));
-        }
-        
-        Part piattaformaPart = request.getPart("Piattaforma");
-        if (piattaformaPart != null) {
-            prodotto.setPiattaforma(new String(piattaformaPart.getInputStream().readAllBytes()));
-        }
-        
-        Part tipoGiocoPart = request.getPart("TipoGioco");
-        if (tipoGiocoPart != null) {
-            prodotto.setTipoGioco(new String(tipoGiocoPart.getInputStream().readAllBytes()));
-        }
-        
-        Part edizionePart = request.getPart("Edizione");
-        if (edizionePart != null) {
-            prodotto.setEdizione(new String(edizionePart.getInputStream().readAllBytes()));
-        }
-        
-        Part categoriaPart = request.getPart("Categoria");
-        if (categoriaPart != null) {
-            prodotto.setCategoria(new String(categoriaPart.getInputStream().readAllBytes()));
-        }
-        ProdottoDAODataSource prodDao = new ProdottoDAODataSource();
-        try {
-			prodDao.doSave(prodotto);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-         */
-		/*
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
-		*/	
-		
-		//Tipologia
-		String tipologia = (String) request.getAttribute("TipoProdotto");
 		
 		//Id
 		Part parteid = request.getPart("IdProdotto"); 
@@ -299,28 +238,20 @@ public class AddProdotto extends HttpServlet{
 		        prodotto.setTipoGioco(nome);
 		    }
 		}
-
 		
-		/*
-		Part parteprodotto = request.getPart("TipoProdotto"); 
-		if (parteprodotto != null) {
-		    try (InputStream inputStream = parteprodotto.getInputStream()) {
+		Part partTipo = request.getPart("TipoProdotto"); 
+		if (partTipo != null) {
+		    try (InputStream inputStream = partTipo.getInputStream()) {
+		        // Leggi i dati del campo del form
 		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		        byte[] buffer = new byte[1024];
 		        int bytesRead;
 		        while ((bytesRead = inputStream.read(buffer)) != -1) {
 		            outputStream.write(buffer, 0, bytesRead);
 		        }
-		        String tipoProdotto = outputStream.toString("UTF-8").trim();
-		        prodotto.setTipoProdotto(tipoProdotto);
+		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
+		        prodotto.setTipoProdotto(nome);
 		    }
-		}
-		*/
-		
-		String tipoProdotto = request.getParameter("TipoProdotto");
-		if (tipoProdotto != null) {
-		    tipoProdotto = tipoProdotto.trim(); // Rimuovi eventuali spazi bianchi in eccesso
-		    prodotto.setTipoProdotto(tipoProdotto);
 		}
 		
 		//Categoria
@@ -356,87 +287,37 @@ public class AddProdotto extends HttpServlet{
 		    }
 		}
 		
-		Part filePart = request.getPart("Foto");
-        if (filePart != null) {
-            try (InputStream fileInputStream = filePart.getInputStream()) {
-                byte[] fileBytes = fileInputStream.readAllBytes();
-
-                // Creazione dell'oggetto com.mysql.cj.jdbc.Blob dai byte letti
-                com.mysql.cj.jdbc.Blob fotoBlob = createMySQLBlob(fileBytes);
-
-                // Impostazione della fotoBlob nel prodotto
-                prodotto.setPicture(fotoBlob);
-            } catch (IOException | SQLException e) {
-                e.printStackTrace();
-                // Gestisci l'errore in modo appropriato
-            }
-        }
+		
 		
 		ProdottoDAODataSource prodDao = new ProdottoDAODataSource();
         try {
 			prodDao.doSave(prodotto);
+			System.out.println("dao che aggiunge prodotto" + prodotto.getIdProdotto());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        /*
 		
+        Part filePart = request.getPart("Foto");
+        if (filePart != null) {
+            try (InputStream fileInputStream = filePart.getInputStream()) {
+                byte[] fileBytes = fileInputStream.readAllBytes();
+                String base64Image = Base64.getEncoder().encodeToString(fileBytes);
+                prodDao.updateImage(prodotto.getIdProdotto(), base64Image);
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Gestisci l'errore in modo appropriato
+            } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        */
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
-	}
-	
-	// Metodo per creare un com.mysql.cj.jdbc.Blob dai byte letti
-	private com.mysql.cj.jdbc.Blob createMySQLBlob(byte[] bytes) throws SQLException {
-	    Context initCtx = null;
-	    try {
-	        initCtx = new InitialContext();
-	    } catch (NamingException e) {
-	        e.printStackTrace();
-	        throw new SQLException("Errore durante l'inizializzazione del contesto iniziale", e);
-	    }
-	    
-	    Context envCtx = null;
-	    try {
-	        envCtx = (Context) initCtx.lookup("java:comp/env");
-	    } catch (NamingException e) {
-	        e.printStackTrace();
-	        throw new SQLException("Errore durante il lookup del contesto dell'ambiente", e);
-	    }
-
-	    DataSource ds = null;
-	    try {
-	        ds = (DataSource) envCtx.lookup("jdbc/retrocrates");
-	    } catch (NamingException e) {
-	        e.printStackTrace();
-	        throw new SQLException("Errore durante il lookup del DataSource", e);
-	    }
-	    
-	    Connection connection = null;
-	    try {
-	        // Ottieni la connessione dalla tua connection pool
-	        connection = ds.getConnection();
-
-	        // Creazione di un oggetto Blob standard di JDBC a partire dall'array di byte
-	        Blob standardBlob = (com.mysql.cj.jdbc.Blob) connection.createBlob();
-	        standardBlob.setBytes(1, bytes); // Imposta i byte nel Blob
-
-	        // Cast esplicito a com.mysql.cj.jdbc.Blob
-	        com.mysql.cj.jdbc.Blob mysqlBlob = (com.mysql.cj.jdbc.Blob) standardBlob;
-
-	        return mysqlBlob;
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        throw e; // Rilancia l'eccezione per gestirla nel chiamante
-	    } finally {
-	        // Chiudi la connessione
-	        if (connection != null) {
-	            try {
-	                connection.close();
-	            } catch (SQLException e) {
-	                e.printStackTrace(); // Gestisci l'eccezione in caso di errore durante la chiusura
-	            }
-	        }
-	    }
 	}
 
 	

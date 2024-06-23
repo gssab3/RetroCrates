@@ -50,7 +50,7 @@ public class ProdottoBean implements Serializable{
 	protected boolean disp; //disponibilità, in genere è false e quelli false non si mostrano
 	protected String descr;
 	protected float costo; // decimal (10,2) >= 0
-	protected Blob picture;
+	protected Blob picture; // Use string for image path
 	protected int stelleTot; //minimo 1 massimo 5
 	
 	public ProdottoBean()

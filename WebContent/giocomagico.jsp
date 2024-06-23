@@ -52,7 +52,7 @@
 					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
 				</ul>
 			</li>
-			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
+			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
 			</li>	
 		</ul>
 	</div>

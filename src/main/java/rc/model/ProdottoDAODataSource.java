@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.LinkedList;
 import javax.naming.Context;
@@ -11,6 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
@@ -489,6 +493,27 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		return prodotti;
 	}
 	
-	
+	public synchronized void updateImage(String idProdotto, String base64Image) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+	        	connection = ds.getConnection();
+	            String updateSQL = "UPDATE Prodotto SET Foto = ? WHERE IdProdotto = ?";
+	            preparedStatement = connection.prepareStatement(updateSQL);
+	            byte[] decodedBytes = Base64.getDecoder().decode(base64Image);
+	            InputStream binaryStream = new ByteArrayInputStream(decodedBytes);
+	            preparedStatement.setBinaryStream(1, binaryStream);
+	            preparedStatement.setString(2, idProdotto);
+	            preparedStatement.executeUpdate();
+	            connection.commit();
+	                } finally {
+	        			try {
+	        				if (preparedStatement != null)
+	        					preparedStatement.close();
+	        			} finally {
+	        				if (connection != null)
+	        					connection.close();
+	        			}
+	        		}
+		}
 }
-

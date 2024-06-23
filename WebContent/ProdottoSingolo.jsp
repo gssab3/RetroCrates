@@ -1,19 +1,20 @@
 <%@page import="rc.control.ProdottoServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.control.utils" %>
+<%@ page import="rc.model.*,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream,utils.utils" %>
 <%@ page import="java.util.Collection" %>
 <%
 	
 	String idprodotto = request.getParameter("IdProdotto");
 	
+	HttpSession sessione = request.getSession(true);
+	CarrelloBean carrellobean = (CarrelloBean) sessione.getAttribute("carrello");
 
 	ProdottoBean prodotto = (ProdottoBean) request.getAttribute("prodotto");
 	if(prodotto == null) {
+		System.out.println("Inizio null prodotto singolo");
 		response.sendRedirect("./ProdottoServlet?IdProdotto=" + idprodotto);
 		return;
 	}
-	
-	
 %>
 
 
@@ -71,20 +72,11 @@
 					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
 				</ul>
 			</li>
-			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
+			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
 			</li>	
 		</ul>
 	</div>
 	
-	
-	<div class="cart" id="cart">
-		<a href="javascript:void(0)" class="closecart" onclick="closeCart()">×</a>
-		<p>Il Tuo Carrello</p>
-		<br>
-		<br>
-		<br>
-		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
-	</div>
 	
 	<jsp:include page="header.jsp"/>
 	
@@ -101,15 +93,18 @@
 	 
 		<div class="prodottosingolo">
     <%
+    if(prodotto == null)
+    	System.out.println("Prodotto Singolo non mi trovo più");
     if (prodotto != null) {
         if (prodotto.getTipoProdotto().equals("Videogioco")) {
         String image = null;
         if (prodotto.getPicture() != null) {
-			InputStream blob = prodotto.getPicture().getBinaryStream();
+			/*InputStream blob = prodotto.getPicture().getBinaryStream();
 			byte[] data = new byte[(int) prodotto.getPicture().length()];
 			blob.read(data);
 			image = Base64.getEncoder().encodeToString(data);
-		}
+			*/
+			}
     %>
     
             <div class="immagine-prodotto">
@@ -141,10 +136,11 @@
                 
             <% } else { %>
             
-                <form action="CarrelloServlet?" method="get">
+                <form action="CarrelloServlet" method="get">
 	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
+	                <input type="hidden" name="qtacar" value="1">
 	                <input type="hidden" name="Azione" value="aggiungi">
-	    			<input type="hidden" name="IdProdotto" value="<%= prodotto.getIdProdotto()%>">
+	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
                 </form>
                 
             <% } %>
@@ -191,8 +187,9 @@
                 
             <% } else { %>
             
-                <form action="CarrelloServlet?" method="get">
+                <form action="CarrelloServlet" method="get">
 	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
+	                <input type="hidden" name="qtacar" value="1">
 	                <input type="hidden" name="Azione" value="aggiungi">
 	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
                 </form>
@@ -242,10 +239,11 @@
                 
             <% } else { %>
             
-            	<form action="CarrelloServlet?" method="get">
+            	<form action="CarrelloServlet" method="get">
 	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
+	                <input type="hidden" name="qtacar" value="1">
 	                <input type="hidden" name="Azione" value="aggiungi">
-	    			<input type="hidden" name="IdProdotto" value="<%= prodotto.getIdProdotto()%>">
+	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
                 </form>
                 
             <% } %>

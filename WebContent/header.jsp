@@ -70,43 +70,10 @@
 			</span>
 		</div>
 		<% }%>
-		<!--	
-			
-			
-			/*
-			if(utente.getTipo().equals("Utente")){ */
-		%>
-				<div class="TastoLogin">
-					<span style="font-size:30px;cursor:pointer">
-						<a href="account.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
-					</span>
-				</div>
-		<% /*}else if(utente.getTipo().equals("Admin")){ */%>
-				<div class="TastoLogin">
-					<span style="font-size:30px;cursor:pointer">
-						<a href="admin/admin.jsp"><img src="images/fotoprofilodell'utente" alt="open"></a>
-					</span>
-				</div>
-		<%
-		/*	}
-		}else{ */
-		%>
-			  
-				
-				
-		<div class="TastoLogin">
-			<span style="font-size:30px;cursor:pointer">
-				<a href="login.jsp"><img src="images/icone/Header/crashIconLogin.png" alt="openLog"></a>
-			</span>
-		</div>
-		
-		
-		<%/* } */%>
-			  -->
 		
 		<div class="TastoCarrello">
-			<span style="font-size:30px;cursor:pointer" onclick="openCart()">
-				<img src="${pageContext.request.contextPath}/images/icone/Header/cart.png" alt="opencart">
+			<span style="font-size:30px;cursor:pointer">
+				<a href= "${pageContext.request.contextPath}/carrello.jsp"><img src="${pageContext.request.contextPath}/images/icone/Header/cart.png" alt="opencart"></a>
 			</span>
 		</div> 
 	</header>

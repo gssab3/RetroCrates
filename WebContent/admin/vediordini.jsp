@@ -81,7 +81,7 @@
 					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
 				</ul>
 			</li>
-			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
+			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
 			</li>	
 		</ul>
 	</div>
@@ -155,7 +155,8 @@
 	</table>
 	
 	<jsp:include page="../footer.jsp"/>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/ricerca.js" type="text/javascript"></script>
 
 </body>
 </html>

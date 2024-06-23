@@ -38,7 +38,6 @@ public class index extends HttpServlet{
 		try {
 			UtenteBean utente = (UtenteBean) session.getAttribute("currentSessionUser");
 			if(utente != null && utente.getTipo().equals("Admin")) {
-				System.out.println("ciao");
 	        	prodotti = model.doRetrieveAllAll("");
 				//prodotti = model.doRetrieveAll("");
 	        }

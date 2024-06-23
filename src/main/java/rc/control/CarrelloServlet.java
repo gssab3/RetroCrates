@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import rc.model.CarrelloBean;
 import rc.model.CarrelloDAODataSource;
+import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
 
 @WebServlet("/CarrelloServlet")
@@ -28,6 +29,7 @@ public class CarrelloServlet extends HttpServlet{
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int qtacar = 1;
 		if(request.getParameter("Azione") != null && request.getParameter("Azione").equals("diminuisci")){
 			
 			String idprodotto = request.getParameter("IdProdotto");
@@ -42,6 +44,7 @@ public class CarrelloServlet extends HttpServlet{
 			dispatcher.forward(request, response);
 		}
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("aumenta")) {
+			
 			
 			String idprodotto = request.getParameter("IdProdotto");
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
@@ -66,8 +69,10 @@ public class CarrelloServlet extends HttpServlet{
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("aggiungi")) {
 			
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
-			String idprodotto = request.getParameter("IdProdotto");
-			//Se c'è già nel carrello
+			if(carrello == null)
+				carrello = new CarrelloBean();
+			String idprodotto = request.getParameter("idprodotto");
+			/*Se c'è già nel carrello
 			if(carrello.retrieveByKey(idprodotto) != null)
 				carrello.retrieveByKey(idprodotto).addQta();
 			//Se non c'è già
@@ -80,6 +85,26 @@ public class CarrelloServlet extends HttpServlet{
 					System.out.println(e.getMessage());
 				}
 			}
+			*/
+			ProdottoDAODataSource prodDao = new ProdottoDAODataSource();
+			
+			ProdottoBean prodottoadd = null;
+			try {
+				System.out.println("\n\n\n" + idprodotto);
+				prodottoadd = prodDao.doRetrieveByKey(idprodotto);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(prodottoadd != null) {
+				if(carrello.retrieveByKey(idprodotto) != null)
+					carrello.addQuantity(idprodotto);
+				else {
+					prodottoadd.setQta(1);
+					carrello.aggiungiCarrello(prodottoadd);
+				}
+			}
+				
 			request.getSession().setAttribute("carrello", carrello);
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
@@ -98,6 +123,8 @@ public class CarrelloServlet extends HttpServlet{
 		
 	}
 	
+	
+	//RIDURRE LA QTA DEL PRODOTTO
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

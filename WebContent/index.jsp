@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.model.UtenteBean" %>
+<%@ page import="rc.model.ProdottoBean,rc.model.CarrelloBean, java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.model.UtenteBean" %>
 
 <%
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
@@ -11,6 +11,9 @@
 	
 	HttpSession sessione = request.getSession(true);
 	UtenteBean utUtil = (UtenteBean) sessione.getAttribute("currentSessionUser");
+	
+	CarrelloBean carrellobean = (CarrelloBean) sessione.getAttribute("carrello");
+	
 	String tipoutente = null;
 	if(utUtil != null)
 		tipoutente = (String) utUtil.getTipo();
@@ -84,7 +87,7 @@
 		<br>
 		<br>
 		<br>
-		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
+		<p class="carrello"><a href="carrello.jsp">Vai alla pagina del carrello</a></p>
 	</div>
 	
 	

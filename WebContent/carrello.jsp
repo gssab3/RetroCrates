@@ -4,7 +4,12 @@
     
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
 
+<%
+	
+	HttpSession sessione = request.getSession(true);
+	CarrelloBean carrellobean = (CarrelloBean) sessione.getAttribute("carrello");
 
+%>
 
 
 
@@ -16,6 +21,7 @@
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link type="text/css" rel="stylesheet" href="styles/Risultati.css"/>
+<link type="text/css" rel="stylesheet" href="styles/Tabelle.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<link type="text/css" rel="stylesheet" href="styles/paginaprodotti.css"/>
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
@@ -60,7 +66,7 @@
 					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
 				</ul>
 			</li>
-			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
+			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
 			</li>	
 		</ul>
 	</div>
@@ -86,26 +92,21 @@
 
 	<div id="risultatiRicerca"></div>
 	
-	<table>
+	<table class="tabella">
 		<tr>
 			<th>Immagine</th>
 			<th>Prodotto</th>
 			<th>Prezzo</th>
 			<th>Quantità</th>
-			<th>Rimuovi</th>
 			<th>Totale</th>
 		</tr>
 		<%
-		Collection<ProdottoBean> carrello = null;
+		
 		double somma = 0;
 
-		if (session.getAttribute("carrello") != null) {
-			CarrelloBean cart = (CarrelloBean) session.getAttribute("carrello");
-			carrello = cart.getCarrello();
-		}
 
-		if (carrello != null && carrello.size() != 0) {
-			Iterator<?> it = carrello.iterator();
+		if (carrellobean != null && carrellobean.getCarrello().size() != 0) {
+			Iterator<?> it = carrellobean.getCarrello().iterator();
 			while (it.hasNext()) {
 				ProdottoBean prodotto = (ProdottoBean) it.next();
 				
@@ -124,12 +125,8 @@
 			</td>
 			<td><%=prodotto.getNome()%></td>
 			<td id=""><%=costo%> &euro;</td>
-			<td>
-				<a href="/CarrelloServlet?Azione=diminuisci&codice=<%=prodotto.getIdProdotto()%>"><i class=""></i></a>
-				<input id="" type="number" value="<%=prodotto.getQta()%>" min="1" max="5" readonly>
-				<a href="/CarrelloServlet?Azione=aumenta&codice=<%=prodotto.getIdProdotto()%>"><i class=""></i></a>
+			<td><%=prodotto.getQta()%>
 			</td>
-			<td><a href="/CarrelloServlet?Azione=rimuovere&codice=<%=prodotto.getIdProdotto()%>"><i class=""></i></a></td>
 			<td class="" id=""><%=costototale%> &euro;</td>
 		</tr>
 		<% 		}

@@ -23,19 +23,24 @@ public class CarrelloBean implements Serializable{
 	
 	//Aggiungi qualcosa al carrello
 	public void aggiungiCarrello(ProdottoBean prodotto) {
-		
 		//Controlla Duplicati
 		int qta = 0;
 		for (Iterator<ProdottoBean> i = this.getCarrello().iterator(); i.hasNext(); ) {
-			if(i.next().getIdProdotto().equals(prodotto.IdProdotto))
+			ProdottoBean prodottoi = i.next();
+			if(prodottoi != null) {
+				if(prodottoi.getIdProdotto().equals(prodotto.IdProdotto))
 				qta+=prodotto.getQta();
+			}
 		}
 		
 		//Ci sono stati duplicati, quindi accorpa tutto per qta
 		if(qta > 0) {
 			for (Iterator<ProdottoBean> i = this.getCarrello().iterator(); i.hasNext(); ) {
-				if(i.next().getIdProdotto().equals(prodotto.IdProdotto)) 
+				ProdottoBean prodottob = i.next();
+				if(prodottob != null) {
+				if(prodottob.getIdProdotto().equals(prodotto.IdProdotto)) 
 					i.remove(); //rimuove quel prodotto se c'è, togliendoli poi tutti
+			}
 			}
 			//dopo averli tolti tutti ne aggiunge uno
 			prodotto.qta = qta;
@@ -55,8 +60,9 @@ public class CarrelloBean implements Serializable{
 		//per come è fatto sappiamo che solo uno avrà quell'id.
 		for (Iterator<ProdottoBean> i = this.getCarrello().iterator(); i.hasNext(); ) {
 			ProdottoBean prodotto = (ProdottoBean) i.next();
-			if (prodotto.getIdProdotto().equals(idprodotto))
-				prodotto.addQta();
+			if(prodotto != null)
+				if (prodotto.getIdProdotto().equals(idprodotto))
+					prodotto.addQta();
 		}
 	}
 	
@@ -65,8 +71,9 @@ public class CarrelloBean implements Serializable{
 		//per come è fatto sappiamo che solo uno avrà quell'id.
 		for (Iterator<ProdottoBean> i = this.getCarrello().iterator(); i.hasNext(); ) {
 			ProdottoBean bean = (ProdottoBean) i.next();
-			if (bean.getIdProdotto().equals(idprodotto))
-				bean.decrQta();
+			if(bean != null)
+				if (bean.getIdProdotto().equals(idprodotto))
+					bean.decrQta();
 		}
 	}
 	
@@ -83,8 +90,10 @@ public class CarrelloBean implements Serializable{
 	
 	public ProdottoBean retrieveByKey(String idprodotto) {
 		for (Iterator<ProdottoBean> i = this.getCarrello().iterator(); i.hasNext(); ) {
-			if(i.next().IdProdotto.equals(idprodotto))
-				return (ProdottoBean) i.next();
+			ProdottoBean prod = i.next();
+			if(prod != null)
+				if(prod.IdProdotto.equals(idprodotto))
+					return (ProdottoBean) prod;
 		}
 		return null;
 	}
