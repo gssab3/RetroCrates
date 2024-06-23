@@ -35,27 +35,19 @@ CREATE TABLE Prodotto(
 	Costo DECIMAL(10,2) NOT NULL,
 	stelleTot INT NOT NULL,
 	
-	Produttore ENUM('Sony', 'Microsoft', 'Nintendo', 'Atari', 'Sega', 'Altri', 
-	'Ubisoft', 'Rockstar_Games', 'Activision', 'Electronic_Arts', 'Naughty_Dog', 'Microsoft_Studios', 
-	'Bethesda', 'Gearbox_Software', 'Epic_Games', 'Capcom', 'Bandai_Namco_Entertainment', 'Konami',
-	'Funko', 'Pokèmon', 'BandaiNamco', 'YouTooz', 'Hasbro') NOT NULL,
+	Produttore VARCHAR(30) NOT NULL,
 	
-	Genere ENUM('Action_Adventure', 'Picchiaduro', 'RPG', 'Sparatutto', 'Simulazione', 'Sport', 'Strategia'),
+	Genere VARCHAR(30),
 	
-	Piattaforma ENUM('PS1', 'PS2', 'PS3', 'PS4', 'PS5', 'Xbox', 'Xbox_360', 'Xbox_One', 'Xbox_Series_X_S', 
-	'Nintendo_64', 'GameCube', 'Wii', 'Wii_U', 'Switch', 'Game_Boy', 'Nintendo_DS', 'Nintendo_3DS',
-	'Sega_Mega_Drive', 'Sega_Master_System', 'DreamCast', 'SegaSaturn', 'Atari_2600', 
-	'Atari_5200', 'Atari_7800', 'Altro'),
+	Piattaforma VARCHAR(30), 
 	
-	TipoGioco ENUM('Digitale', 'Fisico'),
+	TipoGioco VARCHAR(15),
 	
-	TipoProdotto ENUM('Console', 'Videogioco', 'Collezionabile') NOT NULL,
+	TipoProdotto VARCHAR(15),
 	
-	Categoria ENUM('Poster', 'Gadget', 'Figure', 'Plush', 'Audio'),
+	Categoria VARCHAR(15), 
 	
-	Edizione ENUM('Standard_Edition', 'Bronze_Edition', 'Silver_Edition', 'Gold_Edition', 
-	'Platinum_Edition', 'Diamond_Edition', 'G_O_T_Y_Edition', 'Enhanced_Edition', 'Ultimate_Edition',
-	'Normale', 'Esclusiva', 'RetroCrates'),
+	Edizione VARCHAR(35),
 	
 	PRIMARY KEY (IdProdotto),
     CHECK (Qta>=0),

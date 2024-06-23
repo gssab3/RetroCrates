@@ -146,9 +146,9 @@
     <input type="number" id="qta" name="Qta" min="0" required><br>
     <label for="disponibile">Disponibile:</label><br>
     <input type="checkbox" id="disponibile" name="Disponibile"><br>
-    <!--   <label for="foto">Foto:</label><br>
+    <label for="foto">Foto:</label><br>
     <input type="file" id="foto" name="foto" accept="image/*" onchange="checkFile(this)"><br>
-    <p id="fileError" style="color: red;"></p> -->
+    <p id="fileError" style="color: red;"></p>
     <label for="costo">Costo:</label><br>
     <input type="number" id="costo" name="Costo" min="0" step="0.01" required><br>
     <label for="stelle">Stelle:</label><br>
