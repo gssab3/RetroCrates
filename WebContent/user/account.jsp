@@ -1,3 +1,4 @@
+<%@page import="org.apache.catalina.ha.backend.Sender"%>
 <%@page import="rc.model.UtenteBean"%>
 <%@page import="rc.model.OrdineBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -5,11 +6,15 @@
 <%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
 
 <%
-	Collection<?> utenti = (Collection<?>) request.getAttribute("utenti");
-	if(utenti == null) {
-		response.sendRedirect(request.getContextPath()+"/Admin");	
-		return;
-	} 
+    HttpSession sessione = request.getSession(true);
+    UtenteBean utUtil = (UtenteBean) sessione.getAttribute("currentSessionUser");
+
+    if (utUtil == null) {
+        response.sendRedirect(request.getContextPath() + "/index");
+        return; // Uscita anticipata per evitare l'esecuzione del codice rimanente
+    }
+
+    Collection<?> ordini = (Collection<?>) request.getAttribute("ordini");
 %>
 <!DOCTYPE html>
 <html>
@@ -17,16 +22,17 @@
 <meta charset="UTF-8">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
- <link type="text/css" rel="stylesheet" href="styles/style.css"/>
- <link type="text/css" rel="stylesheet" href="styles/Tabelle.css"/>
-  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
- 	<script src="scripts/sidebar.js" type="text/javascript"></script>
-	<script src="scripts/cart.js" type="text/javascript"></script>
-	<script src="scripts/searchbar.js" type="text/javascript"></script>
+ <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
+ <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/Tabelle.css"/>
+ <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/user.css"/>
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/cocoicon2.ico"/> 
+ 	<script src="${pageContext.request.contextPath}/scripts/sidebar.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/scripts/cart.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/scripts/searchbar.js" type="text/javascript"></script>
 </head>
 <body>
 
-	<div class="barraNavigazione" id="barraNavigazione"> 
+<div class="barraNavigazione" id="barraNavigazione"> 
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 		<p>Menu<p>
 		<ul id="menu">
@@ -87,52 +93,46 @@
 	</form>
 
 	<div id="risultatiRicerca"></div>
-		
-		
-		<div class="aggiungere">
-		
-		<a href="AdminServlet?TipoProdotto=Console" class="add">Aggiungi una Console al Catalogo</a>
-		<br>
-		<a href="AdminServlet?TipoProdotto=Videogioco" class="add">Aggiungi un Videogioco al Catalogo</a>
-		<br>
-		<a href="AdminServlet?TipoProdotto=Collezionabile" class="add">Aggiungi un Collezionabile al Catalogo</a>
-		<br>
-		<br>
-		<a class="add" href="/RetroCrates/VediOrdini?sort=0&utente=TUTTI&datax=NULL&datay=NULL">Tutti gli Ordini</a>
-		</div>
-			<br>
+			
+			<div class="benvenuto">
+			<h1>Bentornato <%=utUtil.getUsername()%> !</h1>
+			<h2>Ecco tutti i tuoi ordini</h2>
+			</div>
 			
 		<table class="tabella">
-		
-		<tr>
-		    <th>Username</th>
-		    <th>Email</th>
-		    <th>Password</th>
-		    <th>Data di Nascita</th>
-		   	<th>Ordini</th>
-		</tr>
-				<%
-				if (utenti != null && utenti.size() != 0) {
-					Iterator<?> it = utenti.iterator();
+			<tr>
+		    	<th>Id Ordine</th>
+		    	<th>Destinazione</th>
+		    	<th>Costo Totale</th>
+		   		<th>Data dell'Ordine</th>
+			</tr>
+			
+			<%
+				if (ordini != null && ordini.size() != 0) {
+					Iterator<?> it = ordini.iterator();
 					while (it.hasNext()) {
-						UtenteBean bean = (UtenteBean) it.next();
+						OrdineBean bean = (OrdineBean) it.next();
 				%>
 					<tr>
-					    <td><%=bean.getUsername()%></td>
+					    <td><%=bean.getIdOrdine()%></td>
+					    <td><%=bean.getUtente()%></td>
+					    <td><%=bean.getDestinazione()%></td>
 					    <td><%=bean.getEmail()%></td>
-					    <td><%=bean.getPasswordHash()%></td>
-					    <td><%=bean.getDatanas()%></td>
-					    <td><a href="/RetroCrates/VediOrdini?sort=2&utente=<%=bean.getUsername()%>">Dettagli Ordini</a></td>
+					    <td><%=bean.getDataOrdine()%></td>
+					    <td><%=bean.getCostoTotale()%></td>
 					</tr>
 				<%
 					}
 				} else {
 					%>
-					<p>Nessun Utente disponibile.</p>
+					<tr>
+						<td colspan="4" style="text-align: center;">Nessun ordine trovato.</td>
+					</tr>
 				<%
 					}
 				%> 
-	</table>
+			
+		</table>
 		
 	<jsp:include page="../footer.jsp"/>
 

@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>footer</title>
-	<link type="text/css" rel="stylesheet" href="styles/style.css"/>
-	<link rel="shortcut icon" href="images/cocoicon2.ico"/> 
- 	<link type="text/css" rel="stylesheet" href="styles/paginaprodotti.css"/>
- 	<script src="scripts/sidebar.js" type="text/javascript"></script>
-	<script src="scripts/cart.js" type="text/javascript"></script>
-	<script src="scripts/searchbar.js" type="text/javascript"></script>
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/cocoicon2.ico"/> 
+ 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/paginaprodotti.css"/>
+ 	<script src="${pageContext.request.contextPath}/scripts/sidebar.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/scripts/cart.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/scripts/searchbar.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 		<div class="rigafooter">
 			
 				<div class="colonnafooter">
-					<img src="images/logofinale.png" class="logofooter">
+					<img src="${pageContext.request.contextPath}/images/logofinale.png" class="logofooter">
 					<p class="azienda">RetroCrates Inc.</p>
 				</div>
 				

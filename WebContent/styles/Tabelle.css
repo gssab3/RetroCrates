@@ -3,7 +3,7 @@
 .tabella th {
     font-weight: bold;
     font-size: 1em;
-    text-align: left;
+    text-align: center;
     color: #185875;
 }
 
@@ -13,11 +13,13 @@
     -webkit-box-shadow: 0 2px 2px -2px #0E1119;
     -moz-box-shadow: 0 2px 2px -2px #0E1119;
     box-shadow: 0 2px 2px -2px #0E1119;
+     word-break: break-all; 
 }
 
 table, th, td {
   border: 3px solid white;
   border-collapse: collapse;
+  overflow-wrap: break-word;
 }
 
 .tabella {
@@ -248,3 +250,6 @@ input[type="date"] {
         display: inline-block;
     }
 
+.alli{
+	display: flex;
+}

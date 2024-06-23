@@ -22,9 +22,9 @@
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css"/>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/cocoicon2.ico"/> 
  	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/paginaprodotti.css"/>
- 	<script src="scripts/sidebar.js" type="text/javascript"></script>
-	<script src="scripts/cart.js" type="text/javascript"></script>
-	<script src="scripts/searchbar.js" type="text/javascript"></script>
+ 	<script src="${pageContext.request.contextPath}/scripts/sidebar.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/scripts/cart.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/scripts/searchbar.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -52,7 +52,7 @@
 			if(tipoutente.equals("Utente")) { %>
 		    <div class="TastoLogin">
 				<span style="font-size:30px;cursor:pointer">
-					<a href="user/account.jsp"><img src="${pageContext.request.contextPath}/images/icone/Header/crashIconLogin.png" alt="open"></a>
+					<a href="${pageContext.request.contextPath}/user/account.jsp"><img src="${pageContext.request.contextPath}/images/icone/Header/crashIconLogin.png" alt="open"></a>
 				</span>
 			</div>
 		<% } else if(tipoutente.equals("Admin")) { %>

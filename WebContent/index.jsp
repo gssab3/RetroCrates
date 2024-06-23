@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream" %>
+<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.model.UtenteBean" %>
 
 <%
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
@@ -8,6 +8,15 @@
 		response.sendRedirect(request.getContextPath()+"/index");	
 		return;
 	}
+	
+	HttpSession sessione = request.getSession(true);
+	UtenteBean utUtil = (UtenteBean) sessione.getAttribute("currentSessionUser");
+	String tipoutente = null;
+	if(utUtil != null)
+		tipoutente = (String) utUtil.getTipo();
+	else
+		tipoutente = null;
+	
 %>
 
 <!DOCTYPE html>
@@ -18,6 +27,7 @@
 <title>RetroCrates</title>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link type="text/css" rel="stylesheet" href="styles/Risultati.css"/>
+ <link type="text/css" rel="stylesheet" href="styles/Tabelle.css"/>
  <link rel="shortcut icon" href="images/cocoicon2.ico"/> 
  	<link type="text/css" rel="stylesheet" href="styles/paginaprodotti.css"/>
  	<script src="scripts/sidebar.js" type="text/javascript"></script>
@@ -62,7 +72,7 @@
 					<li id="categoria"><a href="TipologiaControl?TipoProdotto=Collezionabile&Categoria=Audio">Audio</a>
 				</ul>
 			</li>
-			<li id="aboutus"><a href="aboutus.html">Chi Siamo</a>
+			<li id="aboutus"><a href="aboutus.jsp">Chi Siamo</a>
 			</li>	
 		</ul>
 	</div>
@@ -123,6 +133,21 @@
 						<p class = "nome"><%=bean.getNome()%></p>
 						<p class = "prezzo"><%=costo%>€</p>
 					</div>	
+						
+						
+						<%if(tipoutente != null){
+							if(tipoutente.equals("Admin")) { %>
+			    				<div>
+									<span  style="font-size:20px;cursor:pointer">
+										<a class="add alli" href="user/account.jsp">Rimuovi Prodotto</a>
+									</span>
+									
+									<span  style="font-size:20px;cursor:pointer">
+										<a class="add alli" href="user/account.jsp">Modifica Prodotto</a>
+									</span>
+								</div>
+							<%}
+							}%>
 				</div>
 				<%
 					}
