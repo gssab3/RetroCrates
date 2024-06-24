@@ -72,15 +72,6 @@
 	</div>
 	
 	
-	<div class="cart" id="cart">
-		<a href="javascript:void(0)" class="closecart" onclick="closeCart()">×</a>
-		<p>Il Tuo Carrello</p>
-		<br>
-		<br>
-		<br>
-		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
-	</div>
-	
 		<jsp:include page="header.jsp"/>
 	
 	<form id="formRicerca" action="./RicercaProdottoServlet" method="get"> 
@@ -99,6 +90,9 @@
 			<th>Prezzo</th>
 			<th>Quantità</th>
 			<th>Totale</th>
+			<th>Operazioni</th>
+			<th>Svuota</th>
+			<th>Buy</th>
 		</tr>
 		<%
 		
@@ -107,6 +101,8 @@
 
 		if (carrellobean != null && carrellobean.getCarrello().size() != 0) {
 			Iterator<?> it = carrellobean.getCarrello().iterator();
+			int numProdotti = carrellobean.getCarrello().size();
+		    int i = 0;
 			while (it.hasNext()) {
 				ProdottoBean prodotto = (ProdottoBean) it.next();
 				
@@ -128,12 +124,26 @@
 			<td><%=prodotto.getQta()%>
 			</td>
 			<td class="" id=""><%=costototale%> &euro;</td>
+			<td><a href="CarrelloServlet?Azione=diminuisci&idprodotto=<%=prodotto.getIdProdotto()%>"><img src="${pageContext.request.contextPath}/images/minus.png"></a> <br> <a href="CarrelloServlet?Azione=aggiungi&idprodotto=<%=prodotto.getIdProdotto()%>"><img src="${pageContext.request.contextPath}/images/piu.png"></a></td>
+			<% if (i == 0) { %>
+                <td rowspan="<%=numProdotti%>"><a href="CarrelloServlet?Azione=svuota">Svuota</a></td>
+            <% } %>
+            <% if (i == 0) { %>
+                <td rowspan="<%=numProdotti%>"><a href="checkout.jsp">Buy</a></td>
+            <% } i++; %>
 		</tr>
 		<% 		}
 			}
 		%>
 	</table>
-	  
+	
+	
+	<tr>
+    <td colspan="5"></td> <!-- Empty cell for spacing -->
+    <td>
+        <form action="CheckoutServlet" method="post">
+            <input type="submit" value="Checkout">
+        </form>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/ricerca.js" type="text/javascript"></script>

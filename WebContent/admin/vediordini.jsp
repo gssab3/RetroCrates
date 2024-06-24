@@ -87,15 +87,6 @@
 	</div>
 	
 	
-	<div class="cart" id="cart">
-		<a href="javascript:void(0)" class="closecart" onclick="closeCart()">×</a>
-		<p>Il Tuo Carrello</p>
-		<br>
-		<br>
-		<br>
-		<p class="carrello"><a href="paginadelcarrello">Vai alla pagina del carrello</a></p>
-	</div>
-	
 	<jsp:include page="../header.jsp"/>
 	
 	<form id="formRicerca" action="./RicercaProdottoServlet" method="get"> 

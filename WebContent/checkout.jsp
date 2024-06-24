@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.model.UtenteBean" %>
+<%@ page import="rc.model.ProdottoBean,rc.model.CarrelloBean, java.util.*, javax.servlet.RequestDispatcher, java.io.InputStream, rc.model.UtenteBean" %>
+
+<%
+	HttpSession sessione = request.getSession(true);
+	if(sessione.getAttribute("currentSessionUser") == null) {
+		response.sendRedirect(request.getContextPath()+"/login.jsp");	
+		return;
+	}
+	
+	UtenteBean utenteBean = (UtenteBean) sessione.getAttribute("currentSessionUser");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -61,6 +71,7 @@
 	</div>
 	
 	
+	
 	<jsp:include page="header.jsp"/>
 	
 	<form id="formRicerca" action="./RicercaProdottoServlet" method="get"> 
@@ -71,47 +82,100 @@
 	</form>
 
 	<div id="risultatiRicerca"></div>
-	<div class="aboutus">
-        <h1>Chi Siamo - RetroCrates</h1>
-        <p>Benvenuti su RetroCrates, un sito dedicato a riportare in vita la magia senza 
-        tempo dei videogiochi retrò. La nostra missione è far rivivere le emozioni e la 
-        nostalgia di un'epoca in cui i videogiochi erano più di un semplice passatempo, 
-        ma una vera e propria forma d'arte e di intrattenimento.</p>
+	
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Form</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <script src="path/to/acquisto.js"></script> <!-- Assuming your validation functions are here -->
+</head>
+<body>
+    <form action="CarrelloServlet" method="post" onsubmit="return validateCardDetails(this)">
+        <!-- Numero della carta -->
+        <label for="cardNumber">Numero della carta:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required onblur="checkCardNumberField()">
+        <span id="errCardNumber" class="error"></span>
+        <br>
+
+        <!-- Codice speciale (CVV/CVC) -->
+        <label for="cvv">Codice speciale (CVV/CVC):</label>
+        <input type="text" id="cvv" name="cvv" required onblur="checkCVVField()">
+        <span id="errCVV" class="error"></span>
+        <br>
+
+        <!-- Intestatario -->
+        <label for="cardholderName">Intestatario:</label>
+        <input type="text" id="cardholderName" name="cardholderName" required onblur="checkCardholderNameField()">
+        <span id="errCardholderName" class="error"></span>
+        <br>
+
+        <!-- Data di scadenza -->
+        <label for="expirationDate">Data di scadenza (MM/YY):</label>
+        <input type="text" id="expirationDate" name="expirationDate" required onblur="checkExpirationDateField()">
+        <span id="errExpirationDate" class="error"></span>
+        <br>
+
+        <label for="Destinazione">Destinazione:</label>
+        <input type="text" id="Destinazione" name="Destinazione" required>
+        <span class="error"></span>
+        <br>
         
-        <h2>La Nostra Offerta</h2>
-        <p>Su RetroCrates, offriamo una vasta selezione di titoli classici che hanno segnato 
-        un'epoca, diventando autentici capolavori. Questi giochi, spesso dimenticati con il 
-        passare del tempo, sono pronti per essere riscoperti e apprezzati ancora una volta. 
-        Non ci limitiamo solo ai titoli più famosi, ma esploriamo anche gemme nascoste che 
-        meritano di essere conosciute. La nostra collezione comprende una gamma diversificata 
-        di giochi, dai pionieri del genere arcade ai leggendari RPG e platform che hanno definito 
-        intere generazioni di giocatori.</p>
-        
-        <h2>La Nostra Missione</h2>
-        <p>RetroCrates non è solo un negozio, ma il tuo portale per l’era d’oro dei videogiochi. 
-        La nostra passione per il retrogaming ci spinge a curare con attenzione ogni singolo titolo, 
-        garantendo che ogni gioco offerto sia in condizioni eccellenti e pronto per essere giocato. 
-        Siamo convinti che ogni gioco abbia una storia unica da raccontare e che meriti di essere 
-        tramandata alle future generazioni di gamer.</p>
-        
-        <h2>Perché Sceglierci?</h2>
-        <p>In un mondo in cui la tecnologia avanza rapidamente, è facile dimenticare le radici del gaming moderno. 
-        RetroCrates si impegna a preservare questa eredità, offrendo ai giocatori di oggi e di ieri 
-        l'opportunità di rivivere le avventure che hanno plasmato la storia dei videogiochi. 
-        Che tu sia un collezionista appassionato, un nostalgico in cerca di rivivere i propri ricordi d'infanzia, 
-        o un nuovo giocatore curioso di scoprire le origini del gaming, 
-        RetroCrates è il luogo perfetto per te.</p>
-        
-        <h2>Unisciti a Noi</h2>
-        <p>Ti invitiamo a esplorare il nostro catalogo e a unirti alla comunità di appassionati 
-        che condividono la nostra stessa passione per i videogiochi retrò. 
-        Su RetroCrates, la tua avventura nell’era d’oro dei videogiochi inizia qui. 
-        Scopri, gioca e rivivi i momenti indimenticabili che hanno fatto la storia del gaming.</p>
-    </div>
+        <input type="hidden" name="username" value="<%=utenteBean.getUsername()%>">
+		<input type="hidden" name="Azione" value="acquista">
+        <input type="submit" value="Checkout">
+    </form>
+
+    <script>
+        function checkCardNumberField() {
+            var cardNumber = document.getElementById("cardNumber");
+            if (!checkCardNumber(cardNumber)) {
+                document.getElementById("errCardNumber").textContent = "Numero di carta non valido";
+            } else {
+                document.getElementById("errCardNumber").textContent = "";
+            }
+        }
+
+        function checkCVVField() {
+            var cvv = document.getElementById("cvv");
+            if (!checkCVV(cvv)) {
+                document.getElementById("errCVV").textContent = "CVV non valido";
+            } else {
+                document.getElementById("errCVV").textContent = "";
+            }
+        }
+
+        function checkCardholderNameField() {
+            var cardholderName = document.getElementById("cardholderName");
+            if (!checkCardholderName(cardholderName)) {
+                document.getElementById("errCardholderName").textContent = "Nome del titolare non valido";
+            } else {
+                document.getElementById("errCardholderName").textContent = "";
+            }
+        }
+
+        function checkExpirationDateField() {
+            var expirationDate = document.getElementById("expirationDate");
+            if (!checkExpirationDate(expirationDate)) {
+                document.getElementById("errExpirationDate").textContent = "Data di scadenza non valida";
+            } else {
+                document.getElementById("errExpirationDate").textContent = "";
+            }
+        }
+    </script>
+
+	
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/ricerca.js" type="text/javascript"></script>
+	<script src="scripts/acquisto.js" type="text/javascript"></script>
 	
 	<jsp:include page="footer.jsp"/>
-	
 </body>
 </html>

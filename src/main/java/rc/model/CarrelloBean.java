@@ -66,16 +66,21 @@ public class CarrelloBean implements Serializable{
 		}
 	}
 	
-	//Diminuisci la quantità di quel prodotto
 	public void decreaseQuantity(String idprodotto) {
-		//per come è fatto sappiamo che solo uno avrà quell'id.
-		for (Iterator<ProdottoBean> i = this.getCarrello().iterator(); i.hasNext(); ) {
-			ProdottoBean bean = (ProdottoBean) i.next();
-			if(bean != null)
-				if (bean.getIdProdotto().equals(idprodotto))
-					bean.decrQta();
-		}
+	    // Assuming only one bean will have that ID
+	    Iterator<ProdottoBean> iterator = this.getCarrello().iterator();
+	    while (iterator.hasNext()) {
+	        ProdottoBean bean = iterator.next();
+	        if (bean != null && bean.getIdProdotto().equals(idprodotto)) {
+	            bean.decrQta();
+	            if (bean.getQta() == 0) {
+	                iterator.remove(); // Remove the bean if quantity is zero
+	            }
+	            break; // Exit the loop after processing the bean
+	        }
+	    }
 	}
+
 	
 	//Rimuovi elemento dal carrello
 	public void removeItem(String idprodotto) {

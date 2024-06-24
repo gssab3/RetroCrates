@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import rc.model.CarrelloBean;
 import rc.model.CarrelloDAODataSource;
+import rc.model.OrdineBean;
 import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
+import rc.model.UtenteBean;
+import rc.model.UtenteDAODataSource;
 
 @WebServlet("/CarrelloServlet")
 public class CarrelloServlet extends HttpServlet{
@@ -29,43 +32,20 @@ public class CarrelloServlet extends HttpServlet{
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int qtacar = 1;
 		if(request.getParameter("Azione") != null && request.getParameter("Azione").equals("diminuisci")){
 			
-			String idprodotto = request.getParameter("IdProdotto");
+			String idprodotto = request.getParameter("idprodotto");
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
 			if(carrello.retrieveByKey(idprodotto) != null)
-				carrello.retrieveByKey(idprodotto).decrQta();
-			else if(carrello.retrieveByKey(idprodotto) != null && carrello.retrieveByKey(idprodotto).getQta() == 1)
+				carrello.decreaseQuantity(idprodotto);
+			else if(carrello.retrieveByKey(idprodotto) != null && carrello.retrieveByKey(idprodotto).getQta() == 0)
 				carrello.removeItem(idprodotto);
 			
 			request.getSession().setAttribute("carrello", carrello);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
 			dispatcher.forward(request, response);
 		}
-		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("aumenta")) {
-			
-			
-			String idprodotto = request.getParameter("IdProdotto");
-			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
-			if(carrello.retrieveByKey(idprodotto) != null)
-				carrello.retrieveByKey(idprodotto).addQta();
-			
-			request.getSession().setAttribute("carrello", carrello);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
-			dispatcher.forward(request, response);
-		}
-		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("rimuovere")) {
-			
-			String idprodotto = request.getParameter("IdProdotto");
-			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
-			
-			if(!carrello.getCarrello().isEmpty())
-				carrello.removeItem(idprodotto);
-			request.getSession().setAttribute("carrello", carrello);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
-			dispatcher.forward(request, response);
-		} //Aggiungi = aggiungere un prodotto al carrello
+		//Aggiungi = aggiungere un prodotto al carrello
 		else if (request.getParameter("Azione") != null && request.getParameter("Azione").equals("aggiungi")) {
 			
 			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
@@ -119,6 +99,29 @@ public class CarrelloServlet extends HttpServlet{
 			request.getSession().setAttribute("carrello", carrello);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
 			dispatcher.forward(request, response);
+		}
+		else if(request.getParameter("Azione") != null && request.getParameter("Azione").equals("acquista")) {
+			CarrelloBean carrello = (CarrelloBean) request.getSession().getAttribute("carrello");
+			String destinazione = request.getParameter("Destinazione");
+			String username = request.getParameter("username");
+			UtenteBean utente = new UtenteBean();
+			UtenteDAODataSource utDao = new UtenteDAODataSource();
+			try {
+				utente = utDao.doRetrieveByKey(username);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			CarrelloDAODataSource carrellodao = new CarrelloDAODataSource();
+			try {
+				carrellodao.acquista(carrello, utente, destinazione);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carrello.jsp");
+	        dispatcher.forward(request, response);
 		}
 		
 	}
