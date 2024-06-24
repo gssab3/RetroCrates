@@ -15,10 +15,13 @@
   <listener>
         <listener-class>rc.control.MyServletContextListener</listener-class>
    </listener>
-  <!-- 
   <error-page>
-    <location>/Error.html</location>
-  </error-page>
-  -->
-  
+        <error-code>400</error-code>
+        <location>/Error.html</location>
+</error-page>
+
+<error-page>
+        <error-code>500</error-code>
+        <location>/Error.html</location>
+</error-page>
 </web-app>
