@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import="rc.model.ProdottoBean,java.util.*, javax.servlet.RequestDispatcher" %>
+<%@ page import="rc.model.*,java.util.*, javax.servlet.RequestDispatcher" %>
 
 <%
 	
@@ -111,7 +111,7 @@
 				Float costototale = prodotto.getCosto() * prodotto.getQta();
 				somma += costototale;
 			
-				String image = "img/productIMG/" + prodotto.getPicture();
+				String image = "images/productIMG/" + prodotto.getPicture();
 		%>
 		<tr>
 	<td>
@@ -138,12 +138,6 @@
 	</table>
 	
 	
-	<tr>
-    <td colspan="5"></td> <!-- Empty cell for spacing -->
-    <td>
-        <form action="CheckoutServlet" method="post">
-            <input type="submit" value="Checkout">
-        </form>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/ricerca.js" type="text/javascript"></script>

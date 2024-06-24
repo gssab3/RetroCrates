@@ -81,7 +81,7 @@
 	<%if(tipo.equals("Console")){ %>
 		<div class="addprod">
 	
-	<form class="Console" action="./AddProdotto" method="POST" enctype="multipart/form-data">
+	<form class="Console" action="AddProdotto" method="POST" enctype="multipart/form-data">
     <label for="IdProdotto">Id Prodotto:</label><br>
     <input type="text" id="IdProdotto" name="IdProdotto" required><br>
     <label for="nome">Nome:</label><br>
@@ -126,7 +126,7 @@
 	<%}else if(tipo.equals("Videogioco")){ %>
 	
 	<div class="addprod">
-	<form class="Gioco" action="AddProdotto" method="POST" enctype="multipart/form-data">
+	<form class="Videogioco" action="AddProdotto" method="POST" enctype="multipart/form-data">
     <label for="IdProdotto">Id Prodotto:</label><br>
     <input type="text" name="IdProdotto" id="IdProdotto" required><br>
     <label for="nome">Nome:</label><br>
@@ -141,7 +141,7 @@
     <input type="file" id="foto" name="foto" accept="image/*" onchange="checkFile(this)"><br>
     <p id="fileError" style="color: red;"></p>
     <label for="costo">Costo:</label><br>
-    <input type="number" id="costo" name="Costo" min="0" step="0.01" required><br>
+    <input type="number" id="costo" name="Costo" min="0" step="0.1" required><br>
     <label for="stelle">Stelle:</label><br>
     <input type="number" id="stelle" name="Stelle" min="1" max="5" step="1" required><br>
     <label for="produttore">Produttore:</label><br>
@@ -202,7 +202,7 @@
 		    <option value="Digitale">Digitale</option>
 		    <option value="Fisico">Fisico</option>
 		</select><br> 
-    <input type="hidden" id="TipoProdotto" name="TipoProdotto" value="Gioco">
+    <input type="hidden" id="TipoProdotto" name="TipoProdotto" value="Videogioco">
     <label for="edizione">Edizione:</label><br>
 		<select id="edizione" name="Edizione" required>
 		    <option value="Standard_Edition">Standard Edition</option>
@@ -222,7 +222,7 @@
 <%}else if(tipo.equals("Collezionabile")){ %>
 		
 		<div class="addprod">
-	<form class="Collezionabile" action="./AddProdotto" method="post" enctype="multipart/form-data">
+	<form class="Collezionabile" action="AddProdotto" method="post" enctype="multipart/form-data">
     <label for="IdProdotto">Id Prodotto:</label><br>
     <input type="text" id="IdProdotto" name="IdProdotto" required><br>
     <label for="nome">Nome:</label><br>
@@ -272,7 +272,7 @@
 
 	</div>
 <%} %>
-
+<!-- 
 <script>
 function validateForm() {
     var x = document.forms["Gioco"]["IdProdotto"].value;
@@ -281,7 +281,8 @@ function validateForm() {
         return false;
     }
 }
-</script>
+
+</script> -->
 <jsp:include page="../footer.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/scripts/ricerca.js" type="text/javascript"></script>

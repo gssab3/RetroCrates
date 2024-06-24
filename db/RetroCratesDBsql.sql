@@ -31,7 +31,7 @@ CREATE TABLE Prodotto(
 	Descrizione TEXT NOT NULL, 
 	Qta INT NOT NULL, -- >=0
 	Disponibile BOOLEAN, -- al posto di cancellarlo
-	Foto MediumBlob,
+	Foto VARCHAR(50),
 	Costo DECIMAL(10,2) NOT NULL,
 	stelleTot INT NOT NULL,
 	

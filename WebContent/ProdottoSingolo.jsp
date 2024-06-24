@@ -8,7 +8,7 @@
 	
 	HttpSession sessione = request.getSession(true);
 	CarrelloBean carrellobean = (CarrelloBean) sessione.getAttribute("carrello");
-
+	UtenteBean utente = (UtenteBean) sessione.getAttribute("currentSessionUser");
 	ProdottoBean prodotto = (ProdottoBean) request.getAttribute("prodotto");
 	if(prodotto == null) {
 		System.out.println("Inizio null prodotto singolo");
@@ -93,23 +93,16 @@
 	 
 		<div class="prodottosingolo">
     <%
-    if(prodotto == null)
-    	System.out.println("Prodotto Singolo non mi trovo più");
     if (prodotto != null) {
         if (prodotto.getTipoProdotto().equals("Videogioco")) {
         String image = null;
-        if (prodotto.getPicture() != null) {
-			/*InputStream blob = prodotto.getPicture().getBinaryStream();
-			byte[] data = new byte[(int) prodotto.getPicture().length()];
-			blob.read(data);
-			image = Base64.getEncoder().encodeToString(data);
-			*/
-			}
+        if (prodotto.getPicture() != null)
+			image = "images/productIMG/" + prodotto.getPicture();
     %>
     
             <div class="immagine-prodotto">
                 <% if (image != null) { %>
-                    <img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
+                    <img src="<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
                 <% } else { %>
                     <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
                 <% } %>
@@ -125,7 +118,7 @@
                 			%><img src="images/stellapiena.png"> <% 
                 			else
                 			%> <img src="images/stellavuota.png"> <%} %></span>
-                <p>Produttore: <%= utils.formatta(prodotto.getProduttore()) %></p>
+                <p>Produttore: <%= utils.formatta(prodotto.getProduttore())%></p>
                 <p>Genere: <%= utils.formatta(prodotto.getGenere()) %></p>
                 <p>Piattaforma: <%= utils.formatta(prodotto.getPiattaforma()) %></p>
                 <p>Formato: <%= prodotto.getTipoGioco() %></p>
@@ -134,7 +127,7 @@
             
                 <h1>Prodotto Non Disponibile</h1>
                 
-            <% } else { %>
+            <% } else { if(utente != null && utente.getTipo().equals("Admin")) {} else {%>
             
                 <form action="CarrelloServlet" method="get">
 	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
@@ -143,7 +136,8 @@
 	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
                 </form>
                 
-            <% } %>
+            <% } 
+            }%>
             </div>
             
             <div class="descrizione-prodotto">
@@ -155,16 +149,13 @@
         } else if (prodotto.getTipoProdotto().equals("Console")) {
         	String image = null;
             if (prodotto.getPicture() != null) {
-    			InputStream blob = prodotto.getPicture().getBinaryStream();
-    			byte[] data = new byte[(int) prodotto.getPicture().length()];
-    			blob.read(data);
-    			image = Base64.getEncoder().encodeToString(data);
+            	image = "images/productIMG/" + prodotto.getPicture();
     		}
     %>
     
             <div class="immagine-prodotto">
                 <% if (image != null) { %>
-                    <img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
+                    <img src="<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
                 <% } else { %>
                     <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
                 <% } %>
@@ -185,8 +176,10 @@
             
                 <h1>Prodotto Non Disponibile</h1>
                 
-            <% } else { %>
-            
+            <% } else {
+            	if(utente != null && utente.getTipo().equals("Admin")) {
+            	}
+            	else { %>
                 <form action="CarrelloServlet" method="get">
 	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
 	                <input type="hidden" name="qtacar" value="1">
@@ -194,7 +187,8 @@
 	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
                 </form>
                 
-            <% } %>
+            <% } 
+            	} %>
             </div>
             
             <div class="descrizione-prodotto">
@@ -207,15 +201,12 @@
         } else if (prodotto.getTipoProdotto().equals("Collezionabile")) {
         	String image = null;
             if (prodotto.getPicture() != null) {
-    			InputStream blob = prodotto.getPicture().getBinaryStream();
-    			byte[] data = new byte[(int) prodotto.getPicture().length()];
-    			blob.read(data);
-    			image = Base64.getEncoder().encodeToString(data);
+            	image = "images/productIMG/" + prodotto.getPicture();
     		}
     %>
             <div class="immagine-prodotto">
                 <% if (image != null) { %>
-                    <img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
+                    <img src="<%=image%>" alt="ImmagineProdotto" class="imgprodotto">
                 <% } else { %>
                     <img src="images/productIMG/noimg.png" class="imgprodotto" alt="ImmagineProdotto">
                 <% } %>
@@ -237,7 +228,7 @@
             
                 <h1>Prodotto Non Disponibile</h1>
                 
-            <% } else { %>
+            <% } else { if(utente != null && utente.getTipo().equals("Admin")) {} else {%>
             
             	<form action="CarrelloServlet" method="get">
 	                <button class="aggiungi" type="submit">Aggiungi al Carrello</button>
@@ -246,7 +237,8 @@
 	    			<input type="hidden" name="idprodotto" value="<%= prodotto.getIdProdotto()%>">
                 </form>
                 
-            <% } %>
+            <% } 
+            }%>
             </div>
             <div class="descrizione-prodotto">
                 <p><%= prodotto.getDescr() %></p>
@@ -258,7 +250,6 @@
     }
     %>
 </div>
-
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="scripts/ricerca.js" type="text/javascript"></script>

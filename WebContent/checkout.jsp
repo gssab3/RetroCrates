@@ -18,6 +18,11 @@
 <meta charset="UTF-8">
  <meta name="viewport"  content="initial-scale=1, width=device-width">
 <title>RetroCrates</title>
+<style>
+        .error {
+            color: red;
+        }
+    </style>
  <link type="text/css" rel="stylesheet" href="styles/style.css"/>
  <link type="text/css" rel="stylesheet" href="styles/Risultati.css"/>
  <link type="text/css" rel="stylesheet" href="styles/Tabelle.css"/>
@@ -83,20 +88,8 @@
 
 	<div id="risultatiRicerca"></div>
 	
-	<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Card Form</title>
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
-    <script src="path/to/acquisto.js"></script> <!-- Assuming your validation functions are here -->
-</head>
-<body>
+
+<div class="contieniform">
     <form action="CarrelloServlet" method="post" onsubmit="return validateCardDetails(this)">
         <!-- Numero della carta -->
         <label for="cardNumber">Numero della carta:</label>
@@ -131,7 +124,7 @@
 		<input type="hidden" name="Azione" value="acquista">
         <input type="submit" value="Checkout">
     </form>
-
+</div>
     <script>
         function checkCardNumberField() {
             var cardNumber = document.getElementById("cardNumber");

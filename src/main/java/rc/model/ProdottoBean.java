@@ -1,7 +1,6 @@
 package rc.model;
 
 import java.io.Serializable;
-import com.mysql.cj.jdbc.Blob;
 
 @SuppressWarnings("serial")
 public class ProdottoBean implements Serializable{
@@ -50,7 +49,7 @@ public class ProdottoBean implements Serializable{
 	protected boolean disp; //disponibilità, in genere è false e quelli false non si mostrano
 	protected String descr;
 	protected float costo; // decimal (10,2) >= 0
-	protected Blob picture; // Use string for image path
+	protected String picture; // Use string for image path
 	protected int stelleTot; //minimo 1 massimo 5
 	
 	public ProdottoBean()
@@ -194,11 +193,11 @@ public class ProdottoBean implements Serializable{
 		this.costo = costo;
 	}
 
-	public Blob getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(Blob picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	

@@ -52,7 +52,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 			preparedStatement.setString(3, prodotto.getDescr());
 			preparedStatement.setInt(4, prodotto.getQta());
 			preparedStatement.setBoolean(5, prodotto.isDisp());
-			preparedStatement.setBlob(6, prodotto.getPicture());
+			preparedStatement.setString(6, prodotto.getPicture());
 			preparedStatement.setFloat(7, prodotto.getCosto());
 			preparedStatement.setInt(8, prodotto.getStelleTot());
 			preparedStatement.setString(9, prodotto.getProduttore());
@@ -103,6 +103,35 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 		}
 		return (result != 0);
 	}
+	
+	
+	public synchronized boolean updateDisptoFalse(String code) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String deleteSQL = "UPDATE " + TABLE_NAME + " SET Disponibile = ? WHERE IdProdotto = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setBoolean(1, false);
+			preparedStatement.setString(2, code);
+			result = preparedStatement.executeUpdate();
+			connection.commit();
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return (result != 0);
+	}
 
 	@Override
 	public synchronized Collection<ProdottoBean> doRetrieveAll(String order) throws SQLException {
@@ -132,7 +161,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));
@@ -189,7 +218,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));
@@ -231,7 +260,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));
@@ -272,7 +301,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));
@@ -320,7 +349,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));
@@ -368,7 +397,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));
@@ -416,7 +445,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));
@@ -464,7 +493,7 @@ public class ProdottoDAODataSource implements IBeanDAO<ProdottoBean> {
 				bean.setDescr(rs.getString("Descrizione"));
 				bean.setQta(rs.getInt("Qta"));
 				bean.setDisp(rs.getBoolean("Disponibile"));
-				bean.setPicture((com.mysql.cj.jdbc.Blob) rs.getBlob("Foto"));
+				bean.setPicture(rs.getString("Foto"));
 				bean.setCosto(rs.getFloat("Costo"));
 				bean.setStelleTot(rs.getInt("stelleTot"));
 				bean.setProduttore(rs.getString("Produttore"));

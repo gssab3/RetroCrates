@@ -11,10 +11,11 @@
 	<res-auth>Container</res-auth>
   </resource-ref>
   
-  <!--
+
   <listener>
         <listener-class>rc.control.MyServletContextListener</listener-class>
    </listener>
+  <!-- 
   <error-page>
     <location>/Error.html</location>
   </error-page>

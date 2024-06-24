@@ -1,15 +1,12 @@
 package rc.control;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Base64;
-import java.util.Enumeration;
-import rc.control.MyServletContextListener;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,15 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import com.mysql.cj.jdbc.Blob;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-
-import javax.sql.DataSource;
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 
 import rc.model.ProdottoBean;
 import rc.model.ProdottoDAODataSource;
@@ -52,273 +44,89 @@ public class AddProdotto extends HttpServlet{
 		ProdottoBean prodotto = new ProdottoBean();
 		
 		
-		//Id
-		Part parteid = request.getPart("IdProdotto"); 
-		if (parteid != null) {
-		    try (InputStream inputStream = parteid.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setIdProdotto(nome);
-		    }
-		}
-		
-		//Nome
-		Part partenome = request.getPart("Nome"); 
-		if (partenome != null) {
-		    try (InputStream inputStream = partenome.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setNome(nome);
-		    }
-		}
-		
-		
-		//Descr
-		Part partdescr = request.getPart("Descrizione"); 
-		if (partdescr != null) {
-		    try (InputStream inputStream = partdescr.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setDescr(nome);
-		    }
-		}
-		
-		//Qta
-		Part partqta = request.getPart("Qta");
-		if (partqta != null) {
-		    try (InputStream inputStream = partqta.getInputStream()) {
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String qtaString = outputStream.toString("UTF-8");
-		        int qta = Integer.parseInt(qtaString);
-		        prodotto.setQta(qta);
-		    } catch (NumberFormatException e) {
-		        System.out.println(e.getMessage());
-		    }
-		}
-		
-		//Disp
-		Part partDisp = request.getPart("disponibile");
-		if (partDisp != null) {
-		    try (InputStream inputStream = partDisp.getInputStream()) {
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String dispValue = outputStream.toString("UTF-8").trim();
-		        boolean disp = Boolean.parseBoolean(dispValue);
-		        prodotto.setDisp(disp);
-		    }
-		}
-		
-		
-		// Campo Costo (float)
-		Part partCosto = request.getPart("Costo");
-		if (partCosto != null) {
-		    try (InputStream inputStream = partCosto.getInputStream()) {
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String costoValue = outputStream.toString("UTF-8").trim();
-		        float costo = Float.parseFloat(costoValue);
-		        prodotto.setCosto(costo);
-		    }
-		}
-		
-		
-		//Stelle
-		Part partstelle = request.getPart("Stelle");
-		if (partstelle != null) {
-		    try (InputStream inputStream = partstelle.getInputStream()) {
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String stelles = outputStream.toString("UTF-8");
-		        int stelle = Integer.parseInt(stelles);
-		        prodotto.setStelleTot(stelle);
-		    } catch (NumberFormatException e) {
-		        System.out.println(e.getMessage());
-		    }
-		}
-		
-		
-		
-		//Produttore
-		Part parteprod = request.getPart("Produttore"); 
-		if (parteprod != null) {
-		    try (InputStream inputStream = parteprod.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setProduttore(nome);
-		    }
-		}
-		
-		
-		//Genere
-		Part partegenere = request.getPart("Genere"); 
-		if (partegenere != null) {
-		    try (InputStream inputStream = partegenere.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setGenere(nome);
-		    }
-		}
-		
-		
-		//Piattaforma
-		Part partepiattaforma = request.getPart("Piattaforma"); 
-		if (partepiattaforma != null) {
-		    try (InputStream inputStream = partepiattaforma.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setPiattaforma(nome);
-		    }
-		}
-		
-		//TipoGioco
-		Part partegioco = request.getPart("TipoGioco"); 
-		if (partegioco != null) {
-		    try (InputStream inputStream = partegioco.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setTipoGioco(nome);
-		    }
-		}
-		
-		Part partTipo = request.getPart("TipoProdotto"); 
-		if (partTipo != null) {
-		    try (InputStream inputStream = partTipo.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setTipoProdotto(nome);
-		    }
-		}
-		
-		//Categoria
-		Part partecate = request.getPart("Categoria"); 
-		if (partecate != null) {
-		    try (InputStream inputStream = partecate.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setCategoria(nome);
-		    }
-		}
-		
-		
-		//Edizione
-		Part parteedizione = request.getPart("Edizione"); 
-		if (parteedizione != null) {
-		    try (InputStream inputStream = parteedizione.getInputStream()) {
-		        // Leggi i dati del campo del form
-		        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		        byte[] buffer = new byte[1024];
-		        int bytesRead;
-		        while ((bytesRead = inputStream.read(buffer)) != -1) {
-		            outputStream.write(buffer, 0, bytesRead);
-		        }
-		        String nome = outputStream.toString("UTF-8"); // Converti i dati del campo del form in una stringa
-		        prodotto.setEdizione(nome);
-		    }
-		}
-		
-		
-		
-		ProdottoDAODataSource prodDao = new ProdottoDAODataSource();
+		 // Parametri del form
+        String idProdotto = request.getParameter("IdProdotto");
+        String nome = request.getParameter("Nome");
+        String descrizione = request.getParameter("Descrizione");
+        int qta = Integer.parseInt(request.getParameter("Qta"));
+        boolean disponibile = request.getParameter("Disponibile") != null; // checkbox
+        float costo = (float) Double.parseDouble(request.getParameter("Costo"));
+        int stelle = Integer.parseInt(request.getParameter("Stelle"));
+        String produttore = request.getParameter("Produttore");
+        String tipoProdotto = request.getParameter("TipoProdotto");
+        String categoria = request.getParameter("Categoria");
+        String edizione = request.getParameter("Edizione");
+        String genere = request.getParameter("Genere");
+        String piattaforma = request.getParameter("Piattaforma");
+        String tipogioco = request.getParameter("TipoGioco");
+
+        // Gestione del file immagine
+        Part filePart = request.getPart("foto");
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        InputStream fileContent = filePart.getInputStream();
+
+        // Percorso dove salvare le immagini nel server
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "images" + File.separator + "productIMG";
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
+
+        try {
+            // Salvataggio del file immagine nel server
+            Path filePath = Paths.get(uploadPath, fileName);
+            Files.copy(fileContent, filePath);
+
+         // Inside your doPost method after copying the file
+            try {
+                // Elimina il file temporaneo
+                if (filePart != null) {
+                    filePart.delete(); // Attempt to delete the temporary file
+                }
+            } catch (IOException e) {
+                // Log the error or handle it as appropriate for your application
+                e.printStackTrace(); // Example: Log the exception for debugging purposes
+            }
+        }
+        catch(Exception e)
+        {
+        	e.printStackTrace();
+        }
+
+        ProdottoDAODataSource prodDao = new ProdottoDAODataSource();
+        prodotto.setIdProdotto(idProdotto);
+        prodotto.setNome(nome);
+        prodotto.setDescr(descrizione);
+        prodotto.setQta(qta);
+        prodotto.setDisp(disponibile);
+        prodotto.setCosto(costo);
+        prodotto.setStelleTot(stelle);
+        prodotto.setProduttore(produttore);
+        prodotto.setTipoProdotto(tipoProdotto);
+        prodotto.setCategoria(categoria);
+        prodotto.setEdizione(edizione);
+        prodotto.setPicture(fileName);
+        prodotto.setGenere(genere);
+        prodotto.setPiattaforma(piattaforma);
+        prodotto.setTipoGioco(tipogioco);
         try {
 			prodDao.doSave(prodotto);
-			System.out.println("dao che aggiunge prodotto" + prodotto.getIdProdotto());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        /*
-		
-        Part filePart = request.getPart("Foto");
-        if (filePart != null) {
-            try (InputStream fileInputStream = filePart.getInputStream()) {
-                byte[] fileBytes = fileInputStream.readAllBytes();
-                String base64Image = Base64.getEncoder().encodeToString(fileBytes);
-                prodDao.updateImage(prodotto.getIdProdotto(), base64Image);
-                
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Gestisci l'errore in modo appropriato
-            } catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-        */
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
-	}
+        try {
+			request.setAttribute("prodotti", prodDao.doRetrieveAllAll(""));
+			request.setAttribute("prodotto", prodotto);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  // Assicurati che questa chiamata ritorni i dati corretti
 
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProdottoSingolo.jsp");
+        dispatcher.forward(request, response);
+
+}
 	
 }

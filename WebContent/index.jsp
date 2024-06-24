@@ -101,18 +101,15 @@
 						ProdottoBean bean = (ProdottoBean) it.next();
 						Float costo = bean.getCosto();
 						String image = null;
-						if (bean.getPicture() != null) {
-						    InputStream blob = bean.getPicture().getBinaryStream();
-						    byte[] data = new byte[(int) bean.getPicture().length()];
-						    blob.read(data);
-						    image = Base64.getEncoder().encodeToString(data);
-						}
+						if (bean.getPicture() != null)
+						    image = "images/productIMG/"+ bean.getPicture();
+						
 						
 				%>
 				<div class="colonnaprodotto">
 					<div class = "immagineprodotto">
 						<% if(image!=null){ %>
-							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src="data:image/png;base64,<%=image%>" alt="ImmagineProdotto" style="width: 200px; height: 225px"></a>
+							<a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src="<%=image%>" alt="ImmagineProdotto" style="width: 200px; height: 225px"></a>
 						<%
 							}
 							else
@@ -133,11 +130,13 @@
 							if(tipoutente.equals("Admin")) { %>
 			    				<div>
 									<span  style="font-size:20px;cursor:pointer">
-										<a class="add alli" href="rimuovi">Rimuovi Prodotto</a>
-									</span>
-									
-									<span  style="font-size:20px;cursor:pointer">
-										<a class="add alli" href="modi">Modifica Prodotto</a>
+										<form action="RimuoviProdotto" method="GET">
+										    <label for="idprodotto">ID Prodotto:</label>
+										    <input type="hidden" name="idprodotto" value="<%=bean.getIdProdotto()%>">
+										    <br><br>
+										    <button class="add alli"  type="submit" name="action" value="rimuovi">Rimuovi Prodotto</button>
+										    <button class="add alli"  type="submit" name="action" value="modifica">Annulla</button>
+										</form>
 									</span>
 								</div>
 							<%}

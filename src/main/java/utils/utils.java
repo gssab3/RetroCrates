@@ -16,15 +16,18 @@ import javax.sql.DataSource;
 public class utils {
 	public static String formatta(String s) {
 		String result = "";
-		for(int i=0; i<s.length(); i++) {
+		if(s!=null) {
+			for(int i=0; i<s.length(); i++) {
 			if(s.charAt(i) == '_')
 				result = result+" ";
 			else
 				result = result+s.charAt(i);
+			}
+			
+		
 		}
+		
 		return result;
-		
-		
 	}
 	
 	public static void updateImage(String idProdotto, String base64Image) {

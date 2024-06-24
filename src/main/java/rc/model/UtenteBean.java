@@ -1,7 +1,6 @@
 package rc.model;
 
 import java.io.Serializable;
-import com.mysql.cj.jdbc.Blob;
 
 @SuppressWarnings("serial")
 public class UtenteBean implements Serializable

@@ -136,16 +136,13 @@
                         Float costo = bean.getCosto();
                         String image = null;
                         if (bean.getPicture() != null) {
-						    //InputStream blob = bean.getPicture().getBinaryStream();
-						    //byte[] data = new byte[(int) bean.getPicture().length()];
-						    //blob.read(data);
-						    //image = Base64.getEncoder().encodeToString(data);
+                        	image = "images/productIMG/" + bean.getPicture();
 						}
                 %>
                 <div class="colonnaprodotto">
                     <div class = "immagineprodotto">
                         <% if(image!=null){ %>
-                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "data:image/png;base64,<%=image%>" alt = "ImmagineProdotto" style="width: 200px; height: 225px"></a>
+                            <a href="ProdottoServlet?IdProdotto=<%=bean.getIdProdotto()%>"><img src = "<%=image%>" alt = "ImmagineProdotto" style="width: 250px; height: 225px"></a>
                         <%
                             }
                             else
